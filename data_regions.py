@@ -24,5 +24,17 @@ conflicts             本地区特有易混代码
 
 from data_regions_a import REGIONS_A
 from data_regions_b import REGIONS_B
+from data_sources import LOCAL_BASIS, SOURCES, FOOT_SRC
 
 REGIONS = REGIONS_A + REGIONS_B
+
+# 把"体系依据 / 权威资料清单 / 页脚资料口径"并入各地区
+for _r in REGIONS:
+    _rid = _r["id"]
+    if _rid in LOCAL_BASIS:
+        _r["basis"] = LOCAL_BASIS[_rid]
+    if _rid in SOURCES:
+        _r["sources"] = SOURCES[_rid]
+    if _rid in FOOT_SRC:
+        _r["foot_src"] = FOOT_SRC[_rid]
+

@@ -82,6 +82,15 @@ def _to_trad(s, region):
     return "".join(CHAR_MAP.get(ch, ch) for ch in s)
 
 
+def to_hans(text, region=""):
+    """简体化：用于内地 / 日本 / 韩国等非繁体地区的中文资料条目。"""
+    if not text:
+        return text
+    if zhconv is not None:
+        return zhconv.convert(text, "zh-cn")
+    return text
+
+
 def to_hant(text, region="hk"):
     """把简体文本转为该地区惯用的繁体文本。"""
     if not text:

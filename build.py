@@ -21,7 +21,7 @@ from data_finish import FINISH
 from data_conflict import CONFLICT, RULES
 from data_regions import REGIONS
 from i18n import I18N
-from zh_hant import to_hant
+from zh_hant import to_hant, to_hans
 
 OUT = os.path.dirname(os.path.abspath(__file__))
 
@@ -178,6 +178,29 @@ def build_region_view(region):
     warn = region.get("warn")
     if warn:
         warn = _hant_all(warn, rid) if hant else dict(warn)
+
+    # 体系依据（接在简介之前）与权威资料清单
+    basis = region.get("basis")
+    if basis:
+        basis = _hant_all(basis, rid) if hant else {lg: basis[lg] for lg in LANGS}
+        if not hant:
+            basis["zh"] = to_hans(basis["zh"])
+        intro = {lg: (basis[lg] + " " + intro[lg]).strip() for lg in LANGS}
+
+    sources = region.get("sources")
+    if sources:
+        sources = {lg: list(sources[lg]) for lg in LANGS}
+        if hant:
+            sources = {lg: [to_hant(s, rid) for s in v] for lg, v in sources.items()}
+        else:
+            sources["zh"] = [to_hans(s) for s in sources["zh"]]
+
+    foot_src = region.get("foot_src")
+    if foot_src:
+        foot_src = _hant_all(foot_src, rid) if hant else {lg: foot_src[lg] for lg in LANGS}
+        if not hant:
+            foot_src["zh"] = to_hans(foot_src["zh"])
+
     i18n_zh = {k: to_hant(v["zh"], rid) for k, v in I18N.items()} if hant else None
 
     return {
@@ -187,6 +210,8 @@ def build_region_view(region):
         "local_lang": lg,
         "intro": intro,
         "warn": warn,
+        "sources": sources,
+        "foot_src": foot_src,
         "i18n_zh": i18n_zh,
         "groups": groups,
         "extras": extras,
@@ -342,6 +367,20 @@ html[data-theme="light"] .lang.on{color:#fff}
 .region-note .rf{font-size:15px;margin-right:6px}
 .region-note .rmeta{margin-left:10px;color:var(--muted);font-size:12.2px}
 .region-note .warnline{display:block;margin-top:6px;color:var(--muted)}
+/* ---------- 本地区资料依据 ---------- */
+.sources{
+  margin-top:14px;border:1px solid var(--line);background:var(--panel);
+  border-radius:12px;padding:14px 18px;font-size:12.6px;color:var(--ink2)
+}
+.sources-head{
+  font-size:12.6px;font-weight:700;color:var(--ink);display:flex;align-items:center;
+  gap:10px;flex-wrap:wrap;margin-bottom:9px
+}
+.sources-head:before{content:"";width:4px;height:15px;background:var(--accent);border-radius:2px;flex:0 0 4px}
+.sources-head em{font-style:normal;font-weight:400;font-size:11.8px;color:var(--muted)}
+.sources ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:6px 22px}
+.sources li{position:relative;padding-left:15px;line-height:1.65;color:var(--ink2)}
+.sources li:before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--accent-line)}
 
 /* ---------- toolbar ---------- */
 .toolbar{
@@ -544,6 +583,7 @@ html[data-theme="light"] mark{background:rgba(240,180,41,.42)}
 
   <div class="region-note" id="regionNote"></div>
   <div class="notice" id="notice"></div>
+  <div class="sources" id="sources"></div>
 
   <div class="toolbar">
     <div class="tabs" id="tabs"></div>
@@ -660,6 +700,13 @@ function renderHeader(){
     "<b>"+esc(t("note_label"))+"：</b>"+esc(introTxt)+
     '<span class="warnline">'+esc(warnTxt)+'</span>';
 
+  // 本地区资料依据（当地权威标准 / 法规 / 实务惯例）
+  var srcs = (R.sources && R.sources[state.lang]) || [];
+  $("#sources").innerHTML = srcs.length
+    ? '<div class="sources-head">'+esc(t("g_sources_title"))+'<em>'+esc(t("g_sources_sub"))+'</em></div>'+
+      '<ul>'+srcs.map(function(s){ return '<li>'+esc(s)+'</li>'; }).join("")+'</ul>'
+    : '';
+
   $("#langs").innerHTML = LANGS.map(function(l){
     return '<button class="lang'+(l.id===state.lang?" on":"")+'" data-lang="'+l.id+'">'+esc(l.label)+'</button>';
   }).join("");
@@ -678,7 +725,7 @@ function renderHeader(){
   $("#q").placeholder = t("search_ph");
   $("#printBtn").title = t("print_title");
   $("#clearBtn").title = t("clear_title");
-  $("#footSrc").innerHTML = esc(t("foot_src"));
+  $("#footSrc").innerHTML = esc((R.foot_src && R.foot_src[state.lang]) || t("foot_src"));
   var fc = t("foot_conclusion"), m = fc.match(/^([^：:]+)[：:]\s*(.+)$/);
   $("#footConclusion").innerHTML = m ? "<b>"+esc(m[1])+"：</b>"+esc(m[2]) : esc(fc);
   $("#footLang").innerHTML = esc(t("foot_lang"));
