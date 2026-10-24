@@ -1,6 +1,10 @@
 # 施工图材料代码 · 多语多地区对照表
 # Material Code Legend — Multilingual & Multi-Region
 
+<p align="center">
+  <img src="logo.svg" width="96" alt="施工图材料代码对照表 logo">
+</p>
+
 > 施工图材料大类代码的 **缩写 ↔ 全称** 对照工具：按地区切换当地惯用写法，界面与说明支持 中 / 英文 / 日本語 / 한국어 / Español。
 > An offline-first lookup for construction-drawing material codes: switch **region** to see local abbreviations and full names, in 5 languages.
 
@@ -41,6 +45,7 @@ So a code copied from another project can be wrong. This tool lets you pick the 
 | 路径 | 说明 |
 |---|---|
 | `index.html` | 成品页面（由 CI 从源码构建后回写） |
+| `logo.svg` | 站点标识：施工蓝图网格 + 代码标签 + 材料饰面叠层（页面页头与浏览器图标共用） |
 | `build.py` | 构建脚本：生成单文件 HTML + 多地区 Excel |
 | `data_common.py` | 数据结构与语言定义 |
 | `data_mat.py` | 饰面材料 / 物料软装（40 条） |

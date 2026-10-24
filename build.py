@@ -12,6 +12,7 @@
 import io
 import json
 import os
+import base64
 import re
 
 from data_common import LANGS, LANG_META
@@ -259,6 +260,38 @@ def build_payload():
 
 PAYLOAD = build_payload()
 
+# ---------------------------------------------------------------- Logo
+# 标识：施工蓝图网格底板 + 代码标签 + 材料饰面叠层
+LOGO_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Material Code Legend">
+<title>施工图材料代码对照表</title>
+<defs>
+<linearGradient id="mcl-bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#0a3a66"/><stop offset="0.55" stop-color="#125e9f"/><stop offset="1" stop-color="#1e86dd"/>
+</linearGradient>
+<linearGradient id="mcl-top" x1="0.2" y1="0" x2="0.8" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d8ecff"/>
+</linearGradient>
+</defs>
+<rect width="64" height="64" rx="14" fill="url(#mcl-bg)"/>
+<g stroke="#ffffff" stroke-opacity="0.15" stroke-width="1">
+<path d="M16 0V64M32 0V64M48 0V64M0 16H64M0 32H64M0 48H64"/>
+</g>
+<rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.5"/>
+<g>
+<rect x="22" y="8" width="20" height="8" rx="4" fill="#f0b429"/>
+<rect x="25.5" y="11" width="5.5" height="2" rx="1" fill="#0a3a66" fill-opacity="0.6"/>
+<rect x="32.5" y="11" width="4" height="2" rx="1" fill="#0a3a66" fill-opacity="0.38"/>
+</g>
+<g stroke-linejoin="round">
+<path d="M12 44.5 L32 34 L52 44.5 L32 55 Z" fill="#ffffff" fill-opacity="0.5"/>
+<path d="M12 36.5 L32 26 L52 36.5 L32 47 Z" fill="#ffffff" fill-opacity="0.75"/>
+<path d="M12 28.5 L32 18 L52 28.5 L32 39 Z" fill="url(#mcl-top)"/>
+</g>
+</svg>"""
+
+FAVICON_URI = "data:image/svg+xml;base64," + base64.b64encode(LOGO_SVG.encode("utf-8")).decode("ascii")
+
+
 # ---------------------------------------------------------------- 网页模板
 HTML_TEMPLATE = r"""<!DOCTYPE html>
 <html lang="zh-CN" data-theme="dark" data-lang="zh" data-region="cn">
@@ -267,6 +300,9 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>施工图材料代码多语对照表</title>
 <meta name="description" content="施工图材料大类代码 · 按地区划分的缩写与全称对照 · 中日英韩西多语言 · Material Legend">
+<link rel="icon" type="image/svg+xml" href="__FAVICON__">
+<link rel="apple-touch-icon" href="__FAVICON__">
+<meta name="theme-color" content="#0a3a66">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -309,10 +345,10 @@ body::before{
 .hero-top{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;justify-content:space-between}
 .brand{display:flex;gap:14px;align-items:center;min-width:280px}
 .logo{
-  width:46px;height:46px;flex:0 0 46px;border-radius:12px;display:grid;place-items:center;
-  background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent);
+  width:46px;height:46px;flex:0 0 46px;border-radius:13px;overflow:hidden;line-height:0;
+  box-shadow:0 4px 14px rgba(10,58,102,.28)
 }
-.logo svg{width:24px;height:24px}
+.logo svg{width:100%;height:100%;display:block}
 h1{font-size:24px;font-weight:700;letter-spacing:.4px;line-height:1.25}
 h1 em{font-style:normal;color:var(--accent)}
 .sub{color:var(--muted);font-size:12.8px;margin-top:5px}
@@ -555,9 +591,7 @@ html[data-theme="light"] mark{background:rgba(240,180,41,.42)}
     <div class="hero-top">
       <div class="brand">
         <div class="logo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 5h18v14H3z"/><path d="M3 9h18"/><path d="M8 5v14"/><path d="M13 9v4"/><path d="M16 9v4"/>
-          </svg>
+          __LOGO__
         </div>
         <div>
           <h1 id="hTitle"></h1>
@@ -973,9 +1007,15 @@ bind();
 def build_html():
     payload = json.dumps(PAYLOAD, ensure_ascii=False, separators=(",", ":"))
     html = HTML_TEMPLATE.replace("__PAYLOAD__", payload)
+    html = html.replace("__FAVICON__", FAVICON_URI)
+    html = html.replace("__LOGO__", LOGO_SVG)
     path = os.path.join(OUT, "施工图材料代码多语对照表.html")
     with io.open(path, "w", encoding="utf-8") as f:
         f.write(html)
+    # 同步输出独立的 logo 文件（供仓库、PPT、提案复用）
+    logo_path = os.path.join(OUT, "logo.svg")
+    with io.open(logo_path, "w", encoding="utf-8") as f:
+        f.write(LOGO_SVG)
     return path, len(html)
 
 

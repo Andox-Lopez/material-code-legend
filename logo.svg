@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Material Code Legend">
+<title>施工图材料代码对照表</title>
+<defs>
+<linearGradient id="mcl-bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#0a3a66"/><stop offset="0.55" stop-color="#125e9f"/><stop offset="1" stop-color="#1e86dd"/>
+</linearGradient>
+<linearGradient id="mcl-top" x1="0.2" y1="0" x2="0.8" y2="1">
+<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d8ecff"/>
+</linearGradient>
+</defs>
+<rect width="64" height="64" rx="14" fill="url(#mcl-bg)"/>
+<g stroke="#ffffff" stroke-opacity="0.15" stroke-width="1">
+<path d="M16 0V64M32 0V64M48 0V64M0 16H64M0 32H64M0 48H64"/>
+</g>
+<rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.5"/>
+<g>
+<rect x="22" y="8" width="20" height="8" rx="4" fill="#f0b429"/>
+<rect x="25.5" y="11" width="5.5" height="2" rx="1" fill="#0a3a66" fill-opacity="0.6"/>
+<rect x="32.5" y="11" width="4" height="2" rx="1" fill="#0a3a66" fill-opacity="0.38"/>
+</g>
+<g stroke-linejoin="round">
+<path d="M12 44.5 L32 34 L52 44.5 L32 55 Z" fill="#ffffff" fill-opacity="0.5"/>
+<path d="M12 36.5 L32 26 L52 36.5 L32 47 Z" fill="#ffffff" fill-opacity="0.75"/>
+<path d="M12 28.5 L32 18 L52 28.5 L32 39 Z" fill="url(#mcl-top)"/>
+</g>
+</svg>
