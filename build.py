@@ -138,7 +138,8 @@ def hant_map():
         if (r.get("script") or "") != "hant":
             continue
         rid = r["id"]
-        out[rid] = {t: to_hant(t, rid) for t in texts}
+        # 排序后输出：否则集合迭代顺序会让每次构建产生噪声 diff
+        out[rid] = {t: to_hant(t, rid) for t in sorted(texts)}
     return out
 
 
@@ -1314,8 +1315,9 @@ def build_html(mode):
         js = js.replace("__EMBEDDED__", "null")
     name = "施工图材料代码多语对照表.html" if mode == "offline" else "index.html"
     path = os.path.join(OUT, name)
-    with io.open(path, "w", encoding="utf-8") as f:
-        f.write(js)
+    # 固定用 LF 落盘：与 git 仓库中的版本一致，避免每次构建产生换行符噪声 diff
+    with io.open(path, "w", encoding="utf-8", newline="") as f:
+        f.write(js.replace("\r\n", "\n"))
     return path, len(js)
 
 
@@ -1407,8 +1409,8 @@ if __name__ == "__main__":
     print("online  html:", os.path.basename(p1), "%.0f KB" % (n1 / 1024))
     p2, n2 = build_html("offline")
     print("offline html:", os.path.basename(p2), "%.0f KB" % (n2 / 1024))
-    with io.open(os.path.join(OUT, "logo.svg"), "w", encoding="utf-8") as f:
-        f.write(LOGO_SVG)
+    with io.open(os.path.join(OUT, "logo.svg"), "w", encoding="utf-8", newline="") as f:
+        f.write(LOGO_SVG.replace("\r\n", "\n"))
     print("logo.svg 已输出")
     views = assemble_python()
     for rid, v in views.items():
