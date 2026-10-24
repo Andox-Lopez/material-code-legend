@@ -49,8 +49,8 @@ I18N = {
     },
 
     # ---------------------------------------------------------- 地区
-    "region_label": {"zh": "地区 / 体系", "en": "Region / convention", "ja": "地域・体系",
-                     "ko": "지역 / 체계", "es": "Región / convención"},
+    "region_label": {"zh": "地区体系", "en": "Region", "ja": "地域",
+                     "ko": "지역", "es": "Región"},
     "region_hint": {
         "zh": "同一条材料在不同国家/地区，缩写与全称并不相同。切换地区即可查看当地惯例写法。",
         "en": "The same material is not abbreviated the same way in every country. Switch region to see the local convention.",

@@ -1,267 +1,46 @@
 # -*- coding: utf-8 -*-
-"""生成《施工图材料代码多语对照表》单文件网页（+ 多语言 XLSX）
+"""施工图材料代码多语多地区对照表 —— 构建脚本（数据源为 CSV）
 
-结构：地区（Region） → 分组 → 条目
-  * 8 个地区/市场各自的缩写惯例：通用代码 → 当地代码、当地名称、地区特有条目与易混代码
-  * 5 种界面/说明语言：中文 / English / 日本語 / 한국어 / Español
-  * 香港、台湾地区使用繁体并套用当地惯用词（亞加力、壓克力、傢俬、傢俱…）
+用法：
+    python build.py
+输出（同一目录）：
+    index.html                        在线版：运行时从 data/*.csv 读取
+    施工图材料代码多语对照表.html          离线版：全部 CSV 内嵌，单文件零依赖
+    施工图材料代码多语对照表.xlsx          多地区 × 多语言 Excel
+    logo.svg                          站点标识
 
-用法：python build.py
-输出：施工图材料代码多语对照表.html / .xlsx（同目录）
+数据源（唯一真相源，均为 CSV，UTF-8 with BOM）：
+    data/entries.csv        每个代码一行：code, group, full_en, name_<lang>…
+    data/entry_text.csv     每个代码每种语言一行：group, code, lang, desc, note
+    data/regions.csv        每个地区一行：id, flag, local_lang, script
+    data/region_text.csv    每个地区每种语言一行：region_id, lang, label, intro, warn, basis, sources, foot_src
+    data/region_codes.csv   地区代码覆盖：region_id, group, base_code, code, name, full, note
+    data/region_extras.csv  地区特有条目
+    data/region_conflicts.csv 地区特有易混代码
+    data/conflicts.csv      基准易混代码
+    data/conflict_text.csv  基准易混代码的分语言说明
+    data/rules.csv          编号规则骨架
+    data/rule_text.csv      编号规则的分语言标题与要点
+    data/i18n.csv           界面文案：key + 每种语言一列
 """
+import base64
+import csv
 import io
 import json
 import os
-import base64
 import re
 
-from data_common import LANGS, LANG_META
-from data_mat import MAT_FINISH, MAT_FF_E
-from data_light import LIGHT
-from data_finish import FINISH
-from data_conflict import CONFLICT, RULES
-from data_regions import REGIONS
-from i18n import I18N
-from zh_hant import to_hant, to_hans
+BASE = os.path.dirname(os.path.abspath(__file__))
+DATA = os.path.join(BASE, "data")
+OUT = BASE
 
-OUT = os.path.dirname(os.path.abspath(__file__))
-
-GROUPS = {
-    "mat": MAT_FINISH,
-    "obj": MAT_FF_E,
-    "light": LIGHT,
-    "finish": FINISH,
-}
-GROUP_KEYS = ("mat", "obj", "light", "finish")
-LOOKUP = {(g, e["code"]): e for g, items in GROUPS.items() for e in items}
-
-
-def resolve_ref(ref):
-    """把 ("ref", group, code) 解析成 5 语言文本；字面量原样返回。"""
-    if ref[0] == "lit":
-        return dict(ref[1])
-    _, group, code = ref
-    entry = LOOKUP[(group, code)]
-    out = {}
-    for lg in LANGS:
-        name = entry["loc"][lg]["name"]
-        full = entry["full"]
-        if name == full:
-            out[lg] = full
-        else:
-            sep = "（" if lg in ("zh", "ja", "ko") else " ("
-            close = "）" if lg in ("zh", "ja", "ko") else ")"
-            out[lg] = "{}{}{}{}".format(name, sep, full, close)
-    return out
-
-
-def pick(region, table, group, code):
-    """地区覆盖查表：先查「分组:代码」，再查「代码」。"""
-    return table.get(group + ":" + code, table.get(code))
-
-
-def _hant_all(d, rid):
-    """把 5 语言字典中的中文槽转成繁体。"""
-    return dict(d, zh=to_hant(d.get("zh", ""), rid))
-
-
-def build_region_view(region):
-    """把一个地区的惯例套用到 80 条基准条目上，生成该地区的完整视图。"""
-    rid = region["id"]
-    lg = region["local_lang"]
-    script = region.get("script", "")
-    hant = (script == "hant")
-
-    groups, diff = {}, []
-    for g in GROUP_KEYS:
-        rows = []
-        for e in GROUPS[g]:
-            base = e["code"]
-            rcode = pick(region, region["codes"], g, base) or base
-
-            lname = pick(region, region["names"], g, base)
-            if not lname:
-                lname = to_hant(e["loc"]["zh"]["name"], rid) if hant else e["loc"][lg]["name"]
-
-            full = pick(region, region["fulls"], g, base) or e["full"]
-
-            loc = {}
-            for l2 in LANGS:
-                d, n = e["loc"][l2]["desc"], e["loc"][l2]["note"]
-                if hant and l2 == "zh":
-                    d, n = to_hant(d, rid), to_hant(n, rid)
-                loc[l2] = {"desc": d, "note": n}
-
-            rnote = pick(region, region["notes"], g, base) or ""
-            if rnote and hant:
-                rnote = to_hant(rnote, rid)
-
-            # UI 语言下的名称（当地区语言 ≠ 界面语言时作为副标题）
-            ui_name = e["loc"]["zh"]["name"]
-            if hant and lg == "zh":
-                ui_name = e["loc"]["zh"]["name"]
-
-            s = " ".join([base, rcode, full, lname, rnote] + [
-                loc[l2]["desc"] + " " + loc[l2]["note"] for l2 in LANGS]).lower()
-
-            rows.append({
-                "code": rcode, "base": base, "full": full, "name": lname,
-                "loc": loc, "rnote": rnote, "s": s,
-            })
-            if rcode != base:
-                diff.append({"base": base, "code": rcode, "name": lname,
-                             "full": full, "group": g, "note": rnote})
-        groups[g] = rows
-
-    # 地区特有条目
-    extras = []
-    for e in region["extras"]:
-        loc = {l2: {"desc": e["loc"][l2]["desc"], "note": e["loc"][l2]["note"]} for l2 in LANGS}
-        if hant:
-            for l2 in LANGS:
-                if l2 == "zh":
-                    loc[l2] = {"desc": to_hant(loc[l2]["desc"], rid),
-                               "note": to_hant(loc[l2]["note"], rid)}
-        name = e["loc"][lg]["name"]
-        if hant and lg == "zh":
-            name = to_hant(name, rid)
-        s = " ".join([e["code"], e["full"], name] + [
-            loc[l2]["desc"] + " " + loc[l2]["note"] for l2 in LANGS]).lower()
-        extras.append({"code": e["code"], "base": e["code"], "full": e["full"],
-                       "name": name, "loc": loc, "rnote": "", "s": s})
-
-    # 易混代码：基准冲突 + 地区特有冲突
-    conflicts = []
-    for c in CONFLICT:
-        a, b = resolve_ref(c["a"]), resolve_ref(c["b"])
-        howto = c["howto"]
-        if hant:
-            a, b, howto = _hant_all(a, rid), _hant_all(b, rid), _hant_all(howto, rid)
-        s = " ".join([c["code"]] + list(a.values()) + list(b.values()) + list(howto.values())).lower()
-        conflicts.append({"code": c["code"], "a": a, "b": b, "howto": howto,
-                          "s": s, "is_extra": False})
-    for c in region["conflicts"]:
-        a, b = resolve_ref(c["a"]), resolve_ref(c["b"])
-        howto = c["howto"]
-        if hant:
-            a, b, howto = _hant_all(a, rid), _hant_all(b, rid), _hant_all(howto, rid)
-        s = " ".join([c["code"]] + list(a.values()) + list(b.values()) + list(howto.values())).lower()
-        conflicts.append({"code": c["code"], "a": a, "b": b, "howto": howto,
-                          "s": s, "is_extra": True})
-
-    # 编号规则
-    rules = []
-    for r in RULES:
-        title, detail = dict(r["title"]), dict(r["detail"])
-        ex = r["example"]
-        if isinstance(ex, dict):
-            ex = dict(ex)
-        if hant:
-            title, detail = _hant_all(title, rid), _hant_all(detail, rid)
-            if isinstance(ex, dict):
-                ex = _hant_all(ex, rid)
-        ex_text = ex if isinstance(ex, str) else " ".join(ex.values())
-        s = " ".join([ex_text] + list(title.values()) + list(detail.values())).lower()
-        rules.append({"title": title, "example": ex, "detail": detail, "s": s})
-
-    # 速查索引
-    index = []
-    for g in GROUP_KEYS:
-        for row in groups[g]:
-            index.append({"code": row["code"], "base": row["base"], "full": row["full"],
-                          "group": g, "name": row["name"], "s": row["s"]})
-    for row in extras:
-        index.append({"code": row["code"], "base": row["code"], "full": row["full"],
-                      "group": "extra", "name": row["name"], "s": row["s"]})
-
-    label = _hant_all(region["label"], rid) if hant else region["label"]
-    intro = _hant_all(region["intro"], rid) if hant else region["intro"]
-    warn = region.get("warn")
-    if warn:
-        warn = _hant_all(warn, rid) if hant else dict(warn)
-
-    # 体系依据（接在简介之前）与权威资料清单
-    basis = region.get("basis")
-    if basis:
-        basis = _hant_all(basis, rid) if hant else {lg: basis[lg] for lg in LANGS}
-        if not hant:
-            basis["zh"] = to_hans(basis["zh"])
-        intro = {lg: (basis[lg] + " " + intro[lg]).strip() for lg in LANGS}
-
-    sources = region.get("sources")
-    if sources:
-        sources = {lg: list(sources[lg]) for lg in LANGS}
-        if hant:
-            sources = {lg: [to_hant(s, rid) for s in v] for lg, v in sources.items()}
-        else:
-            sources["zh"] = [to_hans(s) for s in sources["zh"]]
-
-    foot_src = region.get("foot_src")
-    if foot_src:
-        foot_src = _hant_all(foot_src, rid) if hant else {lg: foot_src[lg] for lg in LANGS}
-        if not hant:
-            foot_src["zh"] = to_hans(foot_src["zh"])
-
-    i18n_zh = {k: to_hant(v["zh"], rid) for k, v in I18N.items()} if hant else None
-
-    return {
-        "id": rid,
-        "flag": region["flag"],
-        "label": label,
-        "local_lang": lg,
-        "intro": intro,
-        "warn": warn,
-        "sources": sources,
-        "foot_src": foot_src,
-        "i18n_zh": i18n_zh,
-        "groups": groups,
-        "extras": extras,
-        "conflicts": conflicts,
-        "rules": rules,
-        "diff": diff,
-        "index": index,
-    }
-
-
-SECTIONS = [
-    {"key": "mat", "group": "mat", "title": "g_mat", "sub": "g_mat_sub", "col": "col_desc"},
-    {"key": "obj", "group": "obj", "title": "g_obj", "sub": "g_obj_sub", "col": "col_desc"},
-    {"key": "light", "group": "light", "title": "g_light", "sub": "g_light_sub", "col": "col_desc2"},
-    {"key": "finish", "group": "finish", "title": "g_finish", "sub": "g_finish_sub", "col": "col_desc2"},
-    {"key": "extra", "group": "extra", "title": "g_extra_title", "sub": "g_extra_sub", "col": "col_desc2"},
-    {"key": "conflict", "group": "conflict", "title": "g_conflict", "sub": "g_conflict_sub"},
-    {"key": "rules", "group": None, "title": "g_rules", "sub": "g_rules_sub"},
+LANGS = ["zh", "en", "ja", "ko", "es", "fr", "it", "pt", "ru"]
+CSV_FILES = [
+    "entries.csv", "entry_text.csv", "regions.csv", "region_text.csv",
+    "region_codes.csv", "region_extras.csv", "region_conflicts.csv",
+    "conflicts.csv", "conflict_text.csv", "rules.csv", "rule_text.csv", "i18n.csv",
 ]
 
-TABS = [
-    {"id": "all", "label": "tab_all"},
-    {"id": "mat", "label": "tab_mat"},
-    {"id": "obj", "label": "tab_obj"},
-    {"id": "light", "label": "tab_light"},
-    {"id": "finish", "label": "tab_finish"},
-    {"id": "extra", "label": "tab_extra"},
-    {"id": "conflict", "label": "tab_conflict"},
-]
-
-
-def build_payload():
-    regions = {}
-    for r in REGIONS:
-        regions[r["id"]] = build_region_view(r)
-    return {
-        "regions": regions,
-        "regionOrder": [r["id"] for r in REGIONS],
-        "sections": SECTIONS,
-        "tabs": TABS,
-        "i18n": I18N,
-        "langs": [{"id": lg, **LANG_META[lg]} for lg in LANGS],
-    }
-
-
-PAYLOAD = build_payload()
-
-# ---------------------------------------------------------------- Logo
-# 标识：施工蓝图网格底板 + 代码标签 + 材料饰面叠层
 LOGO_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Material Code Legend">
 <title>施工图材料代码对照表</title>
 <defs>
@@ -292,14 +71,244 @@ LOGO_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width=
 FAVICON_URI = "data:image/svg+xml;base64," + base64.b64encode(LOGO_SVG.encode("utf-8")).decode("ascii")
 
 
-# ---------------------------------------------------------------- 网页模板
+# ---------------------------------------------------------------- CSV 读取
+def read_csv_text(name):
+    with io.open(os.path.join(DATA, name), encoding="utf-8-sig", newline="") as f:
+        return f.read()
+
+
+def read_csv_rows(name):
+    with io.open(os.path.join(DATA, name), encoding="utf-8-sig", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+# ---------------------------------------------------------------- 繁体映射
+def hant_map():
+    """为使用繁体的地区（hk / mo / tw）预生成 zh → 繁体 的对照表，供页面在运行时转换。
+
+    在构建期用 zhconv 计算，既保证在线版与离线版结果完全一致，
+    也让页面只保留一份纯 CSV（简体）作为数据源。
+    """
+    from zh_hant import to_hant
+    texts = set()
+    for r in read_csv_rows("entries.csv"):
+        for lg in LANGS:
+            texts.add(r.get("name_" + lg, ""))
+    for r in read_csv_rows("entry_text.csv"):
+        texts.add(r.get("desc", ""))
+        texts.add(r.get("note", ""))
+    for r in read_csv_rows("region_text.csv"):
+        for k in ("label", "intro", "warn", "basis", "foot_src"):
+            texts.add(r.get(k, ""))
+        texts.add(r.get("sources", ""))
+    for r in read_csv_rows("i18n.csv"):
+        for lg in LANGS:
+            texts.add(r.get(lg, ""))
+    for r in read_csv_rows("conflict_text.csv"):
+        for lg in LANGS:
+            texts.add(r.get(lg, ""))
+    for r in read_csv_rows("rule_text.csv"):
+        texts.add(r.get("title", ""))
+        texts.add(r.get("detail", ""))
+        texts.add(r.get("example", ""))
+    for r in read_csv_rows("region_extras.csv"):
+        texts.add(r.get("name", ""))
+        texts.add(r.get("desc", ""))
+        texts.add(r.get("note", ""))
+    for r in read_csv_rows("region_conflicts.csv"):
+        texts.add(r.get("a_text", ""))
+        texts.add(r.get("b_text", ""))
+        texts.add(r.get("howto", ""))
+    texts = {t for t in texts if t.strip()}
+
+    out = {}
+    for r in read_csv_rows("regions.csv"):
+        if (r.get("script") or "") != "hant":
+            continue
+        rid = r["id"]
+        out[rid] = {t: to_hant(t, rid) for t in texts}
+    return out
+
+
+# ---------------------------------------------------------------- 页面装配（与前端 assemble() 保持一致）
+def assemble_python():
+    """按 CSV 装配成页面用的数据结构（供 Excel 导出与自检使用）。"""
+    entries = read_csv_rows("entries.csv")
+    etext = read_csv_rows("entry_text.csv")
+    regions = read_csv_rows("regions.csv")
+    rtext = {(r["region_id"], r["lang"]): r for r in read_csv_rows("region_text.csv")}
+    rcodes = read_csv_rows("region_codes.csv")
+    rextras = read_csv_rows("region_extras.csv")
+    rconf = read_csv_rows("region_conflicts.csv")
+    conflicts = read_csv_rows("conflicts.csv")
+    ctext = {(r["code"], r["lang"]): r for r in read_csv_rows("conflict_text.csv")}
+    rules = read_csv_rows("rules.csv")
+    rtext2 = {(r["rule_id"], r["lang"]): r for r in read_csv_rows("rule_text.csv")}
+
+    by_key = {}
+    for r in entries:
+        e = {"code": r["code"], "base": r["code"], "group": r["group"], "full": r["full_en"],
+             "name": {}, "loc": {}}
+        for lg in LANGS:
+            e["name"][lg] = r.get("name_" + lg, "")
+            e["loc"][lg] = {"desc": "", "note": ""}
+        by_key[(r["group"], r["code"])] = e
+    for r in etext:
+        e = by_key.get((r["group"], r["code"]))
+        if e and r["lang"] in LANGS:
+            e["loc"][r["lang"]] = {"desc": r.get("desc", ""), "note": r.get("note", "")}
+
+    out = {}
+    for rg in regions:
+        rid = rg["id"]
+        local_lang = rg.get("local_lang", "zh")
+        view = {"id": rid, "flag": rg["flag"], "local_lang": rg.get("local_lang", "zh"),
+                "script": rg.get("script", ""), "label": {}, "intro": {}, "warn": {},
+                "sources": {}, "foot_src": {}, "groups": {}, "extras": [],
+                "conflicts": [], "rules": [], "diff": [], "index": []}
+        for lg in LANGS:
+            t = rtext.get((rid, lg), {})
+            view["label"][lg] = t.get("label", "")
+            view["intro"][lg] = t.get("intro", "")
+            view["warn"][lg] = t.get("warn", "")
+            view["sources"][lg] = [x for x in (t.get("sources", "") or "").split(" ; ") if x.strip()]
+            view["foot_src"][lg] = t.get("foot_src", "")
+
+        ov = {}
+        for r in rcodes:
+            if r["region_id"] != rid:
+                continue
+            ov[(r.get("group", ""), r["base_code"])] = r
+
+        for g in ("mat", "obj", "light", "finish"):
+            rows = []
+            for (eg, ec), e in by_key.items():
+                if eg != g:
+                    continue
+                o = ov.get((g, ec)) or ov.get(("", ec))
+                code = (o or {}).get("code") or e["code"]
+                name = (o or {}).get("name") or e["name"]["zh"]
+                local_name = name or e["name"].get(local_lang) or e["name"].get("zh") or e["code"]
+                row = {"code": code, "base": e["code"], "group": g,
+                       "full": (o or {}).get("full") or e["full"],
+                       "name": local_name,
+                       "loc": {k: dict(v) for k, v in e["loc"].items()},
+                       "rnote": (o or {}).get("note", "")}
+                rows.append(row)
+                if code != e["code"]:
+                    view["diff"].append({"base": e["code"], "code": code,
+                                         "name": local_name, "full": row["full"], "group": g})
+            view["groups"][g] = rows
+
+        for r in rextras:
+            if r["region_id"] != rid:
+                continue
+            ex = {"code": r["code"], "base": r["code"], "full": r["full"], "name": r["name"], "loc": {}}
+            for lg in LANGS:
+                ex["loc"][lg] = {"desc": r["desc"], "note": r["note"]}
+            view["extras"].append(ex)
+
+        for c in conflicts:
+            a = by_key.get(tuple(c["a_ref"].split(":"))) if c["a_ref"] else None
+            b = by_key.get(tuple(c["b_ref"].split(":"))) if c["b_ref"] else None
+            item = {"code": c["code"], "a": {}, "b": {}, "howto": {}, "is_extra": False}
+            for lg in LANGS:
+                item["a"][lg] = (a["name"][lg] if a else c["a_text"]) or c["a_text"]
+                item["b"][lg] = (b["name"][lg] if b else c["b_text"]) or c["b_text"]
+                item["howto"][lg] = ctext.get((c["code"], lg), {}).get(lg, "")
+            view["conflicts"].append(item)
+        for c in rconf:
+            if c["region_id"] != rid:
+                continue
+            item = {"code": c["code"], "a": {}, "b": {}, "howto": {}, "is_extra": True}
+            for lg in LANGS:
+                item["a"][lg] = c["a_text"]
+                item["b"][lg] = c["b_text"]
+                item["howto"][lg] = c["howto"]
+            view["conflicts"].append(item)
+
+        for rr in rules:
+            item = {"title": {}, "detail": {}, "example": {}}
+            for lg in LANGS:
+                t = rtext2.get((rr["rule_id"], lg), {})
+                item["title"][lg] = t.get("title", "")
+                item["detail"][lg] = t.get("detail", "")
+                item["example"][lg] = t.get("example", rr["example"])
+            view["rules"].append(item)
+
+        for g in ("mat", "obj", "light", "finish"):
+            for row in view["groups"][g]:
+                view["index"].append({"code": row["code"], "base": row["base"], "full": row["full"],
+                                      "group": g, "name": row["name"]})
+        for ex in view["extras"]:
+            view["index"].append({"code": ex["code"], "base": ex["code"], "full": ex["full"],
+                                  "group": "extra", "name": ex["name"]})
+
+        if view["script"] == "hant":
+            from zh_hant import to_hant
+            cv = lambda x: to_hant(x, rid) if x else x
+            view["label"]["zh"] = cv(view["label"]["zh"])
+            view["intro"]["zh"] = cv(view["intro"]["zh"])
+            view["warn"]["zh"] = cv(view["warn"]["zh"])
+            view["foot_src"]["zh"] = cv(view["foot_src"]["zh"])
+            view["sources"]["zh"] = [cv(x) for x in view["sources"]["zh"]]
+            for g in ("mat", "obj", "light", "finish"):
+                for row in view["groups"][g]:
+                    row["name"] = cv(row["name"])
+                    row["loc"]["zh"] = {"desc": cv(row["loc"]["zh"]["desc"]),
+                                        "note": cv(row["loc"]["zh"]["note"])}
+            for ex in view["extras"]:
+                ex["name"] = cv(ex["name"])
+                ex["loc"]["zh"] = {"desc": cv(ex["loc"]["zh"]["desc"]), "note": cv(ex["loc"]["zh"]["note"])}
+            for c in view["conflicts"]:
+                c["a"]["zh"] = cv(c["a"]["zh"]); c["b"]["zh"] = cv(c["b"]["zh"]); c["howto"]["zh"] = cv(c["howto"]["zh"])
+            for r in view["rules"]:
+                r["title"]["zh"] = cv(r["title"]["zh"]); r["detail"]["zh"] = cv(r["detail"]["zh"])
+        out[rid] = view
+    return out
+
+
+# ---------------------------------------------------------------- 静态配置
+SECTIONS = [
+    {"key": "mat", "group": "mat", "title": "g_mat", "sub": "g_mat_sub", "col": "col_desc"},
+    {"key": "obj", "group": "obj", "title": "g_obj", "sub": "g_obj_sub", "col": "col_desc"},
+    {"key": "light", "group": "light", "title": "g_light", "sub": "g_light_sub", "col": "col_desc2"},
+    {"key": "finish", "group": "finish", "title": "g_finish", "sub": "g_finish_sub", "col": "col_desc2"},
+    {"key": "extra", "group": "extra", "title": "g_extra_title", "sub": "g_extra_sub", "col": "col_desc2"},
+    {"key": "conflict", "group": "conflict", "title": "g_conflict", "sub": "g_conflict_sub"},
+    {"key": "rules", "group": None, "title": "g_rules", "sub": "g_rules_sub"},
+]
+
+TABS = [
+    {"id": "all", "label": "tab_all"},
+    {"id": "mat", "label": "tab_mat"},
+    {"id": "obj", "label": "tab_obj"},
+    {"id": "light", "label": "tab_light"},
+    {"id": "finish", "label": "tab_finish"},
+    {"id": "extra", "label": "tab_extra"},
+    {"id": "conflict", "label": "tab_conflict"},
+]
+
+LANG_META = {
+    "zh": {"label": "中文", "en_label": "Chinese", "html": "zh-CN"},
+    "en": {"label": "English", "en_label": "English", "html": "en"},
+    "ja": {"label": "日本語", "en_label": "Japanese", "html": "ja"},
+    "ko": {"label": "한국어", "en_label": "Korean", "html": "ko"},
+    "es": {"label": "Español", "en_label": "Spanish", "html": "es"},
+    "fr": {"label": "Français", "en_label": "French", "html": "fr"},
+    "it": {"label": "Italiano", "en_label": "Italian", "html": "it"},
+    "pt": {"label": "Português", "en_label": "Portuguese", "html": "pt"},
+    "ru": {"label": "Русский", "en_label": "Russian", "html": "ru"},
+}
+
+
 HTML_TEMPLATE = r"""<!DOCTYPE html>
 <html lang="zh-CN" data-theme="dark" data-lang="zh" data-region="cn">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>施工图材料代码多语对照表</title>
-<meta name="description" content="施工图材料大类代码 · 按地区划分的缩写与全称对照 · 中日英韩西多语言 · Material Legend">
+<title>施工图材料代码 多语对照表</title>
+<meta name="description" content="施工图材料大类代码 · 按地区划分的缩写与全称对照 · 中日英韩西法意葡俄多语言 · Material Legend">
 <link rel="icon" type="image/svg+xml" href="__FAVICON__">
 <link rel="apple-touch-icon" href="__FAVICON__">
 <meta name="theme-color" content="#0a3a66">
@@ -354,15 +363,18 @@ h1{font-size:24px;font-weight:700;letter-spacing:.4px;line-height:1.25}
 h1 em{font-style:normal;color:var(--accent)}
 .sub{color:var(--muted);font-size:12.8px;margin-top:5px}
 /* 控件组永不内部换行：宽度不足时整组移到标题下方，各语言表现一致 */
-.hero-tools{display:flex;gap:10px;align-items:center;flex-wrap:nowrap;min-width:0;flex:1 1 100%;justify-content:flex-start}
-.langs{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);flex-wrap:nowrap;flex:0 0 auto}
-.lang{
-  border:0;background:transparent;color:var(--muted);cursor:pointer;border-radius:999px;
-  padding:5px 12px;font-size:12.5px;font-family:inherit;transition:.16s;white-space:nowrap
+.hero-tools{display:flex;gap:14px;align-items:flex-end;flex-wrap:nowrap;min-width:0;flex:1 1 100%;justify-content:flex-start}
+.lang-pick{display:flex;flex-direction:column;gap:4px;min-width:0}
+.lang-pick select{
+  border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:10px;
+  padding:8px 30px 8px 12px;font-size:13px;font-family:inherit;cursor:pointer;outline:none;
+  appearance:none;-webkit-appearance:none;min-width:152px;text-overflow:ellipsis;
+  background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+  background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat
 }
-.lang:hover{color:var(--ink)}
-.lang.on{background:var(--accent);color:#fff;font-weight:600}
-html[data-theme="light"] .lang.on{color:#fff}
+.lang-pick select:hover{border-color:var(--accent-line)}
+.hero-btns{display:flex;gap:8px;align-items:center;padding-bottom:1px}
 .icon-btn{
   border:1px solid var(--line);background:var(--panel2);color:var(--ink2);cursor:pointer;
   width:38px;height:38px;border-radius:10px;display:grid;place-items:center;transition:.16s
@@ -389,6 +401,9 @@ html[data-theme="light"] .lang.on{color:#fff}
 .stat span{font-size:11.5px;color:var(--muted)}
 
 /* ---------- notice ---------- */
+body.loading #main{opacity:.35}
+.boot-err{display:none;margin-top:14px;border:1px solid var(--warn-line);background:var(--warn-soft);
+  border-radius:10px;padding:12px 16px;color:var(--warn);font-size:13px}
 .notice{
   margin-top:16px;border:1px solid var(--warn-line);background:var(--warn-soft);
   border-left:3px solid var(--warn);border-radius:0 12px 12px 0;padding:14px 18px;
@@ -576,10 +591,13 @@ html[data-theme="light"] mark{background:rgba(240,180,41,.42)}
   .hero-tools{width:100%}
 }
 /* 手机上控件自身折行（桌面与平板仍保持两行结构） */
+/* 手机端：地区 / 语言 / (主题+打印) 三栏 */
 @media (max-width:560px){
-  .hero-tools{flex-wrap:wrap;gap:8px}
-  .region-pick select{max-width:158px}
-  .langs{flex-wrap:wrap}
+  .hero-tools{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}
+  .region-pick select,.lang-pick select{width:100%;min-width:0;max-width:none;padding-right:26px}
+  .region-pick span,.lang-pick span{font-size:10px}
+  .hero-btns{gap:6px}
+  .icon-btn{width:34px;height:34px}
 }
 @media print{
   body{background:#fff;color:#000}
@@ -592,7 +610,7 @@ html[data-theme="light"] mark{background:rgba(240,180,41,.42)}
 }
 </style>
 </head>
-<body>
+<body class="loading">
 <div class="wrap">
 
   <header class="hero">
@@ -611,18 +629,24 @@ html[data-theme="light"] mark{background:rgba(240,180,41,.42)}
           <span id="regionLabel"></span>
           <select id="regionSel"></select>
         </label>
-        <div class="langs" id="langs"></div>
-        <button class="icon-btn" id="themeBtn" title="theme"></button>
-        <button class="icon-btn" id="printBtn" title="print">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 9V3h12v6"/><path d="M6 18H4v-6h16v6h-2"/><path d="M8 14h8v7H8z"/>
-          </svg>
-        </button>
+        <label class="lang-pick">
+          <span id="langLabel"></span>
+          <select id="langSel"></select>
+        </label>
+        <div class="hero-btns">
+          <button class="icon-btn" id="themeBtn" title="theme"></button>
+          <button class="icon-btn" id="printBtn" title="print">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9V3h12v6"/><path d="M6 18H4v-6h16v6h-2"/><path d="M8 14h8v7H8z"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
     <div class="stats" id="stats"></div>
   </header>
 
+  <div class="boot-err" id="bootErr"></div>
   <div class="region-note" id="regionNote"></div>
   <div class="notice" id="notice"></div>
   <div class="sources" id="sources"></div>
@@ -655,21 +679,253 @@ html[data-theme="light"] mark{background:rgba(240,180,41,.42)}
 <div id="toast"></div>
 
 <script>
-var PAYLOAD = __PAYLOAD__;
-
-var DATA = PAYLOAD, SECTIONS = PAYLOAD.sections, TABS = PAYLOAD.tabs;
-var I18N = PAYLOAD.i18n, LANGS = PAYLOAD.langs, REGIONS = PAYLOAD.regions;
+var MODE = "__MODE__", EMBEDDED = __EMBEDDED__, CSVBASE = "__CSVBASE__";
+var HANT = __HANT__, SECTIONS = __SECTIONS__, TABS = __TABS__, LANGS = __LANGS__;
+var PAYLOAD = null, I18N = null, REGIONS = null;
 
 var state = { lang: "zh", region: "cn", group: "all", view: "table", q: "" };
 
 try{
+  var qp = (typeof URLSearchParams !== "undefined") ? new URLSearchParams(location.search) : null;
   var sv = localStorage.getItem("mcl.lang");
   if(sv && LANGS.some(function(l){return l.id===sv})) state.lang = sv;
   var sr = localStorage.getItem("mcl.region");
-  if(sr && REGIONS[sr]) state.region = sr;
+  if(sr) state.region = sr;
+  if(qp){
+    var ql = qp.get("lang"), qr = qp.get("region");
+    if(ql && LANGS.some(function(l){return l.id===ql})) state.lang = ql;
+    if(qr) state.region = qr;
+  }
   var st = localStorage.getItem("mcl.theme");
   if(st === "light" || st === "dark") document.documentElement.setAttribute("data-theme", st);
 }catch(e){}
+
+function syncUrl(){
+  try{
+    var u = new URL(location.href);
+    u.searchParams.set("lang", state.lang);
+    u.searchParams.set("region", state.region);
+    history.replaceState(null, "", u.toString());
+  }catch(e){}
+}
+
+/* ================= CSV 读取与装配 ================= */
+var CSV_FILES = ["entries.csv","entry_text.csv","regions.csv","region_text.csv",
+  "region_codes.csv","region_extras.csv","region_conflicts.csv","conflicts.csv",
+  "conflict_text.csv","rules.csv","rule_text.csv","i18n.csv"];
+var LANGS_ORDER = ["zh","en","ja","ko","es","fr","it","pt","ru"];
+
+function parseCSV(text){
+  var rows=[], row=[], field="", i=0, inQ=false;
+  text = text.replace(/^\uFEFF/, "");
+  while(i < text.length){
+    var ch = text.charAt(i);
+    if(inQ){
+      if(ch === '"'){
+        if(text.charAt(i+1) === '"'){ field += '"'; i += 2; continue; }
+        inQ = false; i++; continue;
+      }
+      field += ch; i++; continue;
+    }
+    if(ch === '"'){ inQ = true; i++; continue; }
+    if(ch === ','){ row.push(field); field = ""; i++; continue; }
+    if(ch === '\r'){ i++; continue; }
+    if(ch === '\n'){ row.push(field); rows.push(row); row = []; field = ""; i++; continue; }
+    field += ch; i++;
+  }
+  if(field !== "" || row.length){ row.push(field); rows.push(row); }
+  var head = rows.shift() || [];
+  var out = [];
+  for(var r=0;r<rows.length;r++){
+    if(rows[r].length === 1 && rows[r][0] === "") continue;
+    var o = {};
+    for(var c=0;c<head.length;c++) o[head[c]] = (rows[r][c] !== undefined) ? rows[r][c] : "";
+    out.push(o);
+  }
+  return out;
+}
+
+function mapObj(o, fn){
+  var r = {};
+  for(var k in o){ if(Object.prototype.hasOwnProperty.call(o,k)) r[k] = fn(o[k]); }
+  return r;
+}
+
+function assemble(texts){
+  var L = LANGS_ORDER, csv = {};
+  CSV_FILES.forEach(function(n){ csv[n] = parseCSV(texts[n] || ""); });
+
+  var i18n = {};
+  csv["i18n.csv"].forEach(function(r){
+    var o = {};
+    L.forEach(function(lg){ o[lg] = r[lg] || ""; });
+    i18n[r.key] = o;
+  });
+
+  var byKey = {};
+  csv["entries.csv"].forEach(function(r){
+    var e = {code:r.code, base:r.code, group:r.group, full:r.full_en, name:{}, loc:{}, s:""};
+    L.forEach(function(lg){ e.name[lg] = r["name_"+lg] || ""; e.loc[lg] = {desc:"", note:""}; });
+    byKey[r.group+"|"+r.code] = e;
+  });
+  csv["entry_text.csv"].forEach(function(r){
+    var e = byKey[r.group+"|"+r.code]; if(!e) return;
+    if(!e.loc[r.lang]) e.loc[r.lang] = {desc:"", note:""};
+    e.loc[r.lang].desc = r.desc || "";
+    e.loc[r.lang].note = r.note || "";
+  });
+
+  var rtext = {}, ctext = {}, rtext2 = {}, ovByRegion = {};
+  csv["region_text.csv"].forEach(function(r){ rtext[r.region_id+"|"+r.lang] = r; });
+  csv["conflict_text.csv"].forEach(function(r){ ctext[r.code+"|"+r.lang] = r; });
+  csv["rule_text.csv"].forEach(function(r){ rtext2[r.rule_id+"|"+r.lang] = r; });
+  csv["region_codes.csv"].forEach(function(r){
+    var m = ovByRegion[r.region_id] || (ovByRegion[r.region_id] = {});
+    m[(r.group||"")+"|"+r.base_code] = r;
+  });
+
+  var regions = {};
+  csv["regions.csv"].forEach(function(rg){
+    var rid = rg.id, localLang = rg.local_lang || "zh";
+    var view = {id:rid, flag:rg.flag, local_lang:localLang, script:rg.script||"",
+                label:{}, intro:{}, warn:{}, sources:{}, foot_src:{}, groups:{}, extras:[],
+                conflicts:[], rules:[], diff:[], index:[]};
+    L.forEach(function(lg){
+      var t = rtext[rid+"|"+lg] || {};
+      view.label[lg] = t.label || "";
+      view.intro[lg] = t.intro || "";
+      view.warn[lg] = t.warn || "";
+      view.sources[lg] = (t.sources||"").split(" ; ").filter(function(x){return x.trim();});
+      view.foot_src[lg] = t.foot_src || "";
+    });
+    var ov = ovByRegion[rid] || {};
+    ["mat","obj","light","finish"].forEach(function(g){
+      var rows = [];
+      Object.keys(byKey).forEach(function(k){
+        var e = byKey[k];
+        if(e.group !== g) return;
+        var o = ov[g+"|"+e.code] || ov["|"+e.code];
+        var code = (o && o.code) || e.code;
+        var row = {code:code, base:e.code, group:g, full:(o && o.full) || e.full,
+                   name:(o && o.name) || e.name[localLang] || e.name.zh || e.code,
+                   loc:{}, rnote:(o && o.note) || "", s:""};
+        L.forEach(function(lg){ row.loc[lg] = e.loc[lg]; });
+        var parts = [code, e.code, row.full, row.name];
+        L.forEach(function(lg){ parts.push(e.name[lg], e.loc[lg].desc, e.loc[lg].note); });
+        row.s = parts.join(" ").toLowerCase();
+        rows.push(row);
+        if(code !== e.code) view.diff.push({base:e.code, code:code, name:row.name, full:row.full, group:g});
+      });
+      view.groups[g] = rows;
+    });
+    csv["region_extras.csv"].forEach(function(r){
+      if(r.region_id !== rid) return;
+      var ex = {code:r.code, base:r.code, full:r.full, name:r.name, loc:{}, s:""};
+      L.forEach(function(lg){ ex.loc[lg] = {desc:r.desc, note:r.note}; });
+      ex.s = [r.code, r.full, r.name, r.desc, r.note].join(" ").toLowerCase();
+      view.extras.push(ex);
+    });
+    csv["conflicts.csv"].forEach(function(c){
+      var a = c.a_ref ? byKey[c.a_ref] : null;
+      var b = c.b_ref ? byKey[c.b_ref] : null;
+      var item = {code:c.code, a:{}, b:{}, howto:{}, is_extra:false};
+      L.forEach(function(lg){
+        item.a[lg] = (a ? a.name[lg] : "") || c.a_text || "";
+        item.b[lg] = (b ? b.name[lg] : "") || c.b_text || "";
+        item.howto[lg] = (ctext[c.code+"|"+lg] || {})[lg] || "";
+      });
+      view.conflicts.push(item);
+    });
+    csv["region_conflicts.csv"].forEach(function(c){
+      if(c.region_id !== rid) return;
+      var item = {code:c.code, a:{}, b:{}, howto:{}, is_extra:true};
+      L.forEach(function(lg){
+        item.a[lg] = c.a_text || ""; item.b[lg] = c.b_text || ""; item.howto[lg] = c.howto || "";
+      });
+      view.conflicts.push(item);
+    });
+    csv["rules.csv"].forEach(function(rr){
+      var item = {title:{}, detail:{}, example:{}};
+      L.forEach(function(lg){
+        var t = rtext2[rr.rule_id+"|"+lg] || {};
+        item.title[lg] = t.title || "";
+        item.detail[lg] = t.detail || "";
+        item.example[lg] = t.example || rr.example;
+      });
+      view.rules.push(item);
+    });
+    ["mat","obj","light","finish"].forEach(function(g){
+      view.groups[g].forEach(function(row){
+        view.index.push({code:row.code, base:row.base, full:row.full, group:g, name:row.name});
+      });
+    });
+    view.extras.forEach(function(ex){
+      view.index.push({code:ex.code, base:ex.code, full:ex.full, group:"extra", name:ex.name});
+    });
+    regions[rid] = view;
+  });
+
+  /* 繁体地区：把中文换成繁体，并生成该地区用的 i18n_zh */
+  Object.keys(regions).forEach(function(rid){
+    var v = regions[rid];
+    if(v.script !== "hant") return;
+    var map = HANT[rid] || {};
+    function cv(x){ return (x && map[x]) ? map[x] : x; }
+    v.label = mapObj(v.label, cv);
+    v.intro = mapObj(v.intro, cv);
+    v.warn = mapObj(v.warn, cv);
+    v.foot_src = mapObj(v.foot_src, cv);
+    v.sources = mapObj(v.sources, function(arr){ return arr.map(cv); });
+    Object.keys(v.groups).forEach(function(g){
+      v.groups[g].forEach(function(row){
+        row.name = cv(row.name);
+        row.loc = mapObj(row.loc, function(o){ return {desc:cv(o.desc), note:cv(o.note)}; });
+      });
+    });
+    v.extras.forEach(function(ex){ ex.name = cv(ex.name); });
+    v.conflicts.forEach(function(c){
+      c.a = mapObj(c.a, cv); c.b = mapObj(c.b, cv); c.howto = mapObj(c.howto, cv);
+    });
+    v.rules.forEach(function(r){
+      r.title = mapObj(r.title, cv); r.detail = mapObj(r.detail, cv); r.example = mapObj(r.example, cv);
+    });
+    v.i18n_zh = {};
+    Object.keys(i18n).forEach(function(k){ v.i18n_zh[k] = cv(i18n[k].zh); });
+  });
+
+  return {regions:regions, regionOrder:Object.keys(regions), i18n:i18n,
+          sections:SECTIONS, tabs:TABS, langs:LANGS};
+}
+
+function boot(){
+  var ready;
+  if(MODE === "offline"){
+    ready = Promise.resolve(EMBEDDED);
+  } else {
+    ready = Promise.all(CSV_FILES.map(function(n){
+      return fetch(CSVBASE + n).then(function(r){
+        if(!r.ok) throw new Error(n + " → HTTP " + r.status);
+        return r.text();
+      });
+    })).then(function(list){
+      var o = {};
+      CSV_FILES.forEach(function(n,i){ o[n] = list[i]; });
+      return o;
+    });
+  }
+  ready.then(function(texts){
+    PAYLOAD = assemble(texts);
+    I18N = PAYLOAD.i18n;
+    REGIONS = PAYLOAD.regions;
+    if(!REGIONS[state.region]) state.region = PAYLOAD.regionOrder[0];
+    document.body.classList.remove("loading");
+    renderHeader(); renderMain(); bind();
+  }).catch(function(err){
+    document.body.classList.remove("loading");
+    var el = document.getElementById("bootErr");
+    if(el){ el.style.display = "block"; el.textContent = "数据加载失败：" + err.message; }
+  });
+}
 
 function $(s, r){ return (r||document).querySelector(s); }
 function t(k){
@@ -723,7 +979,7 @@ function renderHeader(){
   $("#stats").innerHTML =
     '<div class="stat"><b>'+total+'</b><span>'+esc(t("unit"))+'</span></div>' +
     '<div class="stat"><b>'+PAYLOAD.regionOrder.length+'</b><span>'+esc(t("region_label"))+'</span></div>' +
-    '<div class="stat"><b>5</b><span>'+esc(t("languages"))+'</span></div>' +
+    '<div class="stat"><b>'+LANGS.length+'</b><span>'+esc(t("languages"))+'</span></div>' +
     '<div class="stat"><b>'+R.conflicts.length+'</b><span>'+esc(t("badge_conflict"))+'</span></div>';
 
   // 地区条：地区名 + 本地区要点 + 切换提示
@@ -749,8 +1005,9 @@ function renderHeader(){
       '<ul>'+srcs.map(function(s){ return '<li>'+esc(s)+'</li>'; }).join("")+'</ul>'
     : '';
 
-  $("#langs").innerHTML = LANGS.map(function(l){
-    return '<button class="lang'+(l.id===state.lang?" on":"")+'" data-lang="'+l.id+'">'+esc(l.label)+'</button>';
+  $("#langLabel").textContent = t("lang_label");
+  $("#langSel").innerHTML = LANGS.map(function(l){
+    return '<option value="'+l.id+'"'+(l.id===state.lang?" selected":"")+'>'+esc(l.label)+'</option>';
   }).join("");
 
   var th = document.documentElement.getAttribute("data-theme")==="light" ? t("theme_dark") : t("theme_light");
@@ -939,15 +1196,15 @@ function updateCount(n){
 function bind(){
   $("#regionSel").addEventListener("change", function(e){
     state.region = e.target.value;
+    syncUrl();
     state.group = "all";
     try{ localStorage.setItem("mcl.region", state.region); }catch(err){}
     renderHeader(); renderMain();
   });
-  $("#langs").addEventListener("click", function(e){
-    var b = e.target.closest(".lang"); if(!b) return;
-    state.lang = b.dataset.lang;
+  $("#langSel").addEventListener("change", function(e){
+    state.lang = e.target.value;
     try{ localStorage.setItem("mcl.lang", state.lang); }catch(err){}
-    renderHeader(); renderMain();
+    syncUrl(); renderHeader(); renderMain();
   });
   $("#tabs").addEventListener("click", function(e){
     var b = e.target.closest(".tab"); if(!b) return;
@@ -1006,31 +1263,39 @@ function bind(){
   });
 }
 
-renderHeader();
-renderMain();
-bind();
+boot();
 </script>
 </body>
-</html>
-"""
+</html>"""
 
 
-def build_html():
-    payload = json.dumps(PAYLOAD, ensure_ascii=False, separators=(",", ":"))
-    html = HTML_TEMPLATE.replace("__PAYLOAD__", payload)
-    html = html.replace("__FAVICON__", FAVICON_URI)
-    html = html.replace("__LOGO__", LOGO_SVG)
-    path = os.path.join(OUT, "施工图材料代码多语对照表.html")
+
+# ---------------------------------------------------------------- 输出
+def build_html(mode):
+    """mode: online（从 data/ 读取 CSV）或 offline（把 CSV 全部内嵌）。"""
+    texts = {n: read_csv_text(n) for n in CSV_FILES}
+    hant = hant_map()
+    js = HTML_TEMPLATE
+    js = js.replace("__MODE__", mode)
+    js = js.replace("__CSVBASE__", "data/")
+    js = js.replace("__FAVICON__", FAVICON_URI)
+    js = js.replace("__LOGO__", LOGO_SVG)
+    js = js.replace("__HANT__", json.dumps(hant, ensure_ascii=False, separators=(",", ":")))
+    js = js.replace("__SECTIONS__", json.dumps(SECTIONS, ensure_ascii=False, separators=(",", ":")))
+    js = js.replace("__TABS__", json.dumps(TABS, ensure_ascii=False, separators=(",", ":")))
+    js = js.replace("__LANGS__", json.dumps(
+        [{"id": lg, **LANG_META[lg]} for lg in LANGS], ensure_ascii=False, separators=(",", ":")))
+    if mode == "offline":
+        js = js.replace("__EMBEDDED__", json.dumps(texts, ensure_ascii=False, separators=(",", ":")))
+    else:
+        js = js.replace("__EMBEDDED__", "null")
+    name = "施工图材料代码多语对照表.html" if mode == "offline" else "index.html"
+    path = os.path.join(OUT, name)
     with io.open(path, "w", encoding="utf-8") as f:
-        f.write(html)
-    # 同步输出独立的 logo 文件（供仓库、PPT、提案复用）
-    logo_path = os.path.join(OUT, "logo.svg")
-    with io.open(logo_path, "w", encoding="utf-8") as f:
-        f.write(LOGO_SVG)
-    return path, len(html)
+        f.write(js)
+    return path, len(js)
 
 
-# ---------------------------------------------------------------- XLSX（可选）
 def build_xlsx():
     try:
         from openpyxl import Workbook
@@ -1047,17 +1312,8 @@ def build_xlsx():
     BODY_FONT = Font(name="微软雅黑", size=10)
     CODE_FONT = Font(name="Consolas", size=10, bold=True, color="0F4C81")
 
-    used = set()
-
     def sheet(wb, name, headers, rows, widths, row_h=30):
-        safe = re.sub(r"[\/\?\*\[\]:]", "·", str(name))[:31]
-        base = safe
-        k = 2
-        while safe in used:
-            suf = "·%d" % k
-            safe = base[:31 - len(suf)] + suf
-            k += 1
-        used.add(safe)
+        safe = re.sub(r"[\/?*\[\]:]", "·", str(name))[:31]
         ws = wb.create_sheet(safe)
         ws.sheet_view.showGridLines = False
         ws.append(headers)
@@ -1076,66 +1332,65 @@ def build_xlsx():
                 cell = ws.cell(row=i, column=c)
                 cell.border = BORDER
                 cell.font = CODE_FONT if c == 1 else BODY_FONT
-                cell.alignment = Alignment(horizontal="center", vertical="center") if c == 1 \
-                    else Alignment(vertical="center", wrap_text=True)
+                cell.alignment = (Alignment(horizontal="center", vertical="center") if c == 1
+                                  else Alignment(vertical="center", wrap_text=True))
         ws.freeze_panes = "A2"
         ws.auto_filter.ref = "A1:" + get_column_letter(len(headers)) + str(ws.max_row)
         return ws
 
+    views = assemble_python()
     wb = Workbook()
     wb.remove(wb.active)
-    for region in REGIONS:
-        view = build_region_view(region)
-        label = region["label"]["zh"]
+    for rid, v in views.items():
+        label = v["label"]["zh"] or rid
         for lg in LANGS:
             rows = []
-            for g in GROUP_KEYS:
-                for r in view["groups"][g]:
-                    rows.append((r["code"], r["base"], r["full"], r["name"],
-                                 r["loc"][lg]["desc"], r["loc"][lg]["note"]))
-            for r in view["extras"]:
-                rows.append((r["code"], r["code"], r["full"], r["name"],
-                             r["loc"][lg]["desc"], r["loc"][lg]["note"]))
-            sheet(wb, "{}·{}·{}".format(region["id"].upper(), label, LANG_META[lg]["label"][:3]),
-                  ["代码", "通用代码", "Full name (EN)", "名称 / Name",
+            for g in ("mat", "obj", "light", "finish"):
+                for row in v["groups"][g]:
+                    rows.append((row["code"], row["base"], row["full"], row["name"],
+                                 row["loc"][lg]["desc"], row["loc"][lg]["note"]))
+            for row in v["extras"]:
+                rows.append((row["code"], row["code"], row["full"], row["name"],
+                             row["loc"][lg]["desc"], row["loc"][lg]["note"]))
+            sheet(wb, "{}·{}·{}".format(rid.upper(), label, LANG_META[lg]["label"][:4]),
+                  ["代码", "通用代码", "Full name (EN)", "当地名称 / Local name",
                    "说明 / Description", "备注 / Notes"],
-                  rows, [11, 11, 32, 26, 46, 42])
+                  rows, [11, 11, 32, 28, 46, 42])
         crows = []
-        for c in view["conflicts"]:
-            crows.append((c["code"], c["a"][lg], c["b"][lg], c["howto"][lg]))
-        sheet(wb, "{}·{}·易混".format(region["id"].upper(), label), ["代码", "含义 A", "含义 B / C", "区分方法"],
-              crows, [14, 38, 42, 54])
-
-        # 地区提示：把该地区的资料出处与跨项目提醒按 5 语言落到表里
-        nrows = []
-        for l2 in LANGS:
-            nrows.append((
-                region["id"].upper(),
-                region["label"].get(l2, label),
-                LANG_META[l2]["label"],
-                view["intro"][l2],
-                (view["warn"] or {}).get(l2, ""),
-            ))
-        sheet(wb, "{}·{}·提示".format(region["id"].upper(), label),
-              ["地区", "Region", "语言", "先读这句 / Read this first", "跨项目提示 / Before reuse"],
-              nrows, [12, 22, 10, 88, 88], row_h=96)
+        for c in v["conflicts"]:
+            crows.append((c["code"], c["a"]["zh"], c["b"]["zh"], c["howto"]["zh"]))
+        sheet(wb, "{}·{}·易混".format(rid.upper(), label),
+              ["代码", "含义 A", "含义 B / C", "区分方法"], crows, [14, 38, 42, 54], row_h=44)
+        srows = []
+        for lg in LANGS:
+            srows.append((rid.upper(), label, LANG_META[lg]["label"],
+                          v["intro"][lg], v["warn"][lg], " ; ".join(v["sources"][lg]),
+                          v["foot_src"][lg]))
+        sheet(wb, "{}·{}·提示".format(rid.upper(), label),
+              ["地区", "Region", "语言", "先读这句 / Read this first",
+               "风险提示 / Caution", "资料来源 / Sources", "页脚口径 / Footer note"],
+              srows, [12, 20, 10, 60, 60, 70, 60], row_h=90)
     path = os.path.join(OUT, "施工图材料代码多语对照表.xlsx")
     try:
         wb.save(path)
     except PermissionError:
         path = os.path.join(OUT, "施工图材料代码多语对照表(多地区).xlsx")
         wb.save(path)
-        print("note: 原 xlsx 正被占用，已另存为", os.path.basename(path))
     return path
 
 
 if __name__ == "__main__":
-    p, n = build_html()
-    print("html ok:", p, n, "bytes")
-    for rid in PAYLOAD["regionOrder"]:
-        v = PAYLOAD["regions"][rid]
+    p1, n1 = build_html("online")
+    print("online  html:", os.path.basename(p1), "%.0f KB" % (n1 / 1024))
+    p2, n2 = build_html("offline")
+    print("offline html:", os.path.basename(p2), "%.0f KB" % (n2 / 1024))
+    with io.open(os.path.join(OUT, "logo.svg"), "w", encoding="utf-8") as f:
+        f.write(LOGO_SVG)
+    print("logo.svg 已输出")
+    views = assemble_python()
+    for rid, v in views.items():
         print("  region {:6s} entries={:3d} diff={:3d} extras={:2d} conflicts={:2d}".format(
             rid, len(v["index"]), len(v["diff"]), len(v["extras"]), len(v["conflicts"])))
     x = build_xlsx()
     if x:
-        print("xlsx ok:", x)
+        print("xlsx:", os.path.basename(x))

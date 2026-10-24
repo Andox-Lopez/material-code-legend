@@ -1,0 +1,23 @@
+﻿region_id,code,full,name,desc,note
+hk,FC,False Ceiling,假天花,矿棉板、硅酸钙板、铝扣板天花、轻钢龙骨天花,香港工程常见项目；与表面处理的 FC（氟碳涂层）同码，需按图层判断
+tw,AS,Engineered Stone,人造石,石英石、烧结石、人造石板材,台湾精装常用大类；大陆多以 AR（人造石）表示，注意区分
+tw,QT,Quartz Tile,石英砖,石英砖地砖／墙砖、600×600、800×800 规格,台湾常与陶瓷砖分列；大陆多并入 CT 瓷砖
+jp,IL,Laminated Timber,集成材,构造用集成材、集成材、CLT 直交集成板,日本现代木造的主力材料；欧美写作 Glulam / CLT
+jp,LGS,Light Gauge Steel,轻钢龙骨,轻钢龙骨、镀锌方通、天地龙骨（石膏板基层）,日本图纸多写作 LGS 或 軽铁骨；与镀锌钢（GI）区分
+kr,AS,Engineered Stone,人造石,人造石、石英石、烧结石板材,韩国精装常见；与 AW（艺术品）靠字首区分
+kr,BR,Brick,砖,清水砖、釉面砖、外墙砖、砖饰面,韩国常用 BR 或砖；与基础代码 BR（斜边）不同，须看图例
+west,MDF,Medium Density Fibreboard,中密度纤维板,中密度纤维板、防潮中纤板、贴面中纤板,欧美柜体与展陈的标准基材，常与胶合板、三聚氰胺板并列
+west,CMU,Concrete Masonry Unit,混凝土砌块,混凝土砌块、加气混凝土砌块、灌芯砌块,属结构材料而非饰面，但多数材料表仍会列出
+west,LVP,Luxury Vinyl Plank,豪华石塑地板,锁扣 LVP、WPC、SPC 刚性地板,北美精装最常见的弹性地材，常与 VCT 并列
+latam,LADR,Brick,砖,烧结砖、清水砖、砖饰面,西语区砌体常用 LADR；与表面处理的斜边区分
+latam,HORM,Concrete,混凝土,现浇混凝土、预制板、找平层,属结构材料，但材料表必列
+mena,GI,Galvanized Iron Sheet,镀锌钢板,热镀锌钢板、冷弯镀锌龙骨,海湾与东南亚隔墙、吊顶的默认钢材；与 GI 管材区分
+mena,MS,Mild Steel,软钢,碳钢板、方管、黑皮钢板,海湾常用；石材表中 MS 亦可能指大理石/石材，须核对
+fr,PLACO,Plaque de plâtre sur ossature,Plaque de plâtre sur ossature,"Plaques de plâtre fixées sur ossature métallique (72-48),[type standard 600 ou 1200 mm]",Désignation courante chez les plaquistes français ; peut figurer sous le code PB ou PLQ.
+fr,RAIL,Rail de projecteurs,Rail de projecteurs,"Rail 1 rail ou 3 rails pour projecteurs encastrés, avec accessoires de suspension",Le rail est souvent fourni avec le luminaire ; le code apparaît dans les>R-sections.
+it,CART,Cartongesso,Cartongesso,"Lastre di cartongesso su orditura metallica, spessore 12,5 / 15 / 20 mm, tipo standard o idro",In molte tavole di Capitolati è indicato come CART o CG; verificare il capitolato.
+it,PAVFL,Pavimento galleggiante,Pavimento galleggiante,"Pavimento sopraelevato su pannelli acustici con strato di usura in legno, LVT o ceramica",Nei progetti residenziali italiani il sistema galleggiante è prassi corrente.
+pt,DRYWALL,Placa de gesso sobre estrutura,Placa de gesso (drywall),"Placas de gesso fixadas em estrutura metálica, espessura 12,5 / 15 mm, com juntasreatment","No Brasil, 'drywall' é o termo corrente; em Portugal fala-se de placas de gesso."
+pt,PISOFL,Piso flutuante,Piso flutuante,"Pavimento sobre base de manta ou placa acústica com revestimento em madeira, LVT ou cerâmica",Sistema corrente em habitações; indica-se a espessura e o tipo de manta.
+ru,PLIN,Напольный плинтус,Плинтус напольный,"Плинтус из ПВХ, МДФ, массива или керамогранита под цвет покрытия пола","Часто выносится в отдельную позицию ведомости, иногда с указанием производителя."
+ru,KOL,Декоративная колонна,Колонна декоративная,"Колонна из ГКЛ, гипсолитого камня или бетона с облицовкой, с базой и капителью",В перечне декоративных конструкций часто идёт под общим кодом «Колонна».

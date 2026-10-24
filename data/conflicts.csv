@@ -1,0 +1,18 @@
+﻿code,a_ref,a_text,b_ref,b_text
+DL,obj:DL,,light:DL,
+SL,,"{'zh': '特殊饰面（Solid Acrylic / Special）', 'en': 'Special finish (Solid Acrylic / Special)', 'ja': '特殊仕上げ（ソリッドアクリル／スペシャル）', 'ko': '특수 마감(솔리드 아크릴/스페셜)', 'es': 'Acabado especial (acrílico macizo / especial)'}",,"{'zh': '灯带（Strip Light）/ 射灯（Spot Light）', 'en': 'Strip light / Spot light', 'ja': 'ストリップライト／スポットライト', 'ko': '스트립 라이트 / 스포트라이트', 'es': 'Tira de LED / foco direccional'}"
+SF,mat:SF,,,"{'zh': '金银箔（Silver Foil）', 'en': 'Gold / silver foil (Silver Foil)', 'ja': '金箔・銀箔（Silver Foil）', 'ko': '금박·은박(Silver Foil)', 'es': 'Pan de oro o plata (Silver Foil)'}"
+SP,mat:SP,,,"{'zh': '射灯（Spot Light）', 'en': 'Spot light', 'ja': 'スポットライト', 'ko': '스포트라이트', 'es': 'Foco direccional'}"
+PL,mat:PL,,,"{'zh': '乳胶漆 / 吊灯 / 面板灯', 'en': 'Emulsion paint / pendant light / panel light', 'ja': 'ラテックス塗装／ペンダントライト／パネルライト', 'ko': '라텍스 페인트 / 펜던트 조명 / 패널 조명', 'es': 'Pintura plástica / colgante / panel LED'}"
+CT / TL,mat:CT,,mat:TL,
+AC,mat:AC,,,"{'zh': '矿棉板（Acoustic Ceiling）', 'en': 'Acoustic ceiling (mineral wool board)', 'ja': '吸音天井（Acoustic Ceiling）', 'ko': '흡음 천장(광물판)', 'es': 'Techo acústico (placa de lana mineral)'}"
+AR,obj:AR,,,"{'zh': '人造石（Artificial Stone）', 'en': 'Artificial stone', 'ja': '人工石（Artificial Stone）', 'ko': '인공석(Artificial Stone)', 'es': 'Piedra artificial'}"
+CU,mat:CU,,,"{'zh': '铜（Copper）', 'en': 'Copper', 'ja': '銅（Copper）', 'ko': '구리(Copper)', 'es': 'Cobre'}"
+MT,mat:MT,,,"{'zh': '不锈钢（Stainless Steel）', 'en': 'Stainless steel', 'ja': 'ステンレス（Stainless Steel）', 'ko': '스테인리스(Stainless Steel)', 'es': 'Acero inoxidable'}"
+HW,obj:HW,,,"{'zh': '洁具 + 五金（旧体系）', 'en': 'Sanitary ware + hardware (old systems)', 'ja': '衛生器具 + 金物（旧体系）', 'ko': '위생기구 + 철물(구 체계)', 'es': 'Sanitarios + herrajes (sistemas antiguos)'}"
+PC,,"{'zh': '地胶板（PVC Flooring）', 'en': 'PVC flooring', 'ja': '塩ビ床材（PVC）', 'ko': '비닐 바닥재(PVC)', 'es': 'Suelo de vinilo (PVC)'}",,"{'zh': '聚碳酸酯板 / 粉末喷涂（Powder Coating）', 'en': 'Polycarbonate sheet / powder coating', 'ja': 'ポリ炭酸酯板／粉体塗装', 'ko': '폴리카보네이트 판 / 분체 도장', 'es': 'Lamina de policarbonato / recubrimiento en polvo'}"
+SS,,"{'zh': '不锈钢（Stainless Steel）', 'en': 'Stainless steel', 'ja': 'ステンレス（Stainless Steel）', 'ko': '스테인리스(Stainless Steel)', 'es': 'Acero inoxidable'}",,"{'zh': '开关插座（Switch & Socket）', 'en': 'Switch & socket', 'ja': 'スイッチ・コンセント', 'ko': '스위치·콘센트', 'es': 'Interruptor y enchufe'}"
+MC,mat:MC,,,"{'zh': '微水泥（Micro Cement）', 'en': 'Micro cement', 'ja': 'マイクロセメント（Micro Cement）', 'ko': '마이크로 시멘트(Micro Cement)', 'es': 'Microcemento'}"
+SC,mat:SC,,,"{'zh': '屏风/隔断（Screen）', 'en': 'Screen / partition', 'ja': '間仕切り（Screen）', 'ko': '스크린·칸막이(Screen)', 'es': 'Tabique / pantalla'}"
+WC / WP,mat:WC,,,"{'zh': '墙纸（Wall Paper）', 'en': 'Wall paper', 'ja': '壁紙（Wall Paper）', 'ko': '벽지(Wall Paper)', 'es': 'Papel pintado (Wall Paper)'}"
+L,,"{'zh': '装饰照明（Lighting，分部代号）', 'en': 'Lighting (division code)', 'ja': '装飾照明（Lighting・部門記号）', 'ko': '조명(Lighting, 부서 코드)', 'es': 'Iluminación (código de sección)'}",,"{'zh': '线条灯（Line）', 'en': 'Linear light (Line)', 'ja': 'ライン照明（Line）', 'ko': '리니어 조명(Line)', 'es': 'Luminaria lineal (Line)'}"

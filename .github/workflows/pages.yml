@@ -33,20 +33,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install openpyxl zhconv
 
-      - name: Build site (HTML + Excel)
+      - name: Build (reads data/*.csv)
         run: python build.py
 
       - name: Assemble _site
         run: |
           mkdir -p _site
-          cp 施工图材料代码多语对照表.html _site/index.html
-          cp 施工图材料代码多语对照表.xlsx _site/ 2>/dev/null || true
+          cp index.html _site/
+          cp 施工图材料代码多语对照表.html _site/ 2>/dev/null || true
+          cp *.xlsx _site/ 2>/dev/null || true
           cp README.md _site/ 2>/dev/null || true
+          cp -r data _site/data
+          ls -la _site
 
       - name: Commit rebuilt page back to repo
         continue-on-error: true
         run: |
-          cp 施工图材料代码多语对照表.html index.html
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
