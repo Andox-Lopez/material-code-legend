@@ -342,8 +342,9 @@ body::before{
   background:linear-gradient(160deg,var(--panel) 0%,var(--bg2) 100%);
   padding:24px 26px 20px;box-shadow:var(--shadow);
 }
-.hero-top{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;justify-content:space-between}
-.brand{display:flex;gap:14px;align-items:center;min-width:280px}
+/* 头部固定两行：标题行 + 控件行，不随语言与窗口宽度浮动 */
+.hero-top{display:flex;gap:14px 20px;align-items:flex-start;flex-wrap:wrap;justify-content:space-between}
+.brand{display:flex;gap:14px;align-items:center;flex:1 1 100%;min-width:0}
 .logo{
   width:46px;height:46px;flex:0 0 46px;border-radius:13px;overflow:hidden;line-height:0;
   box-shadow:0 4px 14px rgba(10,58,102,.28)
@@ -352,8 +353,9 @@ body::before{
 h1{font-size:24px;font-weight:700;letter-spacing:.4px;line-height:1.25}
 h1 em{font-style:normal;color:var(--accent)}
 .sub{color:var(--muted);font-size:12.8px;margin-top:5px}
-.hero-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.langs{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--panel2);border:1px solid var(--line)}
+/* 控件组永不内部换行：宽度不足时整组移到标题下方，各语言表现一致 */
+.hero-tools{display:flex;gap:10px;align-items:center;flex-wrap:nowrap;min-width:0;flex:1 1 100%;justify-content:flex-start}
+.langs{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);flex-wrap:nowrap;flex:0 0 auto}
 .lang{
   border:0;background:transparent;color:var(--muted);cursor:pointer;border-radius:999px;
   padding:5px 12px;font-size:12.5px;font-family:inherit;transition:.16s;white-space:nowrap
@@ -367,12 +369,12 @@ html[data-theme="light"] .lang.on{color:#fff}
 }
 .icon-btn:hover{border-color:var(--accent-line);color:var(--accent)}
 .icon-btn svg{width:18px;height:18px}
-.region-pick{display:flex;flex-direction:column;gap:4px}
-.region-pick span{font-size:10.5px;color:var(--faint);letter-spacing:.5px;padding-left:3px}
+.region-pick{display:flex;flex-direction:column;gap:4px;flex:0 1 auto;min-width:0}
+.region-pick span{font-size:10.5px;color:var(--faint);letter-spacing:.5px;padding-left:3px;white-space:nowrap}
 .region-pick select{
   border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:10px;
   padding:8px 30px 8px 12px;font-size:13px;font-family:inherit;cursor:pointer;outline:none;
-  appearance:none;-webkit-appearance:none;
+  appearance:none;-webkit-appearance:none;max-width:196px;text-overflow:ellipsis;
   background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
   background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%;
   background-size:5px 5px,5px 5px;background-repeat:no-repeat
@@ -572,6 +574,12 @@ html[data-theme="light"] mark{background:rgba(240,180,41,.42)}
   h1{font-size:20px}
   .hero{padding:18px 16px 16px}
   .hero-tools{width:100%}
+}
+/* 手机上控件自身折行（桌面与平板仍保持两行结构） */
+@media (max-width:560px){
+  .hero-tools{flex-wrap:wrap;gap:8px}
+  .region-pick select{max-width:158px}
+  .langs{flex-wrap:wrap}
 }
 @media print{
   body{background:#fff;color:#000}
