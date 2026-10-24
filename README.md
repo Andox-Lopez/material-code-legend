@@ -5,6 +5,13 @@
   <img src="logo.svg" width="96" alt="施工图材料代码对照表 logo">
 </p>
 
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/language-zh%20%7C%20en%20%7C%20ja%20%7C%20ko%20%7C%20es-blue.svg" alt="Languages">
+  <img src="https://img.shields.io/badge/regions-8-blue.svg" alt="Regions">
+  <img src="https://img.shields.io/badge/离线-offline%20usable-brightgreen.svg" alt="Offline usable">
+</p>
+
 > 施工图材料大类代码的 **缩写 ↔ 全称** 对照工具：按地区切换当地惯用写法，界面与说明支持 中 / 英文 / 日本語 / 한국어 / Español。
 > An offline-first lookup for construction-drawing material codes: switch **region** to see local abbreviations and full names, in 5 languages.
 
@@ -67,6 +74,14 @@ python build.py                 # 生成 施工图材料代码多语对照表.ht
 
 打开生成的 `施工图材料代码多语对照表.html` 即可（单文件、离线可用）。
 
-## 说明 / Disclaimer
+## 开源许可 / License
 
-各地区条目整理自公开标准与行业惯例，用于出图前的**快速核对**；同一代码在不同设计公司、不同项目仍可能含义不同，跨项目套用前务必先读该项目的 Material Legend。
+本项目以 **MIT License** 开源——这是最宽松的常用开源授权：允许任何人自由使用、复制、修改、合并、发布、分发、再许可乃至销售本项目，只需保留版权声明与许可声明。
+
+代码、构建脚本与页面模板均适用 MIT；可直接 fork、二次开发、嵌入你自己的项目或商业项目使用，无需额外申请授权。
+
+各地区材料代码条目整理自**公开标准与法规**（如 GB、BS、JIS、KS、CTE、SBC 等）及行业实务惯例，属于事实性信息的汇编，不涉及第三方版权材料；但具体项目的材料表图例仍受各设计单位版权约束，引用时请注明出处。
+
+各地区条目整理自公开标准与实务惯例，用于出图前的**快速核对**；同一代码在不同设计公司、不同项目仍可能含义不同，跨项目套用前务必先读该项目的 Material Legend。
+
+Copyright © 2026 Karandox Lopez. Released under the MIT License.
