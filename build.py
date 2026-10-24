@@ -1321,6 +1321,35 @@ def build_html(mode):
     return path, len(js)
 
 
+def _fix_xlsx_timestamp(path, stamp):
+    """把 xlsx 内的 docProps/core.xml 时间戳改写为固定值。
+
+    openpyxl 在保存时用当前时间覆盖 dcterms:modified，导致同样数据每次构建
+    都产生不同的 xlsx（字节级差异）。这里在保存后重写该条目，并让 zip 内
+    各条目使用固定的时间戳与顺序，使构建结果可复现。
+    """
+    import zipfile
+    import re as _re
+    iso = stamp.strftime("%Y-%m-%dT%H:%M:%SZ")
+    with zipfile.ZipFile(path) as zf:
+        items = [(i, zf.read(i.filename)) for i in zf.infolist()]
+    out = []
+    for info, data in items:
+        if info.filename == "docProps/core.xml":
+            data = _re.sub(rb"(<dcterms:(?:created|modified)[^>]*>)[^<]*(</dcterms:(?:created|modified)>)",
+                            rb"\g<1>" + iso.encode() + rb"\g<2>", data)
+        out.append((info.filename, data))
+    tmp = path + ".tmp"
+    with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as zf:
+        for name, data in out:
+            zi = zipfile.ZipInfo(name, date_time=(stamp.year, stamp.month, stamp.day,
+                                                  stamp.hour, stamp.minute, stamp.second))
+            zi.compress_type = zipfile.ZIP_DEFLATED
+            zi.external_attr = 0o600 << 16
+            zf.writestr(zi, data)
+    os.replace(tmp, path)
+
+
 def build_xlsx():
     try:
         from openpyxl import Workbook
@@ -1366,6 +1395,22 @@ def build_xlsx():
     views = assemble_python()
     wb = Workbook()
     wb.remove(wb.active)
+    # 固定文档属性时间戳：与 i18n.csv 的生成日期一致，保证同样数据构建出同样的 xlsx
+    build_date = None
+    try:
+        import re as _re2
+        from datetime import datetime
+        for r in read_csv_rows("i18n.csv"):
+            if r["key"] == "foot_date":
+                m = _re2.search(r"(\d{4}-\d{2}-\d{2})", r["zh"] or "")
+                if m:
+                    build_date = datetime.strptime(m.group(1), "%Y-%m-%d")
+                break
+        if build_date:
+            wb.properties.created = build_date
+            wb.properties.modified = build_date
+    except Exception:
+        build_date = None
     for rid, v in views.items():
         label = v["label"]["zh"] or rid
         for lg in LANGS:
@@ -1401,6 +1446,8 @@ def build_xlsx():
     except PermissionError:
         path = os.path.join(OUT, "施工图材料代码多语对照表(多地区).xlsx")
         wb.save(path)
+    if build_date:
+        _fix_xlsx_timestamp(path, build_date)
     return path
 
 
