@@ -639,6 +639,7 @@ html[data-theme="light"] mark{background:rgba(240,180,41,.42)}
   <footer class="foot">
     <p id="footSrc"></p>
     <p id="footLang"></p>
+    <p id="footLicense"></p>
     <p class="muted" id="footDate"></p>
   </footer>
 </div>
@@ -760,6 +761,8 @@ function renderHeader(){
   $("#clearBtn").title = t("clear_title");
   $("#footSrc").innerHTML = esc((R.foot_src && R.foot_src[state.lang]) || t("foot_src"));
   $("#footLang").innerHTML = esc(t("foot_lang"));
+  $("#footLicense").innerHTML = esc(t("foot_license")) +
+    ' · <a href="https://github.com/Andox-Lopez/material-code-legend/blob/main/LICENSE" target="_blank" rel="noopener">LICENSE</a>';
   $("#footDate").innerHTML = esc(t("foot_date"));
 }
 
