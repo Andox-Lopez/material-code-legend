@@ -21,3 +21,8 @@ pt,DRYWALL,Placa de gesso sobre estrutura,Placa de gesso (drywall),"Placas de ge
 pt,PISOFL,Piso flutuante,Piso flutuante,"Pavimento sobre base de manta ou placa acústica com revestimento em madeira, LVT ou cerâmica",Sistema corrente em habitações; indica-se a espessura e o tipo de manta.
 ru,PLIN,Напольный плинтус,Плинтус напольный,"Плинтус из ПВХ, МДФ, массива или керамогранита под цвет покрытия пола","Часто выносится в отдельную позицию ведомости, иногда с указанием производителя."
 ru,KOL,Декоративная колонна,Колонна декоративная,"Колонна из ГКЛ, гипсолитого камня или бетона с облицовкой, с базой и капителью",В перечне декоративных конструкций часто идёт под общим кодом «Колонна».
+mo,FC,False Ceiling,假天花,矿棉板天花、硅酸钙板天花、铝扣板天花、轻钢龙骨天花,澳门装修工程的常见项目，属土地工务局装修工程注意事项所列范围；与饰面处理 FC（氟碳喷涂）同码，须按图层判断。
+mo,MEL,Melamine Board,生态板,三聚氰胺饰面板、免漆饰面板、封边板、饰面夹板,澳门材料表常以「WD＋序号」或「生态板」标示，与实木饰面分列，单列 MEL 便于识别。
+mo,GRG,Glass-fibre Reinforced Gypsum,玻璃纤维增强石膏,GRG 造型板、罗马柱、檐口、异形吊顶构件,澳门酒店与娱乐场室内造型、檐口与柱身的常用做法，遇火反应等级须按防火法律制度报审。
+mo,GCO,Gypsum Cornice,石膏线,石膏线角、装饰檐线、石膏灯槽、收口线条,澳门天花与门套收口的惯用线条件，属装饰线条而非板材，与石膏板 GYB 分列。
+mo,SKE,Stainless Steel Kitchen Equipment,不锈钢厨具设备,不锈钢工作台、水槽、油烟罩、消毒柜,澳门住宅与酒店厨房的标准做法，与一般厨具设备 KTE 分开列项。

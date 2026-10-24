@@ -1,5 +1,5 @@
 ﻿region_id,group,base_code,code,name,full,note
-cn,mat,SL,,,,SL 在材料表＝特殊饰面；在电气图例＝灯带／射灯。
+cn,mat,SL,,,,SL 在材料表＝硬碾玉／树脂饰面（特殊饰面类）；在电气图例＝灯带／射灯
 cn,mat,SP,,,,SP 在材料表＝特殊涂料；在电气图例＝射灯（Spot Light）。
 cn,obj,DL,,,,材料表／物料清单＝灯具大类；灯位图与型号（DL-Φ100-12W）＝筒灯。国内项目若把两类混用，必须在图例中写明。
 hk,,AC,ACR,亚加力（有机玻璃）,Acrylic,ACR 为亚加力，但港式亦有 ACR 指 Acoustic（吸音）材料，看 AC-01 后接字判断。
@@ -22,7 +22,7 @@ hk,,WC,WAL,墙面饰材（墙纸／墙布）,Wallpaper,
 hk,,WR,WPF,防水卷材,,
 hk,finish,CL,,亮漆罩面,,CL 在港式既可指 Clear Lacquer，也可在灯具图例指 Ceiling Light，按图层判断。
 hk,finish,FL,,火烧面,,
-hk,finish,H,HL,拉丝／发纹饰面,,
+hk,finish,H,HL,拉丝饰面,,
 hk,finish,MA,,毛光·哑光饰面,,
 hk,finish,PC,,粉体喷涂,,
 hk,light,EL,EMG,,,
@@ -84,7 +84,7 @@ jp,obj,EA,EL,电化制品,,
 jp,obj,KIT,KT,厨房设备,,
 jp,obj,PLT,PL,観叶植物,,
 jp,obj,SSP,SW,スイッチ・コンセント盘,,
-jp,obj,SW,,卫生器具,,
+jp,obj,SW,SAN,衛生器具,Sanitary ware,日本电气惯例中 SW＝スイッチ／コンセント，故洁具改用 SAN 以免与 obj/SSP 同码
 kr,,AC,AC,,,
 kr,,CA,CA,,,
 kr,,CT,TL,타일,Tile,
@@ -300,7 +300,7 @@ pt,mat,CA,TAP,Tapete,,
 pt,mat,WC,PAP,Papel de parede,,
 pt,mat,CU,COR,Cortinas,,
 pt,mat,LE,CUR,Couro,,
-pt,mat,UP,FOR,Forração,,
+pt,mat,UP,EST,Estofado,Upholstery,葡语 forro ＝天花板／顶棚（用于 mat/SC），故软包改用 EST 以免同码
 pt,mat,PT,PINT,Pintura,,
 pt,mat,PL,PLAS,,,
 pt,mat,AC,ACR,,,
@@ -373,3 +373,52 @@ ru,finish,H,SHL,,,
 ru,finish,CL,LAK,,,
 ru,finish,PC,POR,,,
 ru,finish,FL,OGN,,,
+mo,mat,ST,PM,云石·石材,Stone,澳门材料表多以 PM＋两位序号编排（PM01 人造石·雅士白）；勿与内地的 ST 石材码混用。
+mo,mat,WD,WD,木纹生态板,Wood-look board,澳门 WD 多为生态板／木纹饰面板（WD01 浅色、WD02 深色）；勿与实木饰面同码理解。
+mo,mat,CT,TIL,瓷砖,Ceramic tile,港式 TIL 写法在澳门同样通行；全册须与瓷砖 TL 的写法统一。
+mo,mat,TL,TIL,瓷砖,Tile,与 CT 同义，港式统一写 TIL；同一份材料表内不要并用 CT 与 TL。
+mo,mat,MC,MC,铝塑板,Metal composite,澳门称铝塑板（铝塑复合板）；勿与中国内地的微水泥 MC 混用。
+mo,mat,PB,GYB,石膏板,Gypsum board,GYB = Gypsum Board；与 GRG 玻璃纤维增强石膏、硅酸钙板分列。
+mo,mat,LP,FP,防火板·美耐板,Fire-rated laminate,澳门多写 FP；部分图例仍沿用 LP，须按本项目图例统一。
+mo,mat,AC,AC,亚加力,Acrylic,澳门口语称亚加力；AC 亦可能指吸音板（Acoustic），须看所在表。
+mo,mat,CA,CAR,地毯,Carpet,澳门酒店与娱乐场地毯用量大；与地胶板 PVC 分列。
+mo,mat,WC,WAL,墙纸·墙布,Wallpaper,WAL 为港式写法；与中国内地的墙纸 WP 混用时须核对图例。
+mo,mat,SC,SC,软膜天花,Tensioned membrane,软膜天花与假天花 FC 属不同做法，材料表须分列。
+mo,mat,WR,WPF,防水卷材,Waterproofing roll,卫生间与厨房防水层常用；与地胶板 PVC 区分。
+mo,mat,VF,PVC,地胶板,Vinyl flooring,澳门称地胶／胶地板；勿与塑胶板 PL 混。
+mo,mat,AP,ACU,吸音板,Acoustic panel,ACU 为吸音板；与亚加力 AC、矿棉天花分列。
+mo,mat,MR,MR,镜子,Mirror,澳门酒店浴室大量使用；MR 亦可能指 Marble 石材，看图别。
+mo,mat,GL,GL,玻璃,Glass,玻璃与饰面 GL（光泽罩面）同码，须按图层区分。
+mo,mat,PT,PT,油漆,Paint,油漆分内墙、外墙、木器漆；与特殊涂料 SF 区分。
+mo,mat,SF,SF,特殊饰面,Special finish,特殊饰面／特殊材料；具体品种按厂商牌号补注。
+mo,mat,PL,PL,胶片·塑胶,Acrylic sheet / plastic sheet,澳门「胶片」即亚加力有机玻璃片；与 AC 亚加力同物不同码，核对本项目图例。
+mo,mat,MT,MT,金属饰面,Metal,金属板、压花板、不锈钢饰面；与饰面表毛光（MT）同码，按分组区分。
+mo,mat,AL,AL,铝合金,Aluminium,铝合金门窗与型材；其表面处理另注 FC 氟碳喷涂、POU 粉体喷涂。
+mo,obj,DL,LT,灯具,Light fittings,澳门沿用港式 LT＝灯具大类、DL＝筒灯；材料表与灯位图须用同一套写法。
+mo,obj,FR,FUR,傢俬,Furniture,澳门写字楼与酒店多用「傢俬」；部分图例仍写 FR。
+mo,obj,HW,HDW,五金,Hardware,门锁、铰链、把手等；与洁具 SAN 分列。
+mo,obj,SW,SAN,洁具,Sanitary ware,与五金 HDW 分列；不锈钢配件另注 SS。
+mo,obj,KIT,KTE,厨具设备,Kitchen equipment,不锈钢厨具设备为澳门住宅与酒店标准做法，另见地区特有条目。
+mo,obj,SSP,SWP,开关插座面板,Switch & socket panel,面板与插座；与五金 HDW 分列。
+mo,obj,EA,ELE,电器设备,Electrical appliances,电器设备与照明 LT 分列。
+mo,obj,PLT,PL,绿植,Plant / greenery,绿植与盆栽；PL 亦见于材料表的胶片／塑胶（PL），须按图别区分。
+mo,obj,AR,ART,艺术品,Artwork,艺术品与石材编号 PM 区分；勿与 AS 人造石混。
+mo,light,DL,DL,筒灯,Downlight,灯位图中 DL＝筒灯；材料表的大类灯具写 LT，勿混。
+mo,light,CL,CL,吸顶灯,Ceiling light,与饰面 CL 亮漆罩面同码，须按图纸类型区分。
+mo,light,PL,PD,吊灯,Pendant light,PD 吊灯；与 PL 胶片／塑胶、平板灯 PN 区分。
+mo,light,SL,SP,射灯,Spot light,SP 射灯；与特殊饰面 SF 区分。
+mo,light,TL,TRK,轨道灯,Track light,TRK 轨道灯；与材料表 TL 瓷砖区分。
+mo,light,EXIT,EXI,疏散指示灯,Exit sign,疏散指示与应急照明的设置须符合《核准楼宇及场地防火安全技术规章》。
+mo,light,EL,EM,应急照明,Emergency lighting,应急照明须按消防局要求配合疏散指示设置。
+mo,finish,H,HL,拉丝·发纹,Hairline,拉丝／发纹饰面；同一饰面亦可写 HR。
+mo,finish,CL,CLR,亮漆罩面,Clear lacquer,澳门常写 CLR 与照明 CL 吸顶灯区分；旧图例仍写 CL 时须看饰面表。
+mo,finish,PC,POU,粉体喷涂,Powder coating,粉体喷涂多用于铝型材；与聚碳酸酯板 PC 区分。
+mo,finish,FL,FLM,火烧面,Flamed,火烧面多写 FLM；若照旧写 FL，则与照明图例的泛光灯同码。
+mo,finish,MA,MT,毛光·哑光,Matte,与材料表 MT 金属饰面同码，按分组区分。
+mo,finish,G,GL,光泽罩面,Gloss,与材料表 GL 玻璃同码，须按图层区分。
+cn,light,DL,,,,DL 在灯位图与型号（DL-Φ100-12W）＝筒灯；物料清单里的 DL ＝灯具大类，两义在内地项目中常混用
+cn,light,SL,,,,SL 在灯位图＝射灯或灯带；材料表＝硬碾玉／树脂饰面（特殊饰面类），须看所在表
+cn,light,CL,,,,CL 在灯具图例＝吸顶灯；在表面处理表＝亮漆罩面，两处不可混用
+cn,finish,CL,,,,CL 在表面处理表＝清漆亮光保护层；在灯具图例＝吸顶灯，两处不可混用
+cn,finish,FL,,,,FL 在饰面终饰表＝火烧面；在灯具图例＝泛光灯，两处不可混用
+cn,finish,FC,,,,FC 在型材表面处理表＝氟碳喷涂；部分项目天花图也用 FC 表示假天花，须看所在表

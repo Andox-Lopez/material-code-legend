@@ -91,23 +91,29 @@ def hant_map():
     """
     from zh_hant import to_hant
     texts = set()
+    # 只收"中文那一列"的文本：繁体转换只作用于中文，其余语言保持原样
+    # （此前把所有语言都收进来，既把日/韩等误转成中文繁体，又让对照表膨胀到数 MB。）
     for r in read_csv_rows("entries.csv"):
-        for lg in LANGS:
-            texts.add(r.get("name_" + lg, ""))
+        texts.add(r.get("name_zh", ""))
     for r in read_csv_rows("entry_text.csv"):
+        if r.get("lang") != "zh":
+            continue
         texts.add(r.get("desc", ""))
         texts.add(r.get("note", ""))
     for r in read_csv_rows("region_text.csv"):
+        if r.get("lang") != "zh":
+            continue
         for k in ("label", "intro", "warn", "basis", "foot_src"):
             texts.add(r.get(k, ""))
-        texts.add(r.get("sources", ""))
+        for s in (r.get("sources", "") or "").split(" ; "):
+            texts.add(s)
     for r in read_csv_rows("i18n.csv"):
-        for lg in LANGS:
-            texts.add(r.get(lg, ""))
+        texts.add(r.get("zh", ""))
     for r in read_csv_rows("conflict_text.csv"):
-        for lg in LANGS:
-            texts.add(r.get(lg, ""))
+        texts.add(r.get("zh", ""))
     for r in read_csv_rows("rule_text.csv"):
+        if r.get("lang") != "zh":
+            continue
         texts.add(r.get("title", ""))
         texts.add(r.get("detail", ""))
         texts.add(r.get("example", ""))
@@ -115,14 +121,16 @@ def hant_map():
         texts.add(r.get("name", ""))
         texts.add(r.get("desc", ""))
         texts.add(r.get("note", ""))
+    for r in read_csv_rows("region_codes.csv"):
+        texts.add(r.get("name", ""))
+        texts.add(r.get("note", ""))
     for r in read_csv_rows("conflicts.csv"):
-        for lg in LANGS:
-            texts.add(r.get("a_" + lg, ""))
-            texts.add(r.get("b_" + lg, ""))
+        texts.add(r.get("a_zh", ""))
+        texts.add(r.get("b_zh", ""))
     for r in read_csv_rows("region_conflicts.csv"):
-        texts.add(r.get("a_text", ""))
-        texts.add(r.get("b_text", ""))
-        texts.add(r.get("howto", ""))
+        texts.add(r.get("a_zh", ""))
+        texts.add(r.get("b_zh", ""))
+        texts.add(r.get("howto_zh", ""))
     texts = {t for t in texts if t.strip()}
 
     out = {}
@@ -226,9 +234,9 @@ def assemble_python():
                 continue
             item = {"code": c["code"], "a": {}, "b": {}, "howto": {}, "is_extra": True}
             for lg in LANGS:
-                item["a"][lg] = c["a_text"]
-                item["b"][lg] = c["b_text"]
-                item["howto"][lg] = c["howto"]
+                item["a"][lg] = c.get("a_" + lg, "")
+                item["b"][lg] = c.get("b_" + lg, "")
+                item["howto"][lg] = c.get("howto_" + lg, "")
             view["conflicts"].append(item)
 
         for rr in rules:
@@ -844,7 +852,7 @@ function assemble(texts){
       if(c.region_id !== rid) return;
       var item = {code:c.code, a:{}, b:{}, howto:{}, is_extra:true};
       L.forEach(function(lg){
-        item.a[lg] = c.a_text || ""; item.b[lg] = c.b_text || ""; item.howto[lg] = c.howto || "";
+        item.a[lg] = c["a_"+lg] || ""; item.b[lg] = c["b_"+lg] || ""; item.howto[lg] = c["howto_"+lg] || "";
       });
       view.conflicts.push(item);
     });
@@ -875,23 +883,34 @@ function assemble(texts){
     if(v.script !== "hant") return;
     var map = HANT[rid] || {};
     function cv(x){ return (x && map[x]) ? map[x] : x; }
-    v.label = mapObj(v.label, cv);
-    v.intro = mapObj(v.intro, cv);
-    v.warn = mapObj(v.warn, cv);
-    v.foot_src = mapObj(v.foot_src, cv);
-    v.sources = mapObj(v.sources, function(arr){ return arr.map(cv); });
+    /* 每种语言各自一列：只有中文那一格需要转繁体，其余语言保持原样 */
+    function cvZh(o){
+      var r = {};
+      for(var k in o){
+        if(!Object.prototype.hasOwnProperty.call(o,k)) continue;
+        var v = o[k];
+        if(k !== "zh"){ r[k] = v; continue; }
+        r[k] = Array.isArray(v) ? v.map(cv) : cv(v);   // sources 是数组，逐条转换
+      }
+      return r;
+    }
+    v.label = cvZh(v.label);
+    v.intro = cvZh(v.intro);
+    v.warn = cvZh(v.warn);
+    v.foot_src = cvZh(v.foot_src);
+    v.sources = cvZh(v.sources);
     Object.keys(v.groups).forEach(function(g){
       v.groups[g].forEach(function(row){
         row.name = cv(row.name);
-        row.loc = mapObj(row.loc, function(o){ return {desc:cv(o.desc), note:cv(o.note)}; });
+        row.loc = cvZh(row.loc);
       });
     });
     v.extras.forEach(function(ex){ ex.name = cv(ex.name); });
     v.conflicts.forEach(function(c){
-      c.a = mapObj(c.a, cv); c.b = mapObj(c.b, cv); c.howto = mapObj(c.howto, cv);
+      c.a = cvZh(c.a); c.b = cvZh(c.b); c.howto = cvZh(c.howto);
     });
     v.rules.forEach(function(r){
-      r.title = mapObj(r.title, cv); r.detail = mapObj(r.detail, cv); r.example = mapObj(r.example, cv);
+      r.title = cvZh(r.title); r.detail = cvZh(r.detail); r.example = cvZh(r.example);
     });
     v.i18n_zh = {};
     Object.keys(i18n).forEach(function(k){ v.i18n_zh[k] = cv(i18n[k].zh); });
