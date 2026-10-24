@@ -30,7 +30,11 @@ from data_regions import REGIONS
 from data_conflict import CONFLICT, RULES
 from i18n import I18N
 from zh_hant import to_hans
-import build as B
+from data_mat import MAT_FINISH, MAT_FF_E
+from data_light import LIGHT
+from data_finish import FINISH
+
+GROUPS = {"mat": MAT_FINISH, "obj": MAT_FF_E, "light": LIGHT, "finish": FINISH}
 
 OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 os.makedirs(OUT_DIR, exist_ok=True)
@@ -51,7 +55,7 @@ def hans(s):
 
 # ---------------------------------------------------------------- entries
 entries, etext = [], []
-for g, items in B.GROUPS.items():
+for g, items in GROUPS.items():
     for e in items:
         row = [e["code"], g, e["full"]]
         for lg in LANGS:
@@ -118,12 +122,16 @@ cbase, ctext = [], []
 for c in CONFLICT:
     a_ref = ("%s:%s" % (c["a"][1], c["a"][2])) if c["a"][0] == "ref" else ""
     b_ref = ("%s:%s" % (c["b"][1], c["b"][2])) if c["b"][0] == "ref" else ""
-    a_txt = c["a"][1] if c["a"][0] == "lit" else ""
-    b_txt = c["b"][1] if c["b"][0] == "lit" else ""
-    cbase.append([c["code"], a_ref, a_txt, b_ref, b_txt])
+    row = [c["code"], a_ref, b_ref]
+    for lg in LANGS:                      # 字面量含义按语言分列
+        row.append(hans(c["a"][1][lg]) if c["a"][0] == "lit" else "")
+    for lg in LANGS:
+        row.append(hans(c["b"][1][lg]) if c["b"][0] == "lit" else "")
+    cbase.append(row)
     for lg in LANGS:
         ctext.append([c["code"], lg, hans(c["howto"][lg])])
-w("conflicts.csv", ["code", "a_ref", "a_text", "b_ref", "b_text"], cbase)
+w("conflicts.csv", ["code", "a_ref", "b_ref"]
+  + ["a_%s" % lg for lg in LANGS] + ["b_%s" % lg for lg in LANGS], cbase)
 w("conflict_text.csv", ["code", "lang", "howto"], ctext)
 
 # ---------------------------------------------------------------- 编号规则

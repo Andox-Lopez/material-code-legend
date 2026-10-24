@@ -115,6 +115,10 @@ def hant_map():
         texts.add(r.get("name", ""))
         texts.add(r.get("desc", ""))
         texts.add(r.get("note", ""))
+    for r in read_csv_rows("conflicts.csv"):
+        for lg in LANGS:
+            texts.add(r.get("a_" + lg, ""))
+            texts.add(r.get("b_" + lg, ""))
     for r in read_csv_rows("region_conflicts.csv"):
         texts.add(r.get("a_text", ""))
         texts.add(r.get("b_text", ""))
@@ -213,8 +217,8 @@ def assemble_python():
             b = by_key.get(tuple(c["b_ref"].split(":"))) if c["b_ref"] else None
             item = {"code": c["code"], "a": {}, "b": {}, "howto": {}, "is_extra": False}
             for lg in LANGS:
-                item["a"][lg] = (a["name"][lg] if a else c["a_text"]) or c["a_text"]
-                item["b"][lg] = (b["name"][lg] if b else c["b_text"]) or c["b_text"]
+                item["a"][lg] = (a["name"][lg] if a else "") or c.get("a_" + lg, "")
+                item["b"][lg] = (b["name"][lg] if b else "") or c.get("b_" + lg, "")
                 item["howto"][lg] = ctext.get((c["code"], lg), {}).get(lg, "")
             view["conflicts"].append(item)
         for c in rconf:
@@ -826,12 +830,12 @@ function assemble(texts){
       view.extras.push(ex);
     });
     csv["conflicts.csv"].forEach(function(c){
-      var a = c.a_ref ? byKey[c.a_ref] : null;
-      var b = c.b_ref ? byKey[c.b_ref] : null;
+      var a = c.a_ref ? byKey[c.a_ref.replace(":", "|")] : null;
+      var b = c.b_ref ? byKey[c.b_ref.replace(":", "|")] : null;
       var item = {code:c.code, a:{}, b:{}, howto:{}, is_extra:false};
       L.forEach(function(lg){
-        item.a[lg] = (a ? a.name[lg] : "") || c.a_text || "";
-        item.b[lg] = (b ? b.name[lg] : "") || c.b_text || "";
+        item.a[lg] = (a ? a.name[lg] : "") || c["a_"+lg] || "";
+        item.b[lg] = (b ? b.name[lg] : "") || c["b_"+lg] || "";
         item.howto[lg] = (ctext[c.code+"|"+lg] || {})[lg] || "";
       });
       view.conflicts.push(item);

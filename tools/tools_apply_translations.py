@@ -224,6 +224,85 @@ def lookup(group, code, lg):
     return None
 
 
+# 字面量冲突的 A/B 文本（fr/it/pt/ru）；a/b 为 None 表示该侧是引用（取条目名称）
+CONFLICT_SIDE_TR = {
+"SL": {
+ "fr": ("Finition spéciale (acrylique massif / spécial)", "Bandeau LED (strip light) / spot"),
+ "it": ("Finitura speciale (acrílico massiccio / speciale)", "Strip LED / spot"),
+ "pt": ("Acabamento especial (acrílico maciço / especial)", "Fita de LED / spot"),
+ "ru": ("Специальная отделка (массивный акрил / специальная)", "LED-лента / спот")},
+"SF": {
+ "fr": (None, "Feuilles d'or ou d'argent (silver foil)"),
+ "it": (None, "Fogli d'oro o d'argento (silver foil)"),
+ "pt": (None, "Folhas de ouro ou prata (silver foil)"),
+ "ru": (None, "Золотая или серебряная фольга")},
+"SP": {
+ "fr": (None, "Spot (spot light)"),
+ "it": (None, "Spot (spot light)"),
+ "pt": (None, "Spot (spot light)"),
+ "ru": (None, "Спот (spot light)")},
+"PL": {
+ "fr": (None, "Peinture acrylique / suspension / panneau lumineux"),
+ "it": (None, "Vernice acrilica / sospensione / pannello luminoso"),
+ "pt": (None, "Tinta acrílica / pendente / painel de luz"),
+ "ru": (None, "Акриловая краска / подвесной светильник / светодиодный панель")},
+"AC": {
+ "fr": (None, "Plaque acoustique en fibres minérales (acoustic ceiling)"),
+ "it": (None, "Pannello acustico in fibra minerale (acoustic ceiling)"),
+ "pt": (None, "Painel acústico de fibra mineral (acoustic ceiling)"),
+ "ru": (None, "Минерально-волокнистая акустическая плита (acoustic ceiling)")},
+"AR": {
+ "fr": (None, "Pierre artificielle (artificial stone)"),
+ "it": (None, "Pietra artificiale (artificial stone)"),
+ "pt": (None, "Pedra artificial (artificial stone)"),
+ "ru": (None, "Искусственный камень (artificial stone)")},
+"CU": {
+ "fr": (None, "Cuivre (copper)"),
+ "it": (None, "Rame (copper)"),
+ "pt": (None, "Cobre (copper)"),
+ "ru": (None, "Медь (copper)")},
+"MT": {
+ "fr": (None, "Acier inoxydable (stainless steel)"),
+ "it": (None, "Acciaio inox (stainless steel)"),
+ "pt": (None, "Aço inoxidável (stainless steel)"),
+ "ru": (None, "Нержавеющая сталь (stainless steel)")},
+"HW": {
+ "fr": (None, "Sanitaires + quincaillerie (système ancien)"),
+ "it": (None, "Sanitari + ferramenta (sistema vecchio)"),
+ "pt": (None, "Sanitários + ferragens (sistema antigo)"),
+ "ru": (None, "Сантехника + фурнитура (старая система)")},
+"PC": {
+ "fr": ("Sol PVC (pvc flooring)", "Plaque de polycarbonate / application de poudre (powder coating)"),
+ "it": ("Pavimento in PVC (pvc flooring)", "Lastra di policarbonato / verniciatura a polvere (powder coating)"),
+ "pt": ("Piso de PVC (pvc flooring)", "Chapa de policarbonato / pintura em pó (powder coating)"),
+ "ru": ("Покрытие ПВХ (pvc flooring)", "Поликарбонатный лист / порошковая окраска (powder coating)")},
+"SS": {
+ "fr": ("Acier inoxydable (stainless steel)", "Interrupteur et prise (switch & socket)"),
+ "it": ("Acciaio inox (stainless steel)", "Interruttore e presa (switch & socket)"),
+ "pt": ("Aço inoxidável (stainless steel)", "Interruptor e tomada (switch & socket)"),
+ "ru": ("Нержавеющая сталь (stainless steel)", "Выключатель и розетка (switch & socket)")},
+"MC": {
+ "fr": (None, "Micro-béton (micro cement)"),
+ "it": (None, "Microcemento (micro cement)"),
+ "pt": (None, "Microcimento (micro cement)"),
+ "ru": (None, "Микроцемент (micro cement)")},
+"SC": {
+ "fr": (None, "Cloisonnement / paravent (screen)"),
+ "it": (None, "Divisoria / schermo (screen)"),
+ "pt": (None, "Divisória / biombo (screen)"),
+ "ru": (None, "Перегородка / экран (screen)")},
+"WC / WP": {
+ "fr": (None, "Papier peint (wall paper)"),
+ "it": (None, "Carta da parati (wall paper)"),
+ "pt": (None, "Papel de parede (wall paper)"),
+ "ru": (None, "Обои (wall paper)")},
+"L": {
+ "fr": ("Éclairage de décoration (lighting, code de division)", "Luminaire linéaire (line)"),
+ "it": ("Illuminazione decorativa (lighting, codice di divisione)", "Luce lineare (line)"),
+ "pt": ("Iluminação decorativa (lighting, código de divisão)", "Luminária linear (line)"),
+ "ru": ("Декоративное освещение (lighting, обозначение раздела)", "Линейный светильник (line)")},
+}
+
 # ---------------------------------------------------------------- CSV 读写
 def read(name):
     with io.open(os.path.join(DATA, name), encoding="utf-8-sig", newline="") as f:
@@ -344,6 +423,24 @@ def main():
     write("region_conflicts.csv", ["region_id", "code", "a_text", "b_text", "howto"],
           [[r[c] for c in ["region_id", "code", "a_text", "b_text", "howto"]] for r in rconf])
     print("region_codes/extras/conflicts:", len(rcodes), len(rextras), len(rconf))
+
+    # ---------------- conflicts.csv：补齐九语种的字面量列 ----------------
+    rows = read("conflicts.csv")
+    header = ["code", "a_ref", "b_ref"] + ["a_%s" % lg for lg in LANGS] + ["b_%s" % lg for lg in LANGS]
+    for r in rows:
+        for lg in NEW:
+            r["a_" + lg] = ""
+            r["b_" + lg] = ""
+        side = CONFLICT_SIDE_TR.get(r["code"])
+        if side:
+            for i, lg in enumerate(NEW):
+                a_txt, b_txt = side[lg]
+                if a_txt:
+                    r["a_" + lg] = a_txt
+                if b_txt:
+                    r["b_" + lg] = b_txt
+    write("conflicts.csv", header, [[r.get(c, "") for c in header] for r in rows])
+    print("conflicts.csv:", len(rows), "行 ×", len(header), "列")
 
     # ---------------- 冲突说明四语 ----------------
     rows = read("conflict_text.csv")
