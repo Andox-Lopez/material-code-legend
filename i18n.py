@@ -193,13 +193,6 @@ I18N = {
         "ko": "출처: 선전시 「주거 건축 실내 장식 샹싱 건축정보모델 설계납품표준」 표 4.2.4 · 각지精装施工도 재료표 사례 · 업계 통용 영중 약칭.",
         "es": "Fuentes: tabla 4.2.4 del estándar de entrega BIM de Shenzhen · cuadros de materiales de planos de decoración de distintas ciudades · abreviaturas inglés-chino habituales en el sector.",
     },
-    "foot_conclusion": {
-        "zh": "一句话结论：DL 在材料表里是“灯具”大类（Decorative Lighting），在灯位图/型号里是“筒灯”（Downlight）。",
-        "en": "In one line: DL is the lighting category (Decorative Lighting) in the material schedule, but a downlight in lighting plans and model codes.",
-        "ja": "一言でまとめると：DL は材料表では照明器具の分類（Decorative Lighting）、照明平面や型番ではダウンライトを指す。",
-        "ko": "한 줄 요약: DL은 재료표에서 조명 분류(Decorative Lighting), 조명 평면·모델명에서는 다운라이트를 뜻합니다.",
-        "es": "En una línea: DL es la categoría de iluminación (Decorative Lighting) en el cuadro de materiales, pero un downlight en los planos y los modelos.",
-    },
     "foot_date": {
         "zh": "生成日期 2026-10-23 · 单文件离线可用，可直接 Ctrl+P 打印为 A4",
         "en": "Built 2026-10-23 · single self-contained file, works offline, prints to A4 with Ctrl+P",
