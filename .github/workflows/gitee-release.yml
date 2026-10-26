@@ -26,6 +26,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install openpyxl zhconv
 
+      - name: Sync code to Gitee (镜像 main 分支)
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          GITEE_OWNER: ${{ secrets.GITEE_OWNER }}
+          GITEE_REPO: ${{ secrets.GITEE_REPO }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote remove gitee 2>/dev/null || true
+          git remote add gitee "https://${GITEE_OWNER}:${GITEE_TOKEN}@gitee.com/${GITEE_OWNER}/${GITEE_REPO}.git"
+          # Gitee 端初始为空仓（与 GitHub 无共同祖先），故用覆盖式同步
+          git push --force gitee HEAD:main
+          git remote remove gitee
+
       - name: Publish to Gitee (release + 附件)
         env:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
