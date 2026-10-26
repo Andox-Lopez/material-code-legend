@@ -1,0 +1,70 @@
+name: Release offline build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    # 只在人工/任务推送时发布；CI 回写 index.html 的机器人提交不重复发版
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install build dependencies
+        continue-on-error: true
+        run: |
+          python -m pip install --upgrade pip
+          pip install openpyxl zhconv
+
+      - name: Determine version
+        id: ver
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          DAY=$(TZ=Asia/Shanghai date +%y%m%d)
+          PREFIX="${DAY}-v"
+          LAST=$(gh release list --limit 100 --json tagName --jq '.[].tagName' \
+                 | grep -E "^${PREFIX}" | sort -V | tail -1 || true)
+          if [ -z "$LAST" ]; then
+            VER="1.0"                       # 每日第一个 release 用 1.0
+          else
+            CUR="${LAST#${PREFIX}}"          # 形如 1.0
+            MAJ="${CUR%%.*}"
+            MIN="${CUR##*.}"
+            VER="${MAJ}.$((MIN+1))"          # 同日再次发布则递增修订号
+          fi
+          TAG="${PREFIX}${VER}"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "本次发布标签：${TAG}"
+
+      - name: Build (inject release tag)
+        env:
+          RELEASE_TAG: ${{ steps.ver.outputs.tag }}
+        run: python build.py
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.ver.outputs.tag }}
+        run: |
+          set -euo pipefail
+          NOTES=$(printf '离线单文件版：全部 CSV 已内嵌，零外部依赖，双击即可打开。\n\n- 在线版：https://andox-lopez.github.io/material-code-legend/\n- 标签规则：\`<yymmdd>-v<major>.<minor>\`（每日首个 release 为 v1.0，同日再次发布递增修订号）\n- 本文件内的「检查更新」按钮会自动比对 Release 并替换为最新版\n' )
+          gh release create "${TAG}" \
+            "施工图材料代码多语对照表.html" \
+            "施工图材料代码多语对照表.xlsx" \
+            --title "施工图材料代码 多语对照表 · ${TAG}" \
+            --notes "${NOTES}"
+
+      - name: Summary
+        run: echo "Release ${{ steps.ver.outputs.tag }} 已发布"

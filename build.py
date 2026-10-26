@@ -417,6 +417,14 @@ h1 em{font-style:normal;color:var(--accent)}
 body.loading #main{opacity:.35}
 .boot-err{display:none;margin-top:14px;border:1px solid var(--warn-line);background:var(--warn-soft);
   border-radius:10px;padding:12px 16px;color:var(--warn);font-size:13px}
+.update-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.update-btn{
+  border:1px solid var(--accent-line);background:var(--accent-soft);color:var(--accent);
+  border-radius:999px;padding:4px 14px;font-size:12px;font-family:inherit;cursor:pointer;transition:.16s
+}
+.update-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.update-btn[disabled]{opacity:.55;cursor:default}
+.update-note{font-size:11.8px;color:var(--muted)}
 .notice{
   margin-top:16px;border:1px solid var(--warn-line);background:var(--warn-soft);
   border-left:3px solid var(--warn);border-radius:0 12px 12px 0;padding:14px 18px;
@@ -686,6 +694,7 @@ html[data-theme="light"] mark{background:rgba(240,180,41,.42)}
     <p id="footLang"></p>
     <p id="footLicense"></p>
     <p class="muted" id="footDate"></p>
+    <p id="footUpdate"></p>
     <p id="footContact"></p>
   </footer>
 </div>
@@ -914,6 +923,90 @@ function assemble(texts){
           sections:SECTIONS, tabs:TABS, langs:LANGS};
 }
 
+/* ---------------- 离线版：自动检查并替换为 Release 上的最新离线版 ---------------- */
+var REPO = "Andox-Lopez/material-code-legend";
+var API_LATEST = "https://api.github.com/repos/" + REPO + "/releases/latest";
+var RAW_OFFLINE = "https://raw.githubusercontent.com/" + REPO + "/main/"
+                + encodeURIComponent("施工图材料代码多语对照表.html");
+
+function renderUpdateRow(){
+  var box = document.getElementById("footUpdate");
+  if(!box) return;
+  if(MODE !== "offline"){ box.innerHTML = ""; return; }
+  box.innerHTML = '<span class="update-row">'
+    + '<button class="update-btn" id="updateBtn">' + esc(t("update_btn")) + '</button>'
+    + '<span class="update-note" id="updateNote"></span></span>';
+  document.getElementById("updateBtn").addEventListener("click", function(){ doUpdate(true); });
+}
+
+function currentTag(){
+  return (PAYLOAD.meta && PAYLOAD.meta.release_tag) || "";
+}
+
+function latestRelease(){
+  return fetch(API_LATEST, {headers:{"Accept":"application/vnd.github+json"}})
+    .then(function(r){
+      if(!r.ok) throw new Error("GitHub API " + r.status);
+      return r.json();
+    })
+    .then(function(j){
+      var assets = j.assets || [];
+      var hit = null;
+      for(var i=0;i<assets.length;i++){
+        if(/\.html$/i.test(assets[i].name)){ hit = assets[i]; break; }
+      }
+      return {tag: j.tag_name || "", published: (j.published_at || "").slice(0,10),
+              url: hit ? hit.browser_download_url : null};
+    });
+}
+
+function doUpdate(manual){
+  var btn = document.getElementById("updateBtn");
+  var note = document.getElementById("updateNote");
+  if(btn) btn.disabled = true;
+  if(note) note.textContent = t("update_btn") + "…";
+  latestRelease().then(function(rel){
+    if(!rel.tag){ throw new Error("no release"); }
+    var cur = currentTag();
+    if(cur && rel.tag === cur){
+      if(note) note.textContent = t("update_status").replace(/\{v\}/g, rel.tag).replace(/\{d\}/g, rel.published);
+      if(manual && window.confirm(rel.tag + "\n" + t("update_status").replace(/\{v\}/g, rel.tag).replace(/\{d\}/g, rel.published))){
+        /* 与当前一致时也允许强制替换 */
+      }
+      if(btn) btn.disabled = false;
+      return;
+    }
+    if(!window.confirm(t("update_status").replace(/\{v\}/g, rel.tag).replace(/\{d\}/g, rel.published)
+       + "\n\n" + (t("update_btn") + "?"))){
+      if(btn) btn.disabled = false;
+      return;
+    }
+    var urls = [];
+    if(rel.url) urls.push(rel.url);
+    urls.push(RAW_OFFLINE);
+    return fetchFirst(urls).then(function(text){
+      if(!text || text.length < 20000) throw new Error("bad payload");
+      document.open(); document.write(text); document.close();
+    });
+  }).catch(function(err){
+    if(note) note.textContent = t("update_fail").replace(/\{msg\}/g, String(err.message || err));
+    if(btn) btn.disabled = false;
+  });
+}
+
+function fetchFirst(urls){
+  var i = 0;
+  function next(){
+    if(i >= urls.length) return Promise.reject(new Error("no source"));
+    var u = urls[i++];
+    return fetch(u).then(function(r){
+      if(!r.ok) throw new Error("HTTP " + r.status);
+      return r.text();
+    }).catch(function(){ return next(); });
+  }
+  return next();
+}
+
 function boot(){
   var ready;
   if(MODE === "offline"){
@@ -1044,6 +1137,7 @@ function renderHeader(){
   $("#footSrc").innerHTML = esc((R.foot_src && R.foot_src[state.lang]) || t("foot_src"));
   $("#footLang").innerHTML = esc(t("foot_lang"));
   var REPO_URL = "https://github.com/Andox-Lopez/material-code-legend";
+  renderUpdateRow();
   $("#footContact").innerHTML = t("foot_contact")
     .replace(/\{gh\}/g, '<a href="'+REPO_URL+'" target="_blank" rel="noopener">GitHub</a>')
     .replace(/\{issue\}/g, '<a href="'+REPO_URL+'/issues" target="_blank" rel="noopener">issue</a>')
@@ -1294,9 +1388,35 @@ boot();
 
 
 # ---------------------------------------------------------------- 输出
+def set_meta_tag(csv_text, tag):
+    """把 release_tag 写进 meta.csv 文本（构建时注入当前发布标签）。"""
+    rows = list(csv.DictReader(io.StringIO(csv_text)))
+    if not rows:
+        return csv_text
+    header = list(rows[0].keys())
+    hit = False
+    for r in rows:
+        if r.get("key") == "release_tag":
+            r["value"] = tag
+            hit = True
+    if not hit:
+        rows.append({"key": "release_tag", "value": tag,
+                     "note": "当前发布版本标签（Release）；构建时由 RELEASE_TAG 注入"})
+    out = io.StringIO()
+    w = csv.DictWriter(out, fieldnames=header, lineterminator="\n")
+    w.writeheader()
+    for r in rows:
+        w.writerow(r)
+    return out.getvalue()
+
+
 def build_html(mode):
     """mode: online（从 data/ 读取 CSV）或 offline（把 CSV 全部内嵌）。"""
     texts = {n: read_csv_text(n) for n in CSV_FILES}
+    tag = os.environ.get("RELEASE_TAG", "").strip()
+    if tag and "meta.csv" in texts:
+        texts = dict(texts)
+        texts["meta.csv"] = set_meta_tag(texts["meta.csv"], tag)
     hant = hant_map()
     js = HTML_TEMPLATE
     js = js.replace("__MODE__", mode)

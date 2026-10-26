@@ -212,6 +212,24 @@ I18N_TR = {
  "it": "Fonti: tabella 4.2.4 della norma di consegna BIM di Shenzhen, con GB/T 50325, GB 50210, l'avviso del Guangdong 〔2009〕41号, JGJ/T 331 e GB 8624, più i quadri dei materiali dei progetti di decorazione.",
  "pt": "Fontes: tabela 4.2.4 da norma de entrega BIM de Shenzhen, com GB/T 50325, GB 50210, o aviso de Guangdong 〔2009〕41号, JGJ/T 331 e GB 8624, além de quadros de materiais de projetos de decoração.",
  "ru": "Источники: таблица 4.2.4 стандарта передачи BIM (Шэньчжэнь), а также GB/T 50325, GB 50210, постановление Гуандуна 〔2009〕41号, JGJ/T 331 и GB 8624, плюс ведомости материалов из проектов отделки."},
+"update_btn": {
+ "fr": "Rechercher des mises à jour",
+ "it": "Controlla aggiornamenti",
+ "pt": "Verificar atualizações",
+ "ru": "Проверить обновления",
+},
+"update_status": {
+ "fr": "Dernière : {v} ({d})",
+ "it": "Ultima: {v} ({d})",
+ "pt": "Última: {v} ({d})",
+ "ru": "Последняя: {v} ({d})",
+},
+"update_fail": {
+ "fr": "Échec de la mise à jour : {msg}",
+ "it": "Aggiornamento non riuscito: {msg}",
+ "pt": "Falha na atualização: {msg}",
+ "ru": "Не удалось обновить: {msg}",
+},
 "foot_contact": {
  "fr": "Un problème ou une erreur ? Ouvrez une {issue} sur {gh}, ou écrivez à {mail}.",
  "it": "Hai trovato un problema o un errore? Apri una {issue} su {gh} o scrivi a {mail}.",
