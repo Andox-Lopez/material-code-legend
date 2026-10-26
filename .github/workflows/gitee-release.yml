@@ -8,10 +8,13 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: gitee-publish
+  cancel-in-progress: false
+
 jobs:
   gitee:
-    # 注意：secrets 上下文在 job 级 if 不可用，令牌判断必须放在 step 级
-    if: ${{ github.actor != 'github-actions[bot]' }}
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,37 +32,44 @@ jobs:
           python -m pip install --upgrade pip
           pip install openpyxl zhconv
 
-      - name: Sync code to Gitee (镜像 main 分支)
-        if: ${{ secrets.GITEE_TOKEN != '' }}
+      - name: Sync code to Gitee
         env:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
           GITEE_OWNER: ${{ secrets.GITEE_OWNER }}
           GITEE_REPO: ${{ secrets.GITEE_REPO }}
         run: |
-          set -euo pipefail
+          set -uo pipefail
+          if [ -z "${GITEE_TOKEN:-}" ] || [ -z "${GITEE_OWNER:-}" ] || [ -z "${GITEE_REPO:-}" ]; then
+            echo "Gitee 未配置（缺少 token/owner/repo），跳过代码同步"
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote remove gitee 2>/dev/null || true
           git remote add gitee "https://${GITEE_OWNER}:${GITEE_TOKEN}@gitee.com/${GITEE_OWNER}/${GITEE_REPO}.git"
-          # Gitee 端初始为空仓（与 GitHub 无共同祖先），故用覆盖式同步
+          # Gitee 端初始与 GitHub 无共同祖先，故用覆盖式同步
           git push --force gitee HEAD:main
           git remote remove gitee
 
-      - name: Publish to Gitee (release + 附件)
-        if: ${{ secrets.GITEE_TOKEN != '' }}
+      - name: Publish to Gitee
         env:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
           GITEE_OWNER: ${{ secrets.GITEE_OWNER }}
           GITEE_REPO: ${{ secrets.GITEE_REPO }}
-        run: python tools/publish_gitee.py --build
+        run: |
+          if [ -z "${GITEE_TOKEN:-}" ] || [ -z "${GITEE_OWNER:-}" ]; then
+            echo "Gitee 未配置，跳过发布"
+            exit 0
+          fi
+          python tools/publish_gitee.py --build
 
-      - name: Commit back meta (Gitee 坐标与版本标签)
-        if: ${{ secrets.GITEE_TOKEN != '' }}
+      - name: Commit back meta
         continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/meta.csv "施工图材料代码多语对照表.html" "施工图材料代码多语对照表.xlsx"
+          git add data/meta.csv
+          git add "施工图材料代码多语对照表.html" "施工图材料代码多语对照表.xlsx" || true
           if git diff --staged --quiet; then
             echo "no change"
           else
