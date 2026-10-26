@@ -10,8 +10,8 @@ permissions:
 
 jobs:
   gitee:
-    # 未配置 Gitee 令牌时整条流水线跳过
-    if: ${{ secrets.GITEE_TOKEN != '' && github.actor != 'github-actions[bot]' }}
+    # 注意：secrets 上下文在 job 级 if 不可用，令牌判断必须放在 step 级
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,6 +30,7 @@ jobs:
           pip install openpyxl zhconv
 
       - name: Sync code to Gitee (镜像 main 分支)
+        if: ${{ secrets.GITEE_TOKEN != '' }}
         env:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
           GITEE_OWNER: ${{ secrets.GITEE_OWNER }}
@@ -45,6 +46,7 @@ jobs:
           git remote remove gitee
 
       - name: Publish to Gitee (release + 附件)
+        if: ${{ secrets.GITEE_TOKEN != '' }}
         env:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
           GITEE_OWNER: ${{ secrets.GITEE_OWNER }}
@@ -52,6 +54,7 @@ jobs:
         run: python tools/publish_gitee.py --build
 
       - name: Commit back meta (Gitee 坐标与版本标签)
+        if: ${{ secrets.GITEE_TOKEN != '' }}
         continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
