@@ -15,6 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # 推完整历史到 Gitee 必须是完整克隆（浅克隆会被远端拒绝）
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
