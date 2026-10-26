@@ -58,7 +58,28 @@ def set_meta(key, value):
             w.writerow(r)
 
 
-def api(method, path, token, data=None, files=None):
+def api(method, path, token, data=None, files=None, tries=5):
+    """带重试的 Gitee API 调用（CI 网络到 Gitee 偶发 Connection reset）。"""
+    last = None
+    for attempt in range(tries):
+        try:
+            return _api_once(method, path, token, data, files)
+        except (urllib.error.URLError, ConnectionResetError, TimeoutError, OSError) as e:
+            last = e
+            time.sleep(3 * (attempt + 1))
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code < 500:
+                raw = e.read().decode("utf-8", "replace")
+                try:
+                    return e.code, json.loads(raw)
+                except Exception:
+                    return e.code, {"message": raw[:300]}
+            time.sleep(3 * (attempt + 1))
+    raise last if last else RuntimeError("Gitee API 调用失败")
+
+
+def _api_once(method, path, token, data=None, files=None):
     url = API + path
     if files is None:
         if data is not None:
@@ -162,9 +183,12 @@ def main():
              "- material-code-legend.xlsx = 施工图材料代码多语对照表.xlsx\n\n"
              "- GitHub 源仓库：https://github.com/Andox-Lopez/material-code-legend\n"
              "- 标签规则：yymmdd-v major.minor（每日首个 release 为 v1.0）\n")
+    # 目标分支取仓库实际默认分支（否则新建标签会失败）
+    st_r, rinfo = api("GET", "/repos/%s/%s?access_token=%s" % (owner, repo, token), token)
+    branch = (rinfo.get("default_branch") if isinstance(rinfo, dict) else None) or "main"
     st, rel = api("POST", "/repos/%s/%s/releases?access_token=%s" % (owner, repo, token), token, {
         "tag_name": tag, "name": "施工图材料代码 多语对照表 · %s" % tag,
-        "body": notes, "target_commitish": "master", "prerelease": False,
+        "body": notes, "target_commitish": branch, "prerelease": False,
     })
     if st not in (200, 201):
         print("创建 Gitee release 失败：%s %s" % (st, rel))
