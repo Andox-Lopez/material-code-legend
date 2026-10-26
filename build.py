@@ -928,6 +928,28 @@ var REPO = "Andox-Lopez/material-code-legend";
 var API_LATEST = "https://api.github.com/repos/" + REPO + "/releases/latest";
 var RAW_OFFLINE = "https://raw.githubusercontent.com/" + REPO + "/main/"
                 + encodeURIComponent("施工图材料代码多语对照表.html");
+var OFFLINE_NAME = "material-code-legend-offline.html";
+
+function metaVal(k){
+  return (PAYLOAD && PAYLOAD.meta && PAYLOAD.meta[k]) || "";
+}
+
+/* 当前页面托管在 Gitee 就用 Gitee 的地址，否则用 GitHub */
+function onGitee(){
+  return (location.hostname || "").toLowerCase().indexOf("gitee.com") >= 0;
+}
+function giteeBase(){
+  var o = metaVal("gitee_owner"), r = metaVal("gitee_repo");
+  return (o && r) ? ("https://gitee.com/" + o + "/" + r) : "";
+}
+function dlLink(){
+  if(onGitee()){
+    var gb = giteeBase();
+    if(gb) return '<a href="' + gb + '/releases" target="_blank" rel="noopener">' + esc(t("dl_text")) + '</a>';
+  }
+  return '<a href="https://github.com/' + REPO + '/releases/latest/download/' + OFFLINE_NAME
+       + '" target="_blank" rel="noopener">' + esc(t("dl_text")) + '</a>';
+}
 
 function renderUpdateRow(){
   var box = document.getElementById("footUpdate");
@@ -960,12 +982,60 @@ function latestRelease(){
     });
 }
 
+function giteeRelease(){
+  var gb = giteeBase();
+  if(!gb) return Promise.reject(new Error("gitee not configured"));
+  return fetch("https://gitee.com/api/v5/repos/" + metaVal("gitee_owner") + "/" + metaVal("gitee_repo") + "/releases/latest")
+    .then(function(r){
+      if(!r.ok){ var e = new Error("Gitee API " + r.status); e.status = r.status; throw e; }
+      return r.json();
+    })
+    .then(function(j){
+      var assets = j.assets || [], hit = null;
+      for(var i=0;i<assets.length;i++){
+        if(/\.html$/i.test(assets[i].name)){ hit = assets[i]; break; }
+      }
+      return {tag: j.tag_name || "", published: (j.created_at || j.published_at || "").slice(0,10),
+              url: hit ? (hit.browser_download_url || hit.download_url) : null};
+    });
+}
+
+/* 不走 API、用 /releases/latest 的重定向取版本（不占 API 配额） */
+function latestViaRedirect(base, name){
+  return fetch(base + "/releases/latest", {redirect:"follow"}).then(function(r){
+    var u = r.url || "";
+    var m = u.match(/\/releases\/tag\/([^/?#]+)/);
+    if(!m) throw new Error("tag not found: " + u);
+    return {tag: decodeURIComponent(m[1]), published: "",
+            url: base + "/releases/download/" + encodeURIComponent(m[1]) + "/" + name};
+  });
+}
+
+/* GitHub 返回 403/404（限流或无权限）时改用 Gitee；两者都不行再用网页重定向兜底 */
+function pickRelease(){
+  return latestRelease().catch(function(err){
+    var st = err && (err.status || (err.message||"").match(/(\d{3})/));
+    if(st === 403 || st === 404){
+      return giteeRelease().catch(function(e2){
+        var gb = giteeBase();
+        if(gb){
+          return latestViaRedirect(gb, OFFLINE_NAME).catch(function(e3){
+            return latestViaRedirect("https://github.com/" + REPO, OFFLINE_NAME);
+          });
+        }
+        return latestViaRedirect("https://github.com/" + REPO, OFFLINE_NAME);
+      });
+    }
+    return latestViaRedirect("https://github.com/" + REPO, OFFLINE_NAME);
+  });
+}
+
 function doUpdate(manual){
   var btn = document.getElementById("updateBtn");
   var note = document.getElementById("updateNote");
   if(btn) btn.disabled = true;
   if(note) note.textContent = t("update_btn") + "…";
-  latestRelease().then(function(rel){
+  pickRelease().then(function(rel){
     if(!rel.tag){ throw new Error("no release"); }
     var cur = currentTag();
     if(cur && rel.tag === cur){
@@ -983,6 +1053,8 @@ function doUpdate(manual){
     }
     var urls = [];
     if(rel.url) urls.push(rel.url);
+    var gb = giteeBase();
+    if(gb) urls.push(gb + "/raw/master/" + encodeURIComponent("施工图材料代码多语对照表.html"));
     urls.push(RAW_OFFLINE);
     return fetchFirst(urls).then(function(text){
       if(!text || text.length < 20000) throw new Error("bad payload");
@@ -1145,7 +1217,9 @@ function renderHeader(){
   $("#footLicense").innerHTML = esc(t("foot_license")) +
     ' · <a href="https://github.com/Andox-Lopez/material-code-legend/blob/main/LICENSE" target="_blank" rel="noopener">LICENSE</a>';
   var upd = (PAYLOAD.meta && PAYLOAD.meta.updated_at) || "";
-  $("#footDate").innerHTML = esc(t("foot_date")).replace(/\{date\}/g, esc(upd));
+  $("#footDate").innerHTML = esc(t("foot_date"))
+    .replace(/\{date\}/g, esc(upd))
+    .replace(/\{dl\}/g, dlLink());
 }
 
 function renderTabs(){

@@ -1,0 +1,47 @@
+name: Publish offline build to Gitee
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  gitee:
+    # 未配置 Gitee 令牌时整条流水线跳过
+    if: ${{ secrets.GITEE_TOKEN != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install build dependencies
+        continue-on-error: true
+        run: |
+          python -m pip install --upgrade pip
+          pip install openpyxl zhconv
+
+      - name: Publish to Gitee (release + 附件)
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          GITEE_OWNER: ${{ secrets.GITEE_OWNER }}
+          GITEE_REPO: ${{ secrets.GITEE_REPO }}
+        run: python tools/publish_gitee.py --build
+
+      - name: Commit back meta (Gitee 坐标与版本标签)
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/meta.csv "施工图材料代码多语对照表.html" "施工图材料代码多语对照表.xlsx"
+          if git diff --staged --quiet; then
+            echo "no change"
+          else
+            git commit -m "chore: publish to gitee and record release tag"
+            git push
+          fi

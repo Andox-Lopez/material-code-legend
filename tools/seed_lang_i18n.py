@@ -212,6 +212,12 @@ I18N_TR = {
  "it": "Fonti: tabella 4.2.4 della norma di consegna BIM di Shenzhen, con GB/T 50325, GB 50210, l'avviso del Guangdong 〔2009〕41号, JGJ/T 331 e GB 8624, più i quadri dei materiali dei progetti di decorazione.",
  "pt": "Fontes: tabela 4.2.4 da norma de entrega BIM de Shenzhen, com GB/T 50325, GB 50210, o aviso de Guangdong 〔2009〕41号, JGJ/T 331 e GB 8624, além de quadros de materiais de projetos de decoração.",
  "ru": "Источники: таблица 4.2.4 стандарта передачи BIM (Шэньчжэнь), а также GB/T 50325, GB 50210, постановление Гуандуна 〔2009〕41号, JGJ/T 331 и GB 8624, плюс ведомости материалов из проектов отделки."},
+"dl_text": {
+ "fr": "Fichier unique, utilisable hors ligne",
+ "it": "File unico, utilizzabile offline",
+ "pt": "Arquivo único, funciona offline",
+ "ru": "Один файл, работает офлайн",
+},
 "update_btn": {
  "fr": "Rechercher des mises à jour",
  "it": "Controlla aggiornamenti",
@@ -242,10 +248,10 @@ I18N_TR = {
  "pt": "Código aberto sob licença MIT (uso, modificação e redistribuição livres) · Copyright © 2026 Karandox Lopez",
  "ru": "Открытый код по лицензии MIT (свободное использование, изменение и распространение) · Copyright © 2026 Karandox Lopez"},
 "foot_date": {
- "fr": "Dernière mise à jour {date} · fichier unique, utilisable hors ligne, impression A4 avec Ctrl+P",
- "it": "Ultimo aggiornamento {date} · file unico, utilizzabile offline, stampa A4 con Ctrl+P",
- "pt": "Última atualização {date} · arquivo único, funciona offline, impressão A4 com Ctrl+P",
- "ru": "Последнее обновление {date} · один файл, работает офлайн, печать A4 по Ctrl+P"},
+ "fr": "Dernière mise à jour {date} · {dl}, impression A4 avec Ctrl+P",
+ "it": "Ultimo aggiornamento {date} · {dl}, stampa A4 con Ctrl+P",
+ "pt": "Última atualização {date} · {dl}, impressão A4 com Ctrl+P",
+ "ru": "Последнее обновление {date} · {dl}, печать A4 по Ctrl+P"},
 "foot_lang": {
  "fr": "Traduit en chinois, anglais, japonais, coréen, espagnol, français, italien, portugais et russe ; les termes techniques conservent l'original anglais pour le recoupement avec les plans.",
  "it": "Tradotto in cinese, inglese, giapponese, coreano, spagnolo, francese, italiano, portoghese e russo; i termini tecnici mantengono l'originale inglese per il confronto con i disegni.",

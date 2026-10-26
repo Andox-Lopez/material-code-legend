@@ -53,18 +53,36 @@ jobs:
           RELEASE_TAG: ${{ steps.ver.outputs.tag }}
         run: python build.py
 
+      - name: Stage assets
+        run: |
+          set -euo pipefail
+          # GitHub 的 release 附件名不接受非 ASCII 字符，这里用 ASCII 名，
+          # 下载后的文件名即为此名（中文对应名写在 release 说明里）。
+          cp "施工图材料代码多语对照表.html" material-code-legend-offline.html
+          cp "施工图材料代码多语对照表.xlsx" material-code-legend.xlsx
+
       - name: Create release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ steps.ver.outputs.tag }}
         run: |
           set -euo pipefail
-          NOTES=$(printf '离线单文件版：全部 CSV 已内嵌，零外部依赖，双击即可打开。\n\n- 在线版：https://andox-lopez.github.io/material-code-legend/\n- 标签规则：\`<yymmdd>-v<major>.<minor>\`（每日首个 release 为 v1.0，同日再次发布递增修订号）\n- 本文件内的「检查更新」按钮会自动比对 Release 并替换为最新版\n' )
+          cat > NOTES.md <<'EOF'
+          离线单文件版（全部 CSV 已内嵌，零外部依赖，双击即可打开）：
+
+          - material-code-legend-offline.html = 施工图材料代码多语对照表.html（离线单文件网页）
+          - material-code-legend.xlsx = 施工图材料代码多语对照表.xlsx（多地区 × 多语言 Excel）
+
+          - 在线版：https://andox-lopez.github.io/material-code-legend/
+          - 标签规则：yymmdd-v major.minor（每日首个 release 为 v1.0，同日再次发布递增修订号）
+          - 离线版页脚的「检查更新」按钮会自动比对 Release 并替换为最新版
+          EOF
+          sed -i 's/^          //' NOTES.md
           gh release create "${TAG}" \
-            "施工图材料代码多语对照表.html" \
-            "施工图材料代码多语对照表.xlsx" \
+            material-code-legend-offline.html \
+            material-code-legend.xlsx \
             --title "施工图材料代码 多语对照表 · ${TAG}" \
-            --notes "${NOTES}"
+            --notes-file NOTES.md
 
       - name: Summary
         run: echo "Release ${{ steps.ver.outputs.tag }} 已发布"
