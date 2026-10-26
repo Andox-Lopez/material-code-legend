@@ -77,7 +77,8 @@ GROUP_TR = {
 }
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-DATA = os.path.join(BASE, "data")
+BASE = os.path.dirname(os.path.abspath(__file__))
+DATA = os.path.join(os.path.dirname(BASE), "data")   # 数据集在仓库根目录 data/
 LANGS = ["zh", "en", "ja", "ko", "es", "fr", "it", "pt", "ru"]
 NEW = ["fr", "it", "pt", "ru"]
 COLLIDE = {"CL", "DL", "FL", "PL", "TL"}  # 跨分组重复代码，需按分组限定

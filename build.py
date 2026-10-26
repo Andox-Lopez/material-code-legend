@@ -91,29 +91,23 @@ def hant_map():
     """
     from zh_hant import to_hant
     texts = set()
-    # 只收"中文那一列"的文本：繁体转换只作用于中文，其余语言保持原样
-    # （此前把所有语言都收进来，既把日/韩等误转成中文繁体，又让对照表膨胀到数 MB。）
     for r in read_csv_rows("entries.csv"):
-        texts.add(r.get("name_zh", ""))
+        for lg in LANGS:
+            texts.add(r.get("name_" + lg, ""))
     for r in read_csv_rows("entry_text.csv"):
-        if r.get("lang") != "zh":
-            continue
         texts.add(r.get("desc", ""))
         texts.add(r.get("note", ""))
     for r in read_csv_rows("region_text.csv"):
-        if r.get("lang") != "zh":
-            continue
         for k in ("label", "intro", "warn", "basis", "foot_src"):
             texts.add(r.get(k, ""))
-        for s in (r.get("sources", "") or "").split(" ; "):
-            texts.add(s)
+        texts.add(r.get("sources", ""))
     for r in read_csv_rows("i18n.csv"):
-        texts.add(r.get("zh", ""))
+        for lg in LANGS:
+            texts.add(r.get(lg, ""))
     for r in read_csv_rows("conflict_text.csv"):
-        texts.add(r.get("zh", ""))
+        for lg in LANGS:
+            texts.add(r.get(lg, ""))
     for r in read_csv_rows("rule_text.csv"):
-        if r.get("lang") != "zh":
-            continue
         texts.add(r.get("title", ""))
         texts.add(r.get("detail", ""))
         texts.add(r.get("example", ""))
@@ -121,16 +115,14 @@ def hant_map():
         texts.add(r.get("name", ""))
         texts.add(r.get("desc", ""))
         texts.add(r.get("note", ""))
-    for r in read_csv_rows("region_codes.csv"):
-        texts.add(r.get("name", ""))
-        texts.add(r.get("note", ""))
     for r in read_csv_rows("conflicts.csv"):
-        texts.add(r.get("a_zh", ""))
-        texts.add(r.get("b_zh", ""))
+        for lg in LANGS:
+            texts.add(r.get("a_" + lg, ""))
+            texts.add(r.get("b_" + lg, ""))
     for r in read_csv_rows("region_conflicts.csv"):
-        texts.add(r.get("a_zh", ""))
-        texts.add(r.get("b_zh", ""))
-        texts.add(r.get("howto_zh", ""))
+        texts.add(r.get("a_text", ""))
+        texts.add(r.get("b_text", ""))
+        texts.add(r.get("howto", ""))
     texts = {t for t in texts if t.strip()}
 
     out = {}
@@ -138,8 +130,7 @@ def hant_map():
         if (r.get("script") or "") != "hant":
             continue
         rid = r["id"]
-        # 排序后输出：否则集合迭代顺序会让每次构建产生噪声 diff
-        out[rid] = {t: to_hant(t, rid) for t in sorted(texts)}
+        out[rid] = {t: to_hant(t, rid) for t in texts}
     return out
 
 
@@ -235,9 +226,9 @@ def assemble_python():
                 continue
             item = {"code": c["code"], "a": {}, "b": {}, "howto": {}, "is_extra": True}
             for lg in LANGS:
-                item["a"][lg] = c.get("a_" + lg, "")
-                item["b"][lg] = c.get("b_" + lg, "")
-                item["howto"][lg] = c.get("howto_" + lg, "")
+                item["a"][lg] = c["a_text"]
+                item["b"][lg] = c["b_text"]
+                item["howto"][lg] = c["howto"]
             view["conflicts"].append(item)
 
         for rr in rules:
@@ -686,6 +677,7 @@ html[data-theme="light"] mark{background:rgba(240,180,41,.42)}
     <p id="footLang"></p>
     <p id="footLicense"></p>
     <p class="muted" id="footDate"></p>
+    <p id="footContact"></p>
   </footer>
 </div>
 
@@ -853,7 +845,7 @@ function assemble(texts){
       if(c.region_id !== rid) return;
       var item = {code:c.code, a:{}, b:{}, howto:{}, is_extra:true};
       L.forEach(function(lg){
-        item.a[lg] = c["a_"+lg] || ""; item.b[lg] = c["b_"+lg] || ""; item.howto[lg] = c["howto_"+lg] || "";
+        item.a[lg] = c.a_text || ""; item.b[lg] = c.b_text || ""; item.howto[lg] = c.howto || "";
       });
       view.conflicts.push(item);
     });
@@ -884,34 +876,23 @@ function assemble(texts){
     if(v.script !== "hant") return;
     var map = HANT[rid] || {};
     function cv(x){ return (x && map[x]) ? map[x] : x; }
-    /* 每种语言各自一列：只有中文那一格需要转繁体，其余语言保持原样 */
-    function cvZh(o){
-      var r = {};
-      for(var k in o){
-        if(!Object.prototype.hasOwnProperty.call(o,k)) continue;
-        var v = o[k];
-        if(k !== "zh"){ r[k] = v; continue; }
-        r[k] = Array.isArray(v) ? v.map(cv) : cv(v);   // sources 是数组，逐条转换
-      }
-      return r;
-    }
-    v.label = cvZh(v.label);
-    v.intro = cvZh(v.intro);
-    v.warn = cvZh(v.warn);
-    v.foot_src = cvZh(v.foot_src);
-    v.sources = cvZh(v.sources);
+    v.label = mapObj(v.label, cv);
+    v.intro = mapObj(v.intro, cv);
+    v.warn = mapObj(v.warn, cv);
+    v.foot_src = mapObj(v.foot_src, cv);
+    v.sources = mapObj(v.sources, function(arr){ return arr.map(cv); });
     Object.keys(v.groups).forEach(function(g){
       v.groups[g].forEach(function(row){
         row.name = cv(row.name);
-        row.loc = cvZh(row.loc);
+        row.loc = mapObj(row.loc, function(o){ return {desc:cv(o.desc), note:cv(o.note)}; });
       });
     });
     v.extras.forEach(function(ex){ ex.name = cv(ex.name); });
     v.conflicts.forEach(function(c){
-      c.a = cvZh(c.a); c.b = cvZh(c.b); c.howto = cvZh(c.howto);
+      c.a = mapObj(c.a, cv); c.b = mapObj(c.b, cv); c.howto = mapObj(c.howto, cv);
     });
     v.rules.forEach(function(r){
-      r.title = cvZh(r.title); r.detail = cvZh(r.detail); r.example = cvZh(r.example);
+      r.title = mapObj(r.title, cv); r.detail = mapObj(r.detail, cv); r.example = mapObj(r.example, cv);
     });
     v.i18n_zh = {};
     Object.keys(i18n).forEach(function(k){ v.i18n_zh[k] = cv(i18n[k].zh); });
@@ -1050,6 +1031,11 @@ function renderHeader(){
   $("#clearBtn").title = t("clear_title");
   $("#footSrc").innerHTML = esc((R.foot_src && R.foot_src[state.lang]) || t("foot_src"));
   $("#footLang").innerHTML = esc(t("foot_lang"));
+  var REPO_URL = "https://github.com/Andox-Lopez/material-code-legend";
+  $("#footContact").innerHTML = t("foot_contact")
+    .replace(/\{gh\}/g, '<a href="'+REPO_URL+'" target="_blank" rel="noopener">GitHub</a>')
+    .replace(/\{issue\}/g, '<a href="'+REPO_URL+'/issues" target="_blank" rel="noopener">issue</a>')
+    .replace(/\{mail\}/g, '<a href="mailto:Ljh438756871@163.com">Ljh438756871@163.com</a>');
   $("#footLicense").innerHTML = esc(t("foot_license")) +
     ' · <a href="https://github.com/Andox-Lopez/material-code-legend/blob/main/LICENSE" target="_blank" rel="noopener">LICENSE</a>';
   $("#footDate").innerHTML = esc(t("foot_date"));
@@ -1315,39 +1301,9 @@ def build_html(mode):
         js = js.replace("__EMBEDDED__", "null")
     name = "施工图材料代码多语对照表.html" if mode == "offline" else "index.html"
     path = os.path.join(OUT, name)
-    # 固定用 LF 落盘：与 git 仓库中的版本一致，避免每次构建产生换行符噪声 diff
-    with io.open(path, "w", encoding="utf-8", newline="") as f:
-        f.write(js.replace("\r\n", "\n"))
+    with io.open(path, "w", encoding="utf-8") as f:
+        f.write(js)
     return path, len(js)
-
-
-def _fix_xlsx_timestamp(path, stamp):
-    """把 xlsx 内的 docProps/core.xml 时间戳改写为固定值。
-
-    openpyxl 在保存时用当前时间覆盖 dcterms:modified，导致同样数据每次构建
-    都产生不同的 xlsx（字节级差异）。这里在保存后重写该条目，并让 zip 内
-    各条目使用固定的时间戳与顺序，使构建结果可复现。
-    """
-    import zipfile
-    import re as _re
-    iso = stamp.strftime("%Y-%m-%dT%H:%M:%SZ")
-    with zipfile.ZipFile(path) as zf:
-        items = [(i, zf.read(i.filename)) for i in zf.infolist()]
-    out = []
-    for info, data in items:
-        if info.filename == "docProps/core.xml":
-            data = _re.sub(rb"(<dcterms:(?:created|modified)[^>]*>)[^<]*(</dcterms:(?:created|modified)>)",
-                            rb"\g<1>" + iso.encode() + rb"\g<2>", data)
-        out.append((info.filename, data))
-    tmp = path + ".tmp"
-    with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as zf:
-        for name, data in out:
-            zi = zipfile.ZipInfo(name, date_time=(stamp.year, stamp.month, stamp.day,
-                                                  stamp.hour, stamp.minute, stamp.second))
-            zi.compress_type = zipfile.ZIP_DEFLATED
-            zi.external_attr = 0o600 << 16
-            zf.writestr(zi, data)
-    os.replace(tmp, path)
 
 
 def build_xlsx():
@@ -1395,22 +1351,6 @@ def build_xlsx():
     views = assemble_python()
     wb = Workbook()
     wb.remove(wb.active)
-    # 固定文档属性时间戳：与 i18n.csv 的生成日期一致，保证同样数据构建出同样的 xlsx
-    build_date = None
-    try:
-        import re as _re2
-        from datetime import datetime
-        for r in read_csv_rows("i18n.csv"):
-            if r["key"] == "foot_date":
-                m = _re2.search(r"(\d{4}-\d{2}-\d{2})", r["zh"] or "")
-                if m:
-                    build_date = datetime.strptime(m.group(1), "%Y-%m-%d")
-                break
-        if build_date:
-            wb.properties.created = build_date
-            wb.properties.modified = build_date
-    except Exception:
-        build_date = None
     for rid, v in views.items():
         label = v["label"]["zh"] or rid
         for lg in LANGS:
@@ -1446,8 +1386,6 @@ def build_xlsx():
     except PermissionError:
         path = os.path.join(OUT, "施工图材料代码多语对照表(多地区).xlsx")
         wb.save(path)
-    if build_date:
-        _fix_xlsx_timestamp(path, build_date)
     return path
 
 
@@ -1456,8 +1394,8 @@ if __name__ == "__main__":
     print("online  html:", os.path.basename(p1), "%.0f KB" % (n1 / 1024))
     p2, n2 = build_html("offline")
     print("offline html:", os.path.basename(p2), "%.0f KB" % (n2 / 1024))
-    with io.open(os.path.join(OUT, "logo.svg"), "w", encoding="utf-8", newline="") as f:
-        f.write(LOGO_SVG.replace("\r\n", "\n"))
+    with io.open(os.path.join(OUT, "logo.svg"), "w", encoding="utf-8") as f:
+        f.write(LOGO_SVG)
     print("logo.svg 已输出")
     views = assemble_python()
     for rid, v in views.items():

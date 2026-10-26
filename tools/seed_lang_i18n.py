@@ -212,6 +212,12 @@ I18N_TR = {
  "it": "Fonti: tabella 4.2.4 della norma di consegna BIM di Shenzhen, con GB/T 50325, GB 50210, l'avviso del Guangdong 〔2009〕41号, JGJ/T 331 e GB 8624, più i quadri dei materiali dei progetti di decorazione.",
  "pt": "Fontes: tabela 4.2.4 da norma de entrega BIM de Shenzhen, com GB/T 50325, GB 50210, o aviso de Guangdong 〔2009〕41号, JGJ/T 331 e GB 8624, além de quadros de materiais de projetos de decoração.",
  "ru": "Источники: таблица 4.2.4 стандарта передачи BIM (Шэньчжэнь), а также GB/T 50325, GB 50210, постановление Гуандуна 〔2009〕41号, JGJ/T 331 и GB 8624, плюс ведомости материалов из проектов отделки."},
+"foot_contact": {
+ "fr": "Un problème ou une erreur ? Ouvrez une {issue} sur {gh}, ou écrivez à {mail}.",
+ "it": "Hai trovato un problema o un errore? Apri una {issue} su {gh} o scrivi a {mail}.",
+ "pt": "Encontrou um problema ou erro? Abra uma {issue} no {gh} ou escreva para {mail}.",
+ "ru": "Нашли проблему или ошибку? Создайте {issue} на {gh} или напишите на {mail}.",
+},
 "foot_license": {
  "fr": "Code ouvert sous licence MIT (usage, modification et redistribution libres) · Copyright © 2026 Karandox Lopez",
  "it": "Open source con licenza MIT (uso, modifica e ridistribuzione liberi) · Copyright © 2026 Karandox Lopez",

@@ -193,6 +193,13 @@ I18N = {
         "ko": "출처: 선전시 「주거 건축 실내 장식 샹싱 건축정보모델 설계납품표준」 표 4.2.4 · 각지精装施工도 재료표 사례 · 업계 통용 영중 약칭.",
         "es": "Fuentes: tabla 4.2.4 del estándar de entrega BIM de Shenzhen · cuadros de materiales de planos de decoración de distintas ciudades · abreviaturas inglés-chino habituales en el sector.",
     },
+    "foot_contact": {
+        "zh": "如遇问题或内容有误，请到 {gh} 提交 {issue}，或联系 {mail}",
+        "en": "Spotted a problem or an error? Please open an {issue} on {gh}, or email {mail}.",
+        "ja": "問題や誤りにお気づきの際は、{gh} に {issue} を作成するか、{mail} までご連絡ください。",
+        "ko": "문제나 오류를 발견하시면 {gh} 에 {issue} 를 등록하거나 {mail} 로 문의해 주세요.",
+        "es": "¿Has detectado un problema o un error? Abre un {issue} en {gh} o escribe a {mail}.",
+    },
     "foot_license": {
         "zh": "开源许可：MIT License（可自由使用、修改、再发布）· Copyright © 2026 Karandox Lopez",
         "en": "Open source under the MIT License (free to use, modify and redistribute) · Copyright © 2026 Karandox Lopez",

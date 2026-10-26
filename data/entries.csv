@@ -1,6 +1,6 @@
 ﻿code,group,full_en,name_zh,name_en,name_ja,name_ko,name_es,name_fr,name_it,name_pt,name_ru
 ST,mat,Stone / Stone Finish,石材饰面,Stone / Stone Finish,石材仕上げ,석재 마감,Acabado de piedra,Finition en pierre,Finitura in pietra,Acabamento em pedra,Отделка камнем
-WD,mat,Wood / Wood Finish,木饰面·木作,Wood / Wood Finish,木質仕上げ・木造工事,목재 마감·목공,Acabado en madera / carpintería,Finition et menuiserie en bois,Finitura e carpenteria in legno,Acabamento e marcenaria em madeira,Отделка и столярные работы по дереву
+WD,mat,Wood / Wood Finish,木饰面·木作,Wood / Wood Finish,木質仕上げ・木工事,목재 마감·목공,Acabado en madera / carpintería,Finition et menuiserie en bois,Finitura e carpenteria in legno,Acabamento e marcenaria em madeira,Отделка и столярные работы по дереву
 WF,mat,Wood Floor,木地板,Wood Floor,木質フローリング,목재 마루,Parqué de madera,Parquet,Parquet,Piso de madeira,Напольное покрытие из дерева
 GL,mat,Glass,玻璃,Glass,ガラス,유리,Vidrio,Vitrage,Vetratura,Vidraria,Стекло
 MR,mat,Mirror,镜子·镜面,Mirror,鏡・鏡面,거울·미러면,Espejo,Miroir,Specchio,Espelho,Зеркало
@@ -11,7 +11,7 @@ CT,mat,Ceramic Tile,瓷砖·面砖,Ceramic Tile,陶磁質タイル・タイル,�
 TL,mat,Tile,瓷砖（同 CT）,Tile,タイル（CT と同義）,타일(CT와 동일),Tile (igual que CT),Carrelage (idem CT),Piastrelle (idem CT),Azulejo (idem CT),"Плитка (то же, что CT)"
 MO,mat,Mosaic,马赛克,Mosaic,モザイク,모자이크,Mosaico,Mosaïque,Mosaico,Mosaico,Мозаика
 CA,mat,Carpet,地毯,Carpet,カーペット,카펫,Moqueta,Tapis,Tappeto,Tapete,Ковёр
-WC,mat,Wall Covering,墙面饰材（墙纸/墙布）,Wall Covering,壁面仕上（壁紙・クロス）,벽면 마감(벽지·벽布),Revestimiento mural,Revêtement mural,Rivestimento a parete,Revestimento de parede,Настенное покрытие
+WC,mat,Wall Covering,墙面饰材（墙纸/墙布）,Wall Covering,壁面仕上（壁紙・壁布）,벽면 마감(벽지·벽布),Revestimiento mural,Revêtement mural,Rivestimento a parete,Revestimento de parede,Настенное покрытие
 CU,mat,Curtain,窗帘·窗纱,Curtain,カーテン・窓仕切り,커튼·블라인드,Cortina,Rideaux et stores,Tende e persiane,Cortinas e persianas,Шторы и жалюзи
 FA,mat,Fabric,布艺饰面,Fabric,ファブリック仕上げ,패브릭 마감,Tapicería textil,Finition textile,Finitura tessile,Acabamento em tecido,Текстильная отделка
 UP,mat,Upholstery,软硬包（扪皮/扪布）,Upholstery,張り地（革・布）,패널 커버링(가죽·패브릭),Tapicería (piel o tela),Garnissage et tapisserie,Rivestimento e tappezzeria,Painel e forração,Обивка и мягкие панели
@@ -22,15 +22,13 @@ PL,mat,Plastic,塑料（亚克力/灯片/塑料板）,Plastic,プラスチック
 AC,mat,Acrylic,亚克力（有机玻璃）,Acrylic,アクリル（有機ガラス）,아크릴(유리),Acrílico (metacrilato),Acrylique,Acrilico,Acrílico,Акрил
 PB,mat,Plaster Board,石膏板,Plaster Board,石膏ボード,석고보드,Placa de yeso,Plaque de plâtre,Cartongesso,Placa de gesso,Гипсокартон
 LP,mat,Laminated Plastic,防火板（三聚氰胺板）,Laminated Plastic,ラミネート板（Melamine）,방화판(멜라민),Plástico laminado,Stratifié / mélaminé,Laminato / melaminico,Laminado / melamínico,Ламинат / меламин
-SF,mat,Special Finish,特殊饰面·特殊材料,Special Finish,特殊仕上げ・特殊素材,특수 마감·특수 재료,Acabado especial,Finition spéciale,Finitura speciale,Acabamento especial,Специальная отделка
+SF,mat,Special Finish,特殊饰面·特殊材料,Special Finish,特殊仕上げ・特殊材,특수 마감·특수 재료,Acabado especial,Finition spéciale,Finitura speciale,Acabamento especial,Специальная отделка
 WR,mat,Waterproof Roll,防水卷材,Waterproof Roll,防水シート,방수 롤,Rollo impermeable,Étanchéité,Impermeabilizzazione,Impermeabilização,Гидроизоляция
 VF,mat,Vinyl Flooring,地胶板（PVC 地板）,Vinyl Flooring,塩ビ床材,비닐 바닥재,Suelo de vinilo,Sol vinyl,Pavimento vinilico,Piso vinílico,Линолеум / винил
 RF,mat,Rubber Flooring,橡胶地板,Rubber Flooring,ゴム床材,고무 바닥,Suelo de caucho,Sol caoutchouc,Pavimento in gomma,Piso de borracha,Резиновое покрытие
-SC,mat,Soft Ceiling,软膜天花,Soft Ceiling,軟膜天井,소프트 천장,Techo tensado,Faux plafond tendu,Controsoffitto elastico,Forro tensionado,Натяжной потолок
+SC,mat,Soft Ceiling,软膜天花,Soft Ceiling,ソフト天井,소프트 천장,Techo tensado,Faux plafond tendu,Controsoffitto elastico,Forro tensionado,Натяжной потолок
 AP,mat,Acoustic Panel,吸音板·隔音板,Acoustic Panel,吸音板・防音板,흡음판·차음판,Panel acústico,Panneau acoustique,Pannello acustico,Painel acústico,Акустическая панель
 PF,mat,Film,贴膜,Film,フィルム,필름,Película,Film,Film,Filme,Плёнка
-SL,mat,Solid Acrylic / Resin Surface,硬碾玉·树脂饰面,Solid Acrylic / Resin Surface,ソリッドアクリル（樹脂）,솔리드 아크릴(수지),Acrílico macizo / superficie de resina,Acrylik massif / surface en résine,Acrilico massiccio / superficie in resina,Acrílico maciço / superfície de resina,Акрил солид-поверхность (массивный акрил)
-RA,mat,Rattan / Wicker,藤编,Rattan / Wicker,籐編,라탄 weaving,Mimbre,Rotin,Vimini,Rattan / vime,Ротанг (плетение)
 DL,obj,Decorative Lighting,灯具,Decorative Lighting,照明器具,조명기구,Iluminación decorativa,Éclairage,Illuminazione,Iluminação,Освещение
 FR,obj,Furniture,家具,Furniture,家具,가구,Mobiliario,Mobilier,Mobiliario,Mobiliário,Мебель
 HW,obj,Hardware,五金,Hardware,金物,철물,Herrajes,Quincaillerie,Ferramenta,Ferragens,Фурнитура
@@ -68,7 +66,7 @@ OX,finish,Oxidized Finish,氧化饰面,Oxidized Finish,酸化仕上げ,산화 �
 S,finish,Satin Finish,缎光饰面,Satin Finish,サテン仕上げ,새틴 마감,Acabado satinado,Satiné,Satinato,Acetinado,Сатин
 P,finish,Polished Finish,抛光/镜面饰面,Polished Finish,研磨仕上げ,폴리싱 마감,Acabado pulido,Poli,Lucido,Polido,Полированный
 HA,finish,Hammered Finish,锤纹·凿毛饰面,Hammered Finish,ハンマー仕上げ,해머 마감,Acabado martillado,Martelé,Martellato,Martelado,Кованый
-FL,finish,Flamed Finish,火烧面,Flamed Finish,焼仕上げ,화재 마감,Acabado flameado,Flammé,Fiammato,Flamado,Огненная обработка
+FL,finish,Flamed Finish,火烧面,Flamed Finish,火烧き仕上げ,화재 마감,Acabado flameado,Flammé,Fiammato,Flamado,Огненная обработка
 MA,finish,Matted Finish,毛光·哑光饰面,Matted Finish,マット仕上げ,매트 마감,Acabado mate,Mat,Opaco,Fosco,Матовый
 SB,finish,Sandblasted Finish,喷砂饰面,Sandblasted Finish,サンドブラスト仕上げ,샌드블라스트 마감,Acabado arenado,Sablé,Sabbiatura,Jateado,Пескоструйный
 CL,finish,Clear Lacquer Finish,亮漆罩面,Clear Lacquer Finish,クリアラッカー仕上げ,클리어 래커 마감,Acabado con barniz transparente,Vernis brillant,Vernice lucida,Verniz brilhante,Блестящий лак
