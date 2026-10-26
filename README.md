@@ -82,6 +82,14 @@ python build.py
 
 页脚的「更新日期」不是构建日期，而是 `data/meta.csv` 里 `updated_at` 的值——每次更新内容时改一次，这样它反映的是**内容**何时更新，而不是页面何时重新生成。
 
+### Gitee 镜像
+
+离线版同时发布到 Gitee（作为 GitHub 的镜像与更新兜底）：
+
+- 仓库：https://gitee.com/karandox-lopez/material-code-legend
+- Release：https://gitee.com/karandox-lopez/material-code-legend/releases
+- GitHub 不可访问（403/404）时，页脚的「检查更新」按钮会自动改从 Gitee 拉取最新版。
+
 ### Release 与离线版自更新
 
 每次推送 main，CI 会把离线单文件版发布到 GitHub **Release**：
