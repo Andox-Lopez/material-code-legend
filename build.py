@@ -235,9 +235,9 @@ def assemble_python():
                 continue
             item = {"code": c["code"], "a": {}, "b": {}, "howto": {}, "is_extra": True}
             for lg in LANGS:
-                item["a"][lg] = c["a_text"]
-                item["b"][lg] = c["b_text"]
-                item["howto"][lg] = c["howto"]
+                item["a"][lg] = c.get("a_" + lg, "")
+                item["b"][lg] = c.get("b_" + lg, "")
+                item["howto"][lg] = c.get("howto_" + lg, "")
             view["conflicts"].append(item)
 
         for rr in rules:
@@ -857,7 +857,7 @@ function assemble(texts){
       if(c.region_id !== rid) return;
       var item = {code:c.code, a:{}, b:{}, howto:{}, is_extra:true};
       L.forEach(function(lg){
-        item.a[lg] = c.a_text || ""; item.b[lg] = c.b_text || ""; item.howto[lg] = c.howto || "";
+        item.a[lg] = c["a_"+lg] || ""; item.b[lg] = c["b_"+lg] || ""; item.howto[lg] = c["howto_"+lg] || "";
       });
       view.conflicts.push(item);
     });
