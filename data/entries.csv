@@ -11,7 +11,7 @@ CT,mat,Ceramic Tile,瓷砖·面砖,Ceramic Tile,陶磁質タイル・タイル,�
 TL,mat,Tile,瓷砖（同 CT）,Tile,タイル（CT と同義）,타일(CT와 동일),Tile (igual que CT),Carrelage (idem CT),Piastrelle (idem CT),Azulejo (idem CT),"Плитка (то же, что CT)"
 MO,mat,Mosaic,马赛克,Mosaic,モザイク,모자이크,Mosaico,Mosaïque,Mosaico,Mosaico,Мозаика
 CA,mat,Carpet,地毯,Carpet,カーペット,카펫,Moqueta,Tapis,Tappeto,Tapete,Ковёр
-WC,mat,Wall Covering,墙面饰材（墙纸/墙布）,Wall Covering,壁面仕上（壁紙・壁布）,벽면 마감(벽지·벽포),Revestimiento mural,Revêtement mural,Rivestimento a parete,Revestimento de parede,Настенное покрытие
+WC,mat,Wall Covering,墙面饰材（墙纸/墙布）,Wall Covering,壁面仕上（壁紙・壁布）,벽면 마감(벽지·벽布),Revestimiento mural,Revêtement mural,Rivestimento a parete,Revestimento de parede,Настенное покрытие
 CU,mat,Curtain,窗帘·窗纱,Curtain,カーテン・窓仕切り,커튼·블라인드,Cortina,Rideaux et stores,Tende e persiane,Cortinas e persianas,Шторы и жалюзи
 FA,mat,Fabric,布艺饰面,Fabric,ファブリック仕上げ,패브릭 마감,Tapicería textil,Finition textile,Finitura tessile,Acabamento em tecido,Текстильная отделка
 UP,mat,Upholstery,软硬包（扪皮/扪布）,Upholstery,張り地（革・布）,패널 커버링(가죽·패브릭),Tapicería (piel o tela),Garnissage et tapisserie,Rivestimento e tappezzeria,Painel e forração,Обивка и мягкие панели
@@ -29,8 +29,6 @@ RF,mat,Rubber Flooring,橡胶地板,Rubber Flooring,ゴム床材,고무 바닥,S
 SC,mat,Soft Ceiling,软膜天花,Soft Ceiling,ソフト天井,소프트 천장,Techo tensado,Faux plafond tendu,Controsoffitto elastico,Forro tensionado,Натяжной потолок
 AP,mat,Acoustic Panel,吸音板·隔音板,Acoustic Panel,吸音板・防音板,흡음판·차음판,Panel acústico,Panneau acoustique,Pannello acustico,Painel acústico,Акустическая панель
 PF,mat,Film,贴膜,Film,フィルム,필름,Película,Film,Film,Filme,Плёнка
-SL,mat,Solid Acrylic / Resin Surface,硬碾玉·树脂饰面,Solid Acrylic / Resin Surface,ソリッドアクリル（樹脂）,솔리드 아크릴(수지),Acrílico macizo / superficie de resina,Acrylik massif / surface en résine,Acrilico massiccio / superficie in resina,Acrílico maciço / superfície de resina,Акрил солид-поверхность (массивный акрил)
-RA,mat,Rattan / Wicker,藤编,Rattan / Wicker,籐編,라탄 weaving,Mimbre,Rotin,Vimini,Rattan / vime,Ротанг (плетение)
 DL,obj,Decorative Lighting,灯具,Decorative Lighting,照明器具,조명기구,Iluminación decorativa,Éclairage,Illuminazione,Iluminação,Освещение
 FR,obj,Furniture,家具,Furniture,家具,가구,Mobiliario,Mobilier,Mobiliario,Mobiliário,Мебель
 HW,obj,Hardware,五金,Hardware,金物,철물,Herrajes,Quincaillerie,Ferramenta,Ferragens,Фурнитура
@@ -81,14 +79,3 @@ G,finish,Gloss Finish,光泽罩面,Gloss Finish,グロス仕上げ,글로스 마
 50G,finish,50% Gloss Finish,50% 光泽饰面,50% Gloss Finish,50% グロス,50% 글로스,50 % de brillo,50 % de brillance,50% di brillantezza,50% de brilho,Блеск 50%
 70G,finish,70% Gloss Finish,70% 光泽饰面,70% Gloss Finish,70% グロス,70% 글로스,70 % de brillo,70 % de brillance,70% di brillantezza,70% de brilho,Блеск 70%
 PC,finish,Powder Coating,粉末喷涂,Powder Coating,粉体塗装,분체 도장,Recubrimiento en polvo,Poudrage,Verniciatura a polvere,Pintura em pó,Порошковая окраска
-BR,mat,Brick,砖·砌体,Brick,煉瓦・組積材,벽돌·조적,Ladrillo·mampostería,Brique·maçonnerie,Mattone·muratura,Tijolo·alvenaria,Кирпич·кладка
-SS,mat,Stainless Steel,不锈钢,Stainless Steel,ステンレス,스테인리스,Acero inoxidable,Acier inoxydable,Acciaio inox,Aço inoxidável,Нержавеющая сталь
-EM,mat,Epoxy Flooring,环氧地坪,Epoxy Flooring,エポキシ床材,에폭시 바닥재,Pavimento epoxi,Sol époxy,Pavimento in epoxy,Piso de epóxi,Эпоксидное покрытие пола
-CS,mat,Calcium Silicate Board,硅钙板,Calcium Silicate Board,珪酸鈣板,규산칼슘 보드,Placa de silicato de calcio,Plaque de silicate de calcium,Lastra di silicato di calcio,Placa de silicato de cálcio,Силикатно-кальциевая плита
-MW,mat,Mineral Wool Board,矿棉板,Mineral Wool Board,鉱棉板,미네랄울 보드,Placa de lana mineral,Plaque de laine minérale,Pannello di lana minerale,Placa de lã mineral,Минераловатная плита
-PLY,mat,Plywood,胶合板,Plywood,合板,합판,Contrachapado,Contreplaqué,Compensato,Compensado,Фанера
-DR,obj,Door & Frame,门扇·门套,Door & Frame,扉・建具,문·문틀,Puerta y marco,Porte et huisserie,Porta e telaio,Porta e caixilho,Дверь и коробка
-RC,light,Light Troffer,日光灯盘·平板灯盘,Light Troffer,埋込直管灯器具,매입 직관등기구,Luminaria troffer empotrada,Luminaire plafonnier en bande,Apparecchiatura da controsoffitto,Luminária tipo troffer,Встраиваемый линейный светильник
-GR,light,Grid Spot Light,格栅射灯,Grid Spot Light,グリッドスポットライト,그리드 스포트라이트,Foco direccional con rejilla,Spot à grille,Faretto con griglia,Spot com grelha,Прожектор с решёткой
-AN,finish,Anodized,阳极氧化,Anodized,アルマイト（陽極酸化）,양극산화,Anodizado,Anodisé,Anodizzato,Anodizado,Анодирование
-EC,finish,E-coating,电泳涂装,E-coating,電着塗装,전도도장,Recubrimiento electrostático,Revêtement par électrodéposition,Verniciatura elettrostatica,Revestimento eletrostático,Электростатическая окраска

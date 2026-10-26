@@ -1,5 +1,5 @@
 ﻿region_id,group,base_code,code,name,full,note
-cn,mat,SL,,,,SL 在材料表＝硬碾玉／树脂饰面（特殊饰面类）；在电气图例＝灯带／射灯
+cn,mat,SL,,,,SL 在材料表＝特殊饰面；在电气图例＝灯带／射灯。
 cn,mat,SP,,,,SP 在材料表＝特殊涂料；在电气图例＝射灯（Spot Light）。
 cn,obj,DL,,,,材料表／物料清单＝灯具大类；灯位图与型号（DL-Φ100-12W）＝筒灯。国内项目若把两类混用，必须在图例中写明。
 hk,,AC,ACR,亚加力（有机玻璃）,Acrylic,ACR 为亚加力，但港式亦有 ACR 指 Acoustic（吸音）材料，看 AC-01 后接字判断。
@@ -22,7 +22,7 @@ hk,,WC,WAL,墙面饰材（墙纸／墙布）,Wallpaper,
 hk,,WR,WPF,防水卷材,,
 hk,finish,CL,,亮漆罩面,,CL 在港式既可指 Clear Lacquer，也可在灯具图例指 Ceiling Light，按图层判断。
 hk,finish,FL,,火烧面,,
-hk,finish,H,HL,拉丝饰面,,
+hk,finish,H,HL,拉丝／发纹饰面,,
 hk,finish,MA,,毛光·哑光饰面,,
 hk,finish,PC,,粉体喷涂,,
 hk,light,EL,EMG,,,
@@ -75,7 +75,7 @@ jp,,WR,,防水シート,,
 jp,finish,CL,,クリアラッカー仕上げ,,
 jp,finish,H,HL,ヘアライン仕上げ,,
 jp,light,EXIT,EX,诱导灯,Exit Sign,
-jp,light,SL,SP,スポットライト,,
+jp,light,SL,SP,,,
 jp,light,TL,,トラクライト,Track Light,
 jp,obj,AR,AW,アートワーク,,
 jp,obj,BDG,BD,寝具类,,
@@ -84,19 +84,19 @@ jp,obj,EA,EL,电化制品,,
 jp,obj,KIT,KT,厨房设备,,
 jp,obj,PLT,PL,観叶植物,,
 jp,obj,SSP,SW,スイッチ・コンセント盘,,
-jp,obj,SW,SAN,衛生器具,Sanitary ware,日本电气惯例中 SW＝スイッチ／コンセント，故洁具改用 SAN 以免与 obj/SSP 同码
-kr,,AC,AC,아크릴(유리),,
-kr,,CA,CA,카펫,,
+jp,obj,SW,,卫生器具,,
+kr,,AC,AC,,,
+kr,,CA,CA,,,
 kr,,CT,TL,타일,Tile,
 kr,,PB,PS,석고보드,Plaster Board,PS는 석고보드와 플라스터를 모두 뜻해 문맥으로 구분。
-kr,,PT,PT,페인트·도료 마감,,
+kr,,PT,PT,,,
 kr,,ST,SR,석재 마감,Stone,한국에서는 석재가 SR로 표기되는 경우가 많다（SR = Seokjae/Rock）。
 kr,,UP,,패널 커버링(가죽·패브릭),,
 kr,,VF,VC,비닐 바닥재,,
-kr,,WC,WC,벽면 마감(벽지·벽布),,
+kr,,WC,WC,,,
 kr,,WR,WP,방수 시트,,
 kr,finish,H,HL,헤어라인 마감,,
-kr,light,EXIT,EX,비상구 유도등,Exit Sign,
+kr,light,EXIT,EX,,Exit Sign,
 kr,light,SL,SP,스포트라이트,,
 kr,mat,TL,TL,타일（同 CT）,,한국식 타일＝TL；CT는 일부 지역에서만 씀。
 kr,obj,AR,AW,아트워크,,
@@ -106,107 +106,107 @@ kr,obj,EA,EL,전기 기기,,
 kr,obj,KIT,KT,주방 설비,,
 kr,obj,SSP,SW,스위치·콘센트 패널,,
 west,,AC,ACR,Acrylic (PMMA),Acrylic,
-west,,AP,ACT,Acoustic Ceiling Tile,Acoustic Ceiling Tile,MasterFormat 2026：09 51 00 Acoustical Ceilings
-west,,CA,CAR,Carpet,,MasterFormat 2026：09 60 00 Flooring
-west,,LP,LAM,Laminated Plastic,,
+west,,AP,ACT,Acoustic Ceiling Tile,Acoustic Ceiling Tile,欧美常用 ACT（Acoustic Ceiling Tile）；ACT 与 ACR（Acrylic）形近易错。
+west,,CA,CAR,Carpet,,
+west,,LP,LAM,,,
 west,,MC,,Metal Composite,,
-west,,PB,GYB,Gypsum Board,Gypsum Board,MasterFormat 2026：09 29 00 Gypsum Board；09 章 Finishes 本次为维护性更新章节（以标题澄清与小幅重整为主）
-west,,PL,PL,Plastic,,
-west,,PT,PNT,Paint,,MasterFormat 2026：09 90 00 Painting and Coating
-west,,VF,VCT,Vinyl Composition Tile (LVT),,MasterFormat 2026：09 65 00 Resilient Flooring
-west,,WC,WAL,Wallpaper,Wallpaper,MasterFormat 2026：09 70 00 Wall Finishes
-west,,WF,FLR,Flooring,,MasterFormat 2026：09 60 00 Flooring
-west,,WR,WP,Waterproof Roll,,MasterFormat 2026：防水与卷材归入 07 章 Thermal and Moisture Protection
+west,,PB,GYB,Gypsum Board,Gypsum Board,
+west,,PL,PL,,,
+west,,PT,PNT,Paint,,
+west,,VF,VCT,Vinyl Composition Tile (LVT),,
+west,,WC,WAL,Wallpaper,Wallpaper,
+west,,WF,FLR,Flooring,,
+west,,WR,WP,,,
 west,finish,CL,CLR,Clear Lacquer Finish,,
 west,finish,G,GL,Gloss Finish,,GL 在表面处理表＝Gloss；GL 在材料表＝Glass。
 west,finish,H,BR,Brushed Finish,,
-west,finish,HA,HM,Hammered Finish,,
+west,finish,HA,HM,,,
 west,finish,MA,MT,Matte Finish,,MT 在欧美表面处理表＝Matte；在材料表 MT＝Metal。看是哪张表。
 west,finish,P,POL,Polished Finish,,
 west,finish,S,SAT,Satin Finish,,
 west,light,EL,EM,Emergency Lighting,Emergency Lighting,
-west,light,EXIT,EX,Exit Sign,,
+west,light,EXIT,EX,,,
 west,light,SL,SP,Spotlight,,
 west,light,TL,TRK,Track Lighting,,
-west,light,UL,UC,Under-cabinet Light,,
-west,obj,AR,ART,Artwork,,
-west,obj,BDG,BED,Bedding,,
+west,light,UL,UC,,,
+west,obj,AR,ART,,,
+west,obj,BDG,BED,,,
 west,obj,DL,LT,Lighting Fixtures / Luminaire,Luminaire,LT＝Luminaire（灯具总称）、DL＝Downlight（筒灯）。
 west,obj,EA,ELEC,Electrical Equipment,Electrical Equipment,
 west,obj,FR,FURN,Furniture,Furniture,
 west,obj,HW,HDW,Hardware,,
-west,obj,KIT,KTE,Kitchen Equipment,,
-west,obj,SSP,SWP,Switch & Socket Panel,,
-west,obj,SW,SAN,Sanitary Ware,,
-latam,,AC,ACR,Acrílico (metacrilato),,
-latam,,AL,ALU,Aluminio,,
-latam,,AP,ACU,Panel acústico,,
+west,obj,KIT,KTE,,,
+west,obj,SSP,SWP,,,
+west,obj,SW,SAN,,,
+latam,,AC,ACR,,,
+latam,,AL,ALU,,,
+latam,,AP,ACU,,,
 latam,,CA,ALF,Alfombra,,
 latam,,CT,CER,Cerámica / Baldosa,Ceramic Tile,
 latam,,CU,PERS,Persiana / Cortina,,
-latam,,FA,TEJ,Tapicería textil,,
+latam,,FA,TEJ,,,
 latam,,GL,VID,Vidrio,,
-latam,,LE,PIEL,Piel,,
+latam,,LE,PIEL,,,
 latam,,LP,LAM,Laminado,,
-latam,,MO,MOS,Mosaico,,
+latam,,MO,MOS,,,
 latam,,MR,ESP,Espejo,,ESP＝espejo；在拉美也可能是 especificación 的缩写，看后接内容。
 latam,,MT,MET,Metal,,
 latam,,PB,YES,Yeso / Placa de yeso,,
-latam,,PF,FIL,Película,,
-latam,,PL,PLA,"Plástico (acrílico, difusor, panel)",,
+latam,,PF,FIL,,,
+latam,,PL,PLA,,,
 latam,,PT,PIN,Pintura,,
-latam,,RF,CAU,Suelo de caucho,,
+latam,,RF,CAU,,,
 latam,,SC,CIEL,Techo tensado,,
-latam,,SF,SFE,Acabado especial,,
+latam,,SF,SFE,,,
 latam,,ST,PED,Piedra natural,Stone,
 latam,,UP,TAP,Tapicería,,
-latam,,VF,VIN,Suelo de vinilo,,
+latam,,VF,VIN,,,
 latam,,WC,REV,Revestimiento de muro,Wallpaper,
 latam,,WD,MAD,Madera,Wood,
 latam,,WF,PIS,Piso / Flooring,,
-latam,,WR,IMP,Rollo impermeable,,
-latam,mat,TL,AZU,Tile (igual que CT),,CER＝cerámica（baldosa）、AZU＝azulejo；部分地区两个词可互换。
-latam,obj,AR,ART,Obra de arte,,
-latam,obj,BDG,ROP,Ropa de cama,,
+latam,,WR,IMP,,,
+latam,mat,TL,AZU,,,CER＝cerámica（baldosa）、AZU＝azulejo；部分地区两个词可互换。
+latam,obj,AR,ART,,,
+latam,obj,BDG,ROP,,,
 latam,obj,DL,LUM,Luminaria,Luminaire,LUM＝luminaria（灯具总称）；西班牙语区常另写 DL 表示 empotrada。
 latam,obj,EA,ELE,Electrodomésticos,Appliances,
 latam,obj,FR,MUE,Mobiliario,Furniture,
-latam,obj,HW,HER,Herrajes,,
-latam,obj,KIT,EQU,Equipos de cocina,,
+latam,obj,HW,HER,,,
+latam,obj,KIT,EQU,,,
 latam,obj,PLT,VEG,Vegetación,,
 latam,obj,SSP,INT,Interruptor y enchufe,,
-latam,obj,SW,SAN,Aparatos sanitarios,,
-mena,,AC,ACR,Acrylic,,
+latam,obj,SW,SAN,,,
+mena,,AC,ACR,,,
 mena,,AP,ACU,Acoustic Panel,,
 mena,,CA,CAR,Carpet,,
 mena,,LP,PLC,High Pressure Laminate (HPL),Laminate,
 mena,,PB,GP,Gypsum Plaster Board,Gypsum Board,GP 在海湾项目＝石膏板；GRG＝玻纤石膏板，GRC＝玻璃纤维水泥板，三者要分开。
-mena,,PF,FIL,Film,,
+mena,,PF,FIL,,,
 mena,,PT,PNT,Paint,,
-mena,,VF,PVC,Vinyl Flooring,,
+mena,,VF,PVC,,,
 mena,,WC,WAL,Wallpaper,Wallpaper,
 mena,,WF,FLR,Flooring,,
-mena,,WR,WP,Waterproof Roll,,
+mena,,WR,WP,,,
 mena,finish,G,GL,Gloss Finish,,
 mena,finish,H,BR,Brushed Finish,,
 mena,finish,MA,MATT,Matte Finish,,
-mena,finish,P,POL,Polished Finish,,
-mena,finish,S,SAT,Satin Finish,,
-mena,light,EL,EM,Emergency Light,,
-mena,light,EXIT,EX,Exit Sign,,
-mena,light,SL,SP,Spot Light,,
-mena,light,TL,TRK,Track Light,,
-mena,obj,AR,ART,Artwork,,
-mena,obj,BDG,BD,Bedding,,
+mena,finish,P,POL,,,
+mena,finish,S,SAT,,,
+mena,light,EL,EM,,,
+mena,light,EXIT,EX,,,
+mena,light,SL,SP,,,
+mena,light,TL,TRK,,,
+mena,obj,AR,ART,,,
+mena,obj,BDG,BD,,,
 mena,obj,DL,LT,Luminaire / Lighting,Luminaire,LT＝照明总称，DL＝筒灯；海湾项目也常写 DL/C/SL/TR 三类。
 mena,obj,EA,EL,Electrical Equipment,Electrical Equipment,
-mena,obj,HW,HDW,Hardware,,
-mena,obj,KIT,KT,Kitchen Equipment,,
-mena,obj,SSP,SW,Switch & Socket Panel,,
-mena,obj,SW,SAN,Sanitary Ware,,
+mena,obj,HW,HDW,,,
+mena,obj,KIT,KT,,,
+mena,obj,SSP,SW,,,
+mena,obj,SW,SAN,,,
 fr,mat,ST,PIE,Pierre naturelle,,
 fr,mat,CT,CAR,Carrelage,,
-fr,mat,TL,CAR,Carrelage (idem CT),,
+fr,mat,TL,CAR,,,
 fr,mat,WF,PAR,Parquet,,
 fr,mat,GL,VIT,Vitrage,,
 fr,mat,MR,MIR,Miroir,,
@@ -217,302 +217,159 @@ fr,mat,CU,RID,Rideaux et stores,,
 fr,mat,LE,CUIR,Cuir,,
 fr,mat,UP,REV,Tapisserie,,
 fr,mat,PT,PEI,Peinture,,
-fr,mat,PL,PLA,Plastique,,
-fr,mat,AC,ACR,Acrylique,,
+fr,mat,PL,PLA,,,
+fr,mat,AC,ACR,,,
 fr,mat,PB,PLQ,Plaque de plâtre,,
 fr,mat,LP,LAM,Mélaminé,,
 fr,mat,SF,SPE,Finition spéciale,,
-fr,mat,WR,ETAN,Étanchéité,,
-fr,mat,VF,PVC,Sol vinyl,,
-fr,mat,RF,CAO,Sol caoutchouc,,
+fr,mat,WR,ETAN,,,
+fr,mat,VF,PVC,,,
+fr,mat,RF,CAO,,,
 fr,mat,SC,FPL,Faux plafond tendu,,
-fr,mat,AP,ACU,Panneau acoustique,,
-fr,mat,PF,FIL,Film,,
+fr,mat,AP,ACU,,,
+fr,mat,PF,FIL,,,
 fr,obj,DL,LUM,Luminaires,,
 fr,obj,FR,MOB,Mobilier,,
-fr,obj,HW,FER,Quincaillerie,,
+fr,obj,HW,FER,,,
 fr,obj,SW,SAN,Appareils sanitaires,,
-fr,obj,KIT,CUIS,Équipement de cuisine,,
-fr,obj,PLT,VEG,Végétal,,
-fr,obj,AR,ART,Œuvre d'art,,
-fr,obj,BDG,LIN,Linge de maison,,
-fr,obj,SSP,ELT,Plaque de interrupteur et prise,,
-fr,obj,EA,ELE,Appareils électroménagers,,
-fr,light,PL,SUS,Suspension,,
-fr,light,TL,TRK,Projecteur sur rail,,
-fr,light,EXIT,SORT,Panneau de sortie,,
-fr,light,EL,SEC,Éclairage de sécurité,,
-fr,finish,H,BRS,Brossage,,
-fr,finish,CL,VRN,Vernis brillant,,
-fr,finish,PC,POU,Poudrage,,
-fr,finish,FL,FLM,Flammé,,
+fr,obj,KIT,CUIS,,,
+fr,obj,PLT,VEG,,,
+fr,obj,AR,ART,,,
+fr,obj,BDG,LIN,,,
+fr,obj,SSP,ELT,,,
+fr,obj,EA,ELE,,,
+fr,light,PL,SUS,,,
+fr,light,TL,TRK,,,
+fr,light,EXIT,SORT,,,
+fr,light,EL,SEC,,,
+fr,finish,H,BRS,,,
+fr,finish,CL,VRN,,,
+fr,finish,PC,POU,,,
+fr,finish,FL,FLM,,,
 it,mat,ST,PIE,Pietra naturale,,
 it,mat,CT,CER,Ceramica,,
-it,mat,TL,CER,Piastrelle (idem CT),,
+it,mat,TL,CER,,,
 it,mat,WF,PAR,Parquet,,
 it,mat,GL,VET,Vetratura,,
 it,mat,MR,SPE,Specchio,,
-it,mat,MT,MET,Finitura metallica,,
+it,mat,MT,MET,,,
 it,mat,CA,TEP,Tappeto,,
 it,mat,WC,RIV,Rivestimento a parete,,
 it,mat,CU,TEN,Tende,,
 it,mat,LE,PEL,Pelle,,
 it,mat,UP,TAP,Tappezzeria,,
 it,mat,PT,VER,Vernice,,
-it,mat,PL,PLA,Plastica,,
-it,mat,AC,PMMA,Acrilico,,
+it,mat,PL,PLA,,,
+it,mat,AC,PMMA,,,
 it,mat,PB,CG,Cartongesso,,
-it,mat,LP,LAM,Laminato / melaminico,,
-it,mat,SF,SPEC,Finitura speciale,,
-it,mat,WR,IMP,Impermeabilizzazione,,
-it,mat,VF,PVC,Pavimento vinilico,,
-it,mat,RF,GOM,Pavimento in gomma,,
+it,mat,LP,LAM,,,
+it,mat,SF,SPEC,,,
+it,mat,WR,IMP,,,
+it,mat,VF,PVC,,,
+it,mat,RF,GOM,,,
 it,mat,SC,CIMA,Controsoffitto elastico,,
-it,mat,AP,ACU,Pannello acustico,,
-it,mat,PF,FIL,Film,,
+it,mat,AP,ACU,,,
+it,mat,PF,FIL,,,
 it,obj,DL,ILL,Illuminazione,,
 it,obj,FR,MOB,Mobilio,,
-it,obj,HW,FER,Ferramenta,,
+it,obj,HW,FER,,,
 it,obj,SW,SAN,Sanitari,,
-it,obj,KIT,CUC,Attrezzature cucina,,
-it,obj,PLT,VEG,Piante,,
-it,obj,AR,ART,Opera d'arte,,
-it,obj,BDG,BIAN,Biancheria,,
-it,obj,SSP,ELC,Placchetta interruttore e presa,,
-it,obj,EA,ELET,Elettrodomestici,,
-it,light,PL,SUS,Sospensione,,
-it,light,TL,TRK,Binario,,
-it,light,EXIT,USC,Cartello di uscita,,
-it,light,EL,EMER,Luce di emergenza,,
-it,finish,H,SPA,Spazzolato,,
-it,finish,CL,VRN,Vernice lucida,,
-it,finish,PC,POL,Verniciatura a polvere,,
-it,finish,FL,FLM,Fiammato,,
+it,obj,KIT,CUC,,,
+it,obj,PLT,VEG,,,
+it,obj,AR,ART,,,
+it,obj,BDG,BIAN,,,
+it,obj,SSP,ELC,,,
+it,obj,EA,ELET,,,
+it,light,PL,SUS,,,
+it,light,TL,TRK,,,
+it,light,EXIT,USC,,,
+it,light,EL,EMER,,,
+it,finish,H,SPA,,,
+it,finish,CL,VRN,,,
+it,finish,PC,POL,,,
+it,finish,FL,FLM,,,
 pt,mat,ST,PED,Pedra natural,,
 pt,mat,CT,CER,Azulejo / cerâmica,,
-pt,mat,TL,CER,Azulejo (idem CT),,
+pt,mat,TL,CER,,,
 pt,mat,WD,MAD,Madeira e marcenaria,,
 pt,mat,WF,PIS,Piso de madeira,,
 pt,mat,GL,VID,Vidraria,,
 pt,mat,MR,ESP,Espelho,,
-pt,mat,MT,MET,Acabamento metálico,,
+pt,mat,MT,MET,,,
 pt,mat,CA,TAP,Tapete,,
 pt,mat,WC,PAP,Papel de parede,,
 pt,mat,CU,COR,Cortinas,,
 pt,mat,LE,CUR,Couro,,
-pt,mat,UP,EST,Estofado,Upholstery,葡语 forro ＝天花板／顶棚（用于 mat/SC），故软包改用 EST 以免同码
+pt,mat,UP,FOR,Forração,,
 pt,mat,PT,PINT,Pintura,,
-pt,mat,PL,PLAS,Plástico,,
-pt,mat,AC,ACR,Acrílico,,
+pt,mat,PL,PLAS,,,
+pt,mat,AC,ACR,,,
 pt,mat,PB,GES,Placa de gesso,,
-pt,mat,LP,LAM,Laminado / melamínico,,
-pt,mat,SF,SPE,Acabamento especial,,
-pt,mat,WR,IMP,Impermeabilização,,
-pt,mat,VF,PVC,Piso vinílico,,
-pt,mat,RF,BOR,Piso de borracha,,
+pt,mat,LP,LAM,,,
+pt,mat,SF,SPE,,,
+pt,mat,WR,IMP,,,
+pt,mat,VF,PVC,,,
+pt,mat,RF,BOR,,,
 pt,mat,SC,FOR,Forro tensionado,,
-pt,mat,AP,ACU,Painel acústico,,
-pt,mat,PF,FIL,Filme,,
+pt,mat,AP,ACU,,,
+pt,mat,PF,FIL,,,
 pt,obj,DL,ILU,Iluminação,,
 pt,obj,FR,MOB,Mobiliário,,
-pt,obj,HW,FER,Ferragens,,
+pt,obj,HW,FER,,,
 pt,obj,SW,SAN,Aparelhos sanitários,,
-pt,obj,KIT,COZ,Equipamentos de cozinha,,
-pt,obj,PLT,VEG,Vegetação,,
-pt,obj,AR,ART,Obra de arte,,
-pt,obj,BDG,ROU,Roupa de cama,,
-pt,obj,SSP,INT,Placa de interruptor e tomada,,
-pt,obj,EA,ELET,Eletrodomésticos,,
-pt,light,PL,PEND,Pendente,,
-pt,light,TL,TRIL,Trilho,,
-pt,light,EXIT,SAI,Placa de saída,,
-pt,light,EL,EMER,Luminária de emergência,,
-pt,finish,H,ESCO,Escovado,,
-pt,finish,CL,VER,Verniz brilhante,,
-pt,finish,PC,POL,Pintura em pó,,
+pt,obj,KIT,COZ,,,
+pt,obj,PLT,VEG,,,
+pt,obj,AR,ART,,,
+pt,obj,BDG,ROU,,,
+pt,obj,SSP,INT,,,
+pt,obj,EA,ELET,,,
+pt,light,PL,PEND,,,
+pt,light,TL,TRIL,,,
+pt,light,EXIT,SAI,,,
+pt,light,EL,EMER,,,
+pt,finish,H,ESCO,,,
+pt,finish,CL,VER,,,
+pt,finish,PC,POL,,,
 ru,mat,ST,KAM,Природный камень,,
 ru,mat,CT,KER,Керамическая плитка,,
-ru,mat,TL,KER,"Плитка (то же, что CT)",,
+ru,mat,TL,KER,,,
 ru,mat,WD,DER,Дерево и столярка,,
 ru,mat,WF,PAK,Напольное покрытие из дерева,,
 ru,mat,GL,STE,Стекло,,
 ru,mat,MR,ZER,Зеркало,,
-ru,mat,MT,MET,Металлическая отделка,,
+ru,mat,MT,MET,,,
 ru,mat,CA,KOV,Ковёр,,
 ru,mat,WC,OBO,Обои и настенное покрытие,,
 ru,mat,CU,SHT,Шторы,,
 ru,mat,LE,KOZ,Кожа,,
 ru,mat,UP,OBI,Мягкая обивка,,
 ru,mat,PT,KRA,Покраска,,
-ru,mat,PL,PLA,Пластик,,
-ru,mat,AC,AKR,Акрил,,
+ru,mat,PL,PLA,,,
+ru,mat,AC,AKR,,,
 ru,mat,PB,GKL,Гипсокартон,,
-ru,mat,LP,LAM,Ламинат / меламин,,
-ru,mat,SF,SPE,Специальная отделка,,
-ru,mat,WR,GID,Гидроизоляция,,
-ru,mat,VF,LINO,Линолеум / винил,,
-ru,mat,RF,REZ,Резиновое покрытие,,
+ru,mat,LP,LAM,,,
+ru,mat,SF,SPE,,,
+ru,mat,WR,GID,,,
+ru,mat,VF,LINO,,,
+ru,mat,RF,REZ,,,
 ru,mat,SC,NTP,Натяжной потолок,,
-ru,mat,AP,AKU,Акустическая панель,,
-ru,mat,PF,PLEN,Плёнка,,
+ru,mat,AP,AKU,,,
+ru,mat,PF,PLEN,,,
 ru,obj,DL,SVE,Освещение,,
 ru,obj,FR,MEB,Мебель,,
-ru,obj,HW,FUR,Фурнитура,,
+ru,obj,HW,FUR,,,
 ru,obj,SW,SAN,Сантехника,,
-ru,obj,KIT,KUH,Оборудование кухни,,
-ru,obj,PLT,RAS,Растения,,
-ru,obj,AR,ART,Произведения искусства,,
-ru,obj,BDG,TEX,Постельные принадлежности,,
-ru,obj,SSP,ELE,Накладки на выключатели и розетки,,
-ru,obj,EA,ELT,Электробытовые приборы,,
-ru,light,PL,POD,Подвесной светильник,,
-ru,light,TL,TREK,Трековый светильник,,
-ru,light,EXIT,VYK,Указатель «Выход»,,
-ru,light,EL,AVAR,Аварийное освещение,,
-ru,finish,H,SHL,Шлифовка,,
-ru,finish,CL,LAK,Блестящий лак,,
-ru,finish,PC,POR,Порошковая окраска,,
-ru,finish,FL,OGN,Огненная обработка,,
-mo,mat,ST,PM,云石·石材,Stone,澳门材料表多以 PM＋两位序号编排（PM01 人造石·雅士白）；勿与内地的 ST 石材码混用。
-mo,mat,WD,WD,木纹生态板,Wood-look board,澳门 WD 多为生态板／木纹饰面板（WD01 浅色、WD02 深色）；勿与实木饰面同码理解。
-mo,mat,CT,TIL,瓷砖,Ceramic tile,港式 TIL 写法在澳门同样通行；全册须与瓷砖 TL 的写法统一。
-mo,mat,TL,TIL,瓷砖,Tile,与 CT 同义，港式统一写 TIL；同一份材料表内不要并用 CT 与 TL。
-mo,mat,MC,MC,铝塑板,Metal composite,澳门称铝塑板（铝塑复合板）；勿与中国内地的微水泥 MC 混用。
-mo,mat,PB,GYB,石膏板,Gypsum board,GYB = Gypsum Board；与 GRG 玻璃纤维增强石膏、硅酸钙板分列。
-mo,mat,LP,FP,防火板·美耐板,Fire-rated laminate,澳门多写 FP；部分图例仍沿用 LP，须按本项目图例统一。
-mo,mat,AC,AC,亚加力,Acrylic,澳门口语称亚加力；AC 亦可能指吸音板（Acoustic），须看所在表。
-mo,mat,CA,CAR,地毯,Carpet,澳门酒店与娱乐场地毯用量大；与地胶板 PVC 分列。
-mo,mat,WC,WAL,墙纸·墙布,Wallpaper,WAL 为港式写法；与中国内地的墙纸 WP 混用时须核对图例。
-mo,mat,SC,SC,软膜天花,Tensioned membrane,软膜天花与假天花 FC 属不同做法，材料表须分列。
-mo,mat,WR,WPF,防水卷材,Waterproofing roll,卫生间与厨房防水层常用；与地胶板 PVC 区分。
-mo,mat,VF,PVC,地胶板,Vinyl flooring,澳门称地胶／胶地板；勿与塑胶板 PL 混。
-mo,mat,AP,ACU,吸音板,Acoustic panel,ACU 为吸音板；与亚加力 AC、矿棉天花分列。
-mo,mat,MR,MR,镜子,Mirror,澳门酒店浴室大量使用；MR 亦可能指 Marble 石材，看图别。
-mo,mat,GL,GL,玻璃,Glass,玻璃与饰面 GL（光泽罩面）同码，须按图层区分。
-mo,mat,PT,PT,油漆,Paint,油漆分内墙、外墙、木器漆；与特殊涂料 SF 区分。
-mo,mat,SF,SF,特殊饰面,Special finish,特殊饰面／特殊材料；具体品种按厂商牌号补注。
-mo,mat,PL,PL,胶片·塑胶,Acrylic sheet / plastic sheet,澳门「胶片」即亚加力有机玻璃片；与 AC 亚加力同物不同码，核对本项目图例。
-mo,mat,MT,MT,金属饰面,Metal,金属板、压花板、不锈钢饰面；与饰面表毛光（MT）同码，按分组区分。
-mo,mat,AL,AL,铝合金,Aluminium,铝合金门窗与型材；其表面处理另注 FC 氟碳喷涂、POU 粉体喷涂。
-mo,obj,DL,LT,灯具,Light fittings,澳门沿用港式 LT＝灯具大类、DL＝筒灯；材料表与灯位图须用同一套写法。
-mo,obj,FR,FUR,傢俬,Furniture,澳门写字楼与酒店多用「傢俬」；部分图例仍写 FR。
-mo,obj,HW,HDW,五金,Hardware,门锁、铰链、把手等；与洁具 SAN 分列。
-mo,obj,SW,SAN,洁具,Sanitary ware,与五金 HDW 分列；不锈钢配件另注 SS。
-mo,obj,KIT,KTE,厨具设备,Kitchen equipment,不锈钢厨具设备为澳门住宅与酒店标准做法，另见地区特有条目。
-mo,obj,SSP,SWP,开关插座面板,Switch & socket panel,面板与插座；与五金 HDW 分列。
-mo,obj,EA,ELE,电器设备,Electrical appliances,电器设备与照明 LT 分列。
-mo,obj,PLT,PL,绿植,Plant / greenery,绿植与盆栽；PL 亦见于材料表的胶片／塑胶（PL），须按图别区分。
-mo,obj,AR,ART,艺术品,Artwork,艺术品与石材编号 PM 区分；勿与 AS 人造石混。
-mo,light,DL,DL,筒灯,Downlight,灯位图中 DL＝筒灯；材料表的大类灯具写 LT，勿混。
-mo,light,CL,CL,吸顶灯,Ceiling light,与饰面 CL 亮漆罩面同码，须按图纸类型区分。
-mo,light,PL,PD,吊灯,Pendant light,PD 吊灯；与 PL 胶片／塑胶、平板灯 PN 区分。
-mo,light,SL,SP,射灯,Spot light,SP 射灯；与特殊饰面 SF 区分。
-mo,light,TL,TRK,轨道灯,Track light,TRK 轨道灯；与材料表 TL 瓷砖区分。
-mo,light,EXIT,EXI,疏散指示灯,Exit sign,疏散指示与应急照明的设置须符合《核准楼宇及场地防火安全技术规章》。
-mo,light,EL,EM,应急照明,Emergency lighting,应急照明须按消防局要求配合疏散指示设置。
-mo,finish,H,HL,拉丝·发纹,Hairline,拉丝／发纹饰面；同一饰面亦可写 HR。
-mo,finish,CL,CLR,亮漆罩面,Clear lacquer,澳门常写 CLR 与照明 CL 吸顶灯区分；旧图例仍写 CL 时须看饰面表。
-mo,finish,PC,POU,粉体喷涂,Powder coating,粉体喷涂多用于铝型材；与聚碳酸酯板 PC 区分。
-mo,finish,FL,FLM,火烧面,Flamed,火烧面多写 FLM；若照旧写 FL，则与照明图例的泛光灯同码。
-mo,finish,MA,MT,毛光·哑光,Matte,与材料表 MT 金属饰面同码，按分组区分。
-mo,finish,G,GL,光泽罩面,Gloss,与材料表 GL 玻璃同码，须按图层区分。
-cn,light,DL,,,,DL 在灯位图与型号（DL-Φ100-12W）＝筒灯；物料清单里的 DL ＝灯具大类，两义在内地项目中常混用
-cn,light,SL,,,,SL 在灯位图＝射灯或灯带；材料表＝硬碾玉／树脂饰面（特殊饰面类），须看所在表
-cn,light,CL,,,,CL 在灯具图例＝吸顶灯；在表面处理表＝亮漆罩面，两处不可混用
-cn,finish,CL,,,,CL 在表面处理表＝清漆亮光保护层；在灯具图例＝吸顶灯，两处不可混用
-cn,finish,FL,,,,FL 在饰面终饰表＝火烧面；在灯具图例＝泛光灯，两处不可混用
-cn,finish,FC,,,,FC 在型材表面处理表＝氟碳喷涂；部分项目天花图也用 FC 表示假天花，须看所在表
-in,mat,BR,BRK,Brick,Brick,砖：印度按 IS 1077:1992 与 IS 2691:2017 分类；BR 在五金表里也可能指黄铜 Brass，看图例
-in,mat,CT,VIT,Vitrified Tile,Ceramic tile,玻化砖：印度称 vitrified tile，按 IS 15622:2017 的吸水率分组；细分 GVT（釉面玻化砖）、PGVT（抛光釉面玻化砖）、Double Charge、Full Body
-in,mat,TL,VIT,Vitrified Tile,,与 CT 同义，同一份材料表内不要并用 CT 与 VIT
-in,mat,SS,SST,Stainless Steel,Stainless steel,不锈钢：印度多写 SST 或 SS；与镀锌钢 GI、软钢 MS 分列
-in,mat,EM,EPO,Epoxy Flooring,Epoxy flooring,环氧地坪：车位、机房与酒店后场常见；与 PVC 地胶 VIN 分列
-in,mat,CS,CSB,Calcium Silicate Board,,硅钙板：防火与湿区基层；与石膏板 GPB、矿棉板 MWB 分列
-in,mat,MW,MWB,Mineral Wool Board,,矿棉板：吸声天花与隔墙填充；遇火反应等级须按项目规范报审
-in,mat,PLY,PLY,Plywood,Plywood,胶合板：木工基层与造型；与 MDF 分列
-in,mat,PB,GPB,Gypsum Plaster Board,Plaster board,石膏板：印度 GPB 指石膏板、POP 指熟石膏（石膏线与装饰吊顶），两者须分列
-in,mat,MC,ACP,Aluminium Composite Panel,Metal composite,铝塑板：印度写 ACP；勿与 PC（聚碳酸酯板）混
-in,mat,MT,MS,Mild Steel,Metal,MS 在印度＝软钢（型钢）；在石材表里也可能指 Marble／Stone
-in,mat,WD,WOD,Wood,Wood,木饰面：印度多写 WOD 或 WD；与木地板 WFL 分列
-in,mat,WF,WFL,Wood Flooring,,木地板：与木饰面 WOD 分列
-in,mat,GL,GLS,Glass,,玻璃：与饰面表的 GL（Gloss）分列
-in,mat,CA,CAR,Carpet,,地毯：酒店与办公常用
-in,mat,WC,WPP,Wall Paper,Wallpaper,墙纸墙布：印度写 WPP；WC 在给排水图里是坐便器 Water Closet
-in,mat,WR,WP,Waterproofing,,防水：印度写 WP 或 W/P
-in,mat,VF,VIN,Vinyl Flooring,,地胶板：与环氧地坪 EPO 分列
-in,mat,AP,ACU,Acoustic Panel,,吸音板：与矿棉板 MWB 分列
-in,mat,PT,PNT,Paint,,涂料：内墙乳胶漆、外墙漆、木器漆按 PNT-01／02 分项
-in,mat,SP,SPC,Special Paint,,特殊涂料：防水涂料、防火涂料等
-in,mat,PL,PLA,Plastic,,塑料：亚克力片、灯片、塑料板
-in,mat,AC,ACR,Acrylic,Acrylic,亚克力：写 ACR 以免与机电图的 AC（空调）混淆
-in,mat,LP,LAM,Laminate,,防火板：印度常写 HPL（三聚氰胺板）
-in,mat,SC,STR,Stretch Ceiling,Soft ceiling,软膜天花：印度写 Stretch Ceiling
-in,mat,MO,MOS,Mosaic,,马赛克
-in,mat,CU,CUR,Curtain,,窗帘
-in,mat,LE,LEA,Leather,,皮革
-in,mat,UP,UPH,Upholstery,,软包
-in,mat,FA,FAB,Fabric,,布艺
-in,mat,AL,ALU,Aluminium,,铝合金
-in,mat,PF,FIL,Film,,贴膜
-in,mat,RF,RBR,Rubber Flooring,,橡胶地板
-in,mat,RA,RAT,Rattan,,藤编
-in,mat,SF,SPE,Special Finish,,特殊饰面
-in,obj,DL,LT,Lighting,Lighting,LT＝照明大类、DL＝筒灯（Downlight）；与港式分工一致
-in,obj,DR,DR,Door & Frame,,门扇门套：属门表条目，与五金 HDW 分列
-in,obj,FR,FUR,Furniture,,家具
-in,obj,HW,HDW,Hardware,,五金：门锁、铰链、把手；BR 在此表里也可能指黄铜 Brass
-in,obj,SW,SAN,Sanitary Ware,Sanitary ware,洁具
-in,obj,KIT,KTC,Kitchen Equipment,,厨房设备
-in,obj,PLT,PLT,Plant,,绿植
-in,obj,AR,ART,Artwork,,艺术品
-in,obj,BDG,BED,Bedding,,床上用品
-in,obj,SSP,SWP,Switch & Socket Panel,,开关插座面板
-in,obj,EA,ELE,Electrical Appliances,,电器设备
-in,light,DL,DL,Downlight,,筒灯：灯位图与型号里写 DL
-in,light,CL,CL,Ceiling Light,,吸顶灯
-in,light,PL,PD,Pendant Light,,吊灯：印度写 PD，与材料表的 PL（塑料）分列
-in,light,PN,PN,Panel Light,,平板灯
-in,light,WL,WL,Wall Light,,壁灯
-in,light,SL,SP,Spot Light,,射灯：印度写 SP
-in,light,FL,FL,Flood Light,,泛光灯
-in,light,TL,TRK,Track Light,,轨道灯
-in,light,LL,LL,Linear Light,,线条灯
-in,light,UL,UC,Under-cabinet Light,,柜下灯
-in,light,ML,ML,Magnetic Light,,磁吸灯
-in,light,WW,WW,Wash Wall Light,,洗墙灯
-in,light,IL,IL,In-ground Light,,地埋灯
-in,light,UW,UW,Underwater Light,,水下灯
-in,light,EL,EM,Emergency Light,Emergency lighting,应急照明：须与疏散指示配合设置
-in,light,EXIT,EX,Exit Sign,Exit Sign,疏散指示灯
-in,light,RC,TRF,Light Troffer,Troffer,日光灯盘：印度写字楼常见嵌入式 LED troffer
-in,light,GR,GSP,Grid Spot Light,,格栅射灯
-in,finish,AN,ANO,Anodized,,阳极氧化：铝型材常用
-in,finish,EC,ECO,E-coating,,电泳涂装：铝型材底涂
-in,finish,B,BVL,Bevelled,,斜边
-in,finish,E,ETC,Etched,,蚀刻
-in,finish,F,FRO,Frosted,,磨砂
-in,finish,H,BR,Brushed,,拉丝：饰面表里的 BR 与材料表里的砖 BRK 不同表
-in,finish,ND,NDR,Non-directional,,乱纹
-in,finish,OX,OXD,Oxidized,,氧化
-in,finish,S,SAT,Satin,,缎光
-in,finish,P,POL,Polished,,抛光
-in,finish,HA,HAM,Hammered,,锤纹
-in,finish,FL,FLM,Flamed,,火烧面
-in,finish,MA,MT,Matte,Matte,MT 在饰面表＝Matte；在材料表 MS＝Mild Steel，按表头区分
-in,finish,SB,SBL,Sandblasted,,喷砂
-in,finish,CL,CLR,Clear Lacquer,,亮漆罩面
-in,finish,PC,PC,Powder Coating,Powder coating,粉末喷涂：PC；聚碳酸酯板另写 PC Sheet 或 POLI
-in,finish,G,GL,Gloss,,光泽：饰面表 GL 与材料表 GLS（玻璃）分列
-in,finish,ZC,ZC,Zinc Coat,,镀锌饰面
-in,finish,WX,WAX,Waxed,,上蜡饰面
-cn,mat,BR,BRK,砖,,JGJ/T 244-2011 第 4 章常用材料图例第 6 项「普通砖」（含实心砖、多孔砖、砌块等砌体）；与饰面表的斜边 B 分列
-cn,mat,CS,CSB,硅钙板,,JGJ/T 244-2011 第 4 章常用材料图例第 12 项「硅钙板」（又称复合石膏板），防火与湿区基层
-cn,mat,MW,MWB,矿棉板,,JGJ/T 244-2011 第 4 章常用材料图例第 13 项「矿棉板」（矿物纤维轻质板材），多用于吸声天花
-cn,mat,PLY,PLY,胶合板,,JGJ/T 244-2011 第 4 章常用材料图例第 9 项「胶合板」（人工合成的多层木制板材）
-cn,mat,SS,SS,不锈钢,,属常用材料图例第 16 项「金属」中的不锈钢，须与软钢、镀锌钢分列
-cn,mat,EM,EM,环氧地坪,,环氧自流平、环氧砂浆与环氧彩砂；多用于车位、机房与酒店后场
-cn,obj,DR,DR,门扇·门套,,房门与门套属装饰装修制图的常见条目；防火门须标注耐火时限
-cn,light,RC,RC,日光灯盘,,JGJ/T 244-2011 第 4 章常用灯具图例第 8／9 项方形、条形日光灯盘
-cn,light,GR,GR,格栅射灯,,JGJ/T 244-2011 第 4 章常用灯具图例第 5／6 项单头、双头格栅射灯
-cn,finish,AN,AN,阳极氧化,,铝型材表面处理：阳极氧化
-cn,finish,EC,EC,电泳,,铝型材表面处理：电泳涂装，多作底涂
+ru,obj,KIT,KUH,,,
+ru,obj,PLT,RAS,,,
+ru,obj,AR,ART,,,
+ru,obj,BDG,TEX,,,
+ru,obj,SSP,ELE,,,
+ru,obj,EA,ELT,,,
+ru,light,PL,POD,,,
+ru,light,TL,TREK,,,
+ru,light,EXIT,VYK,,,
+ru,light,EL,AVAR,,,
+ru,finish,H,SHL,,,
+ru,finish,CL,LAK,,,
+ru,finish,PC,POR,,,
+ru,finish,FL,OGN,,,

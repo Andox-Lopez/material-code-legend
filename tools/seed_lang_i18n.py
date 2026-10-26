@@ -224,10 +224,10 @@ I18N_TR = {
  "pt": "Código aberto sob licença MIT (uso, modificação e redistribuição livres) · Copyright © 2026 Karandox Lopez",
  "ru": "Открытый код по лицензии MIT (свободное использование, изменение и распространение) · Copyright © 2026 Karandox Lopez"},
 "foot_date": {
- "fr": "Édition 2026-10-23 · fichier unique, utilisable hors ligne, impression A4 avec Ctrl+P",
- "it": "Edizione 2026-10-23 · file unico, utilizzabile offline, stampa A4 con Ctrl+P",
- "pt": "Edição 2026-10-23 · arquivo único, funciona offline, impressão A4 com Ctrl+P",
- "ru": "Сборка 2026-10-23 · один файл, работает офлайн, печать A4 по Ctrl+P"},
+ "fr": "Dernière mise à jour {date} · fichier unique, utilisable hors ligne, impression A4 avec Ctrl+P",
+ "it": "Ultimo aggiornamento {date} · file unico, utilizzabile offline, stampa A4 con Ctrl+P",
+ "pt": "Última atualização {date} · arquivo único, funciona offline, impressão A4 com Ctrl+P",
+ "ru": "Последнее обновление {date} · один файл, работает офлайн, печать A4 по Ctrl+P"},
 "foot_lang": {
  "fr": "Traduit en chinois, anglais, japonais, coréen, espagnol, français, italien, portugais et russe ; les termes techniques conservent l'original anglais pour le recoupement avec les plans.",
  "it": "Tradotto in cinese, inglese, giapponese, coreano, spagnolo, francese, italiano, portoghese e russo; i termini tecnici mantengono l'originale inglese per il confronto con i disegni.",

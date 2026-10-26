@@ -1,22 +1,22 @@
 ﻿group,code,lang,desc,note
 mat,ST,zh,花岗岩、大理石、玉石、洞石、莱姆石、文化石,主材类；岩板多数项目并入 ST 或 CT，需看图例
 mat,ST,en,"Granite, marble, jade, travertine, limestone, cultured stone",Main finish category; engineered stone is usually grouped under ST or CT — check the legend
-mat,ST,ja,花崗岩、マーブル、翡翠、トラバーチン、ライムストーン、人工石,主な材料の分類。シンタードストーン（Engineered Stone）は多くのプロジェクトで ST や CT にまとめられるため凡例を確認
+mat,ST,ja,花崗岩、大理石、玉石、トラバーチン、ライムストーン、文化石,主材。岩板は多くのプロジェクトで ST や CT にまとめられるため凡例を確認
 mat,ST,ko,"화강석, 대리석, 옥석, 도석, 석회석, 문화석",주요 마감재. 슬래브는 대부분 ST 또는 CT로 묶이므로 범례 확인 필요
 mat,ST,es,"Granito, mármol, jade, travertino, caliza, piedra cultivada",Material principal; la piedra sinterizada suele agruparse en ST o CT: consulte la leyenda
 mat,WD,zh,实木、天然木皮饰面、木线条、木踢脚、木格栅,木地板有的项目单独设 WF
 mat,WD,en,"Solid wood, natural veneer, wood mouldings, skirting, wood grille",Some projects list wood flooring separately as WF
-mat,WD,ja,無垢材、自然木突板（Natural Veneer）、木見切り、巾木、木格子,木質フローリングを WF として別途設定するプロジェクトがある
+mat,WD,ja,無垢材、天然木皮仕上げ、木見切り、巾木、木格子,木質フローリングは WF として別途設定されるプロジェクトがある
 mat,WD,ko,"원목, 천연 너베인 마감, 목재 몰딩, 걸레받이, 목재 그릴",일부 프로젝트에서는 목재 마루를 WF로 별도 표기
 mat,WD,es,"Madera maciza, chapa natural, molduras, rodapié, rejillas de madera",En algunos proyectos el parqué de madera se codifica aparte como WF
 mat,WF,zh,实木地板、多层复合地板、竹木地板、SPC 木纹,部分体系直接并入 WD
 mat,WF,en,"Solid wood flooring, engineered flooring, bamboo flooring, SPC wood-look",Some systems merge it into WD
-mat,WF,ja,無垢フローリング、積層フローリング、竹フローリング、SPC 木目,一部のシステムでは WD に統合される
+mat,WF,ja,無垢フローリング、積層フローリング、竹フローリング、SPC 木目,一部の体系では WD に統合される
 mat,WF,ko,"원목 마루, 다층 마루, 대나무 마루, SPC 목재 패턴",일부 체계에서는 WD로 통합
 mat,WF,es,"Parqué macizo, tarima multicapa, parqué de bambú, SPC imitación madera",Algunos sistemas lo incluyen en WD
 mat,GL,zh,钢化、夹胶、夹丝、磨砂、艺术、烤漆玻璃,烤漆玻璃、夹丝玻璃常细分为 GL-0x
 mat,GL,en,"Tempered, laminated, wired, frosted, art and lacquered glass",Lacquered and wired glass are often subdivided as GL-0x
-mat,GL,ja,強化、複層、網入、曇り、アート、焼付ガラス,焼付ガラスと網入ガラスは GL-0x に細分されることが多い
+mat,GL,ja,強化、複層、網目、磨砂、アート、焼付ガラス,焼付ガラス・網目ガラスは GL-0x に細分されることが多い
 mat,GL,ko,"강화, 접합, 와이어, 샌드블라스트, 아트, 래커 유리",래커·와이어 유리는 GL-0x로 세분하는 경우가 많음
 mat,GL,es,"Templado, laminado, armado, esmerilado, artístico y lacado",El lacado y el armado suelen subdividirse como GL-0x
 mat,MR,zh,银镜、灰镜、茶镜、黑镜、装饰镜,也写作 GM（Mirror）或 BE
@@ -26,12 +26,12 @@ mat,MR,ko,"은거울, 그레이 미러, 브라운 미러, 블랙 미러, 장식 
 mat,MR,es,"Espejos plateados, grises, bronce, negros y decorativos",También se escribe GM (Mirror) o BE
 mat,MT,zh,不锈钢、铜、铁艺、铝板、金属网、金属编织,常细分为 SS 不锈钢、BR 铜、AL 铝
 mat,MT,en,"Stainless steel, copper, ironwork, aluminium panels, metal mesh","Often subdivided as SS stainless, BR bronze, AL aluminium"
-mat,MT,ja,ステンレス、銅、鉄工、アルミパネル、メタルメッシュ,SS ステンレス、BR 真鍮、AL アルミなどに細分される
+mat,MT,ja,ステンレス、真鍮、鉄工、アルミパネル、金属メッシュ,SS ステンレス、BR 真鍮、AL アルミなどに細分される
 mat,MT,ko,"스테인리스, 구리, 철공예, 알루미늄 패널, 메탈 메시","SS 스테인리스, BR 구리, AL 알루미늄 등으로 세분"
 mat,MT,es,"Acero inoxidable, cobre, hierro forjado, panel de aluminio, malla metálica","Suele subdividirse: SS acero, BR bronce, AL aluminio"
 mat,AL,zh,铝扣板、铝单板、铝方通、铝塑板、铝格栅,铝合金门窗/型材也用 AL
 mat,AL,en,"Aluminium ceiling tiles, solid panels, square baffles, composite panels, grilles","Also used for aluminium doors, windows and profiles"
-mat,AL,ja,アルミ天井板、アルミ単板、アルミバッフル、アルミ複合板、アルミ格子,アルミ窓・形材にも AL を使う
+mat,AL,ja,アルミ化粧板、アルミ単板、アルミ baffle、アルミ複合板、アルミ格子,アルミ门窗・形材にも AL を使う
 mat,AL,ko,"알루미늄 천장판, 알루미늄 단판, 알루미늄 방울, 알루미늄 복합판, 알루미늄 그릴",알루미늄 창호·프레이밍에도 AL 사용
 mat,AL,es,"Placas de techo, panel liso, deflectores cuadrados, panel compuesto, rejillas de aluminio","También para ventanas, puertas y perfiles de aluminio"
 mat,MC,zh,铝塑复合板、铝蜂窝板、钛锌复合板,也有项目 MC = 微水泥，务必核对
@@ -41,12 +41,12 @@ mat,MC,ko,"알루미늄 복합판, 알루미늄 허니콤 패널, 아연-티타�
 mat,MC,es,"Panel de aluminio, panel de nido de abeja, panel de zinc-titanio","En algunos proyectos MC = microcemento, verifique siempre"
 mat,CT,zh,地砖、墙砖、抛光砖、仿古砖、玻化砖、马赛克砖,最通用写法；与 TL 二选一，勿混用
 mat,CT,en,"Floor and wall tiles, polished, rustic and vitrified tiles, mosaic tiles","The most common code; use either CT or TL, never both"
-mat,CT,ja,床タイル、壁タイル、研磨タイル、古色タイル、磁器タイル、モザイクタイル,最も汎用の表記。TL との併用には注意
+mat,CT,ja,床タイル、壁タイル、研磨タイル、古色タイル、磁器タイル、モザイクタイル,最も汎用の表記。TL との併用に注意
 mat,CT,ko,"바닥·벽 타일, 폴리싱 타일, 앤티크 타일, 비자화 타일, 모자이크 타일",가장 범용적인 표기. TL과 병행 금지
 mat,CT,es,"Baldosas de suelo y pared, pulidas, tipo rústico, vitrificadas y de mosaico","La forma más común: use CT o TL, nunca ambas"
 mat,TL,zh,同上，泛指面砖类,与 CT 同义，部分港资/外资图纸用 TL
 mat,TL,en,Same as CT — refers to tiles in general,Synonym of CT; used by some Hong Kong and foreign-funded drawings
-mat,TL,ja,タイル類全般,CT と同義で、一部の香港・外資図面で使用
+mat,TL,ja,同上、タイル類の総称,CT と同義。一部の香港・外資図面で使用
 mat,TL,ko,"동일, 타일류 총칭",CT와 동치. 일부 홍콩·외자 도면에서 사용
 mat,TL,es,Igual que CT: denominación genérica de tile,Sinónimo de CT; usado en algunos planos de inversión extranjera
 mat,MO,zh,陶瓷马赛克、玻璃马赛克、石材马赛克、金属马赛克,也写作 MS
@@ -61,17 +61,17 @@ mat,CA,ko,"양탄자 카펫, 타일 카펫, 수공 러그, 카펫 패턴",FF&E �
 mat,CA,es,"Moqueta de suelo continuo, moqueta en baldosas, alfombras artesanas, motivos de moqueta",También se usa para numerar alfombras en listas de FF&E
 mat,WC,zh,墙纸、墙布、壁布、草编/木纹壁纸,也写作 WP（Wall Paper）
 mat,WC,en,"Wallpaper, wall cloth, non-woven wallcovering, grass and wood-grain papers",Also written WP (Wall Paper)
-mat,WC,ja,壁紙、壁クロス、不織布クロス、藁目クロス・木目クロス,WP（Wall Paper）と表記されることもある
-mat,WC,ko,"벽지, 벽포, 비천 벽지, 풀·나뭇결 벽지",WP(Wall Paper)로 표기하기도 함
+mat,WC,ja,壁紙、壁布、非織布壁装、草目・木目壁紙,WP（Wall Paper）と表記されることもある
+mat,WC,ko,"벽지, 벽布, 비천 벽지, 풀·나뭇결 벽지",WP(Wall Paper)로 표기하기도 함
 mat,WC,es,"Papel pintado, tela mural, papel pintado no tejido, mimbres y veta de madera",También se escribe WP (Wall Paper)
 mat,CU,zh,卷帘、拉帘、纱帘、遮光帘、电动帘,铜的化学符号 Cu 也用 CU，注意冲突
 mat,CU,en,"Roller blinds, drapes, sheer curtains, blackout and motorised blinds",CU is also the chemical symbol for copper — watch for conflicts
-mat,CU,ja,ロールスクリーン、ドレープ、シアーカーテン、调光スクリーン、電動スクリーン,CU は Cu（銅の元素記号）と重複する表記なので紛らわしい
+mat,CU,ja,ロールスクリーン、ドレープ、シアーカーテン、調光スクリーン、電動スクリーン,Cu（銅の元素記号）とも重複するため注意
 mat,CU,ko,"롤스크린, 드레이프, sheer 커튼, 암전 블라인드, 전동 블라인드",Cu(구리) 화학기호와 충돌 주의
 mat,CU,es,"Persianas enrollables, cortinas, visillos, opacos y motorizados",CU es también el símbolo químico del cobre: cuidado con los conflictos
 mat,FA,zh,扪布、布艺软包、窗纱、纱线织物,旧体系把皮革一并归入 FA
 mat,FA,en,"Upholstery fabric, textile soft furnishings, sheers, woven textiles",Older systems also file leather under FA
-mat,FA,ja,張り布、布張り、ソフトファニリング、シアー、織物,以前のシステムでは革も FA に含めていた
+mat,FA,ja,張り布、布張りソフトファニリング、シアー、織物,旧体系では革も FA に含めていた
 mat,FA,ko,"패브릭 패딩, 패브릭 소프트 퍼니싱, sheer, 직조물",구 체계에서는 가죽도 FA에 포함
 mat,FA,es,"Tapicería, acolchados textiles, visillos, tejidos",Los sistemas antiguos incluyen también la piel en FA
 mat,UP,zh,皮革硬包、布艺软包、吸音软包,较新的精装图纸常用
@@ -81,32 +81,32 @@ mat,UP,ko,"가죽 하드패널, 패브릭 소프트 패널, 흡음 패널",최�
 mat,UP,es,"Panelado en piel, acolchado textil, paneles acústicos",Habitual en planos de decoración de reciente creación
 mat,LE,zh,真皮、超纤皮、PU 人造革、再生皮,也写作 LT
 mat,LE,en,"Genuine leather, microfibre leather, PU synthetic leather, regenerated leather",Also written LT
-mat,LE,ja,本革、マイクロファイバーレザー、PU 合成革、再生革,LT と表記されることもある
+mat,LE,ja,本革、マイクロファイバーレザー、PU 合成皮革、再生皮革,LT と表記されることもある
 mat,LE,ko,"천연가죽, 마이크로파이버 가죽, PU 합성가죽, 재생가죽",LT로 표기하기도 함
 mat,LE,es,"Piel natural, piel de microfibra, piel sintética PU, piel regenerada",También se escribe LT
 mat,PT,zh,乳胶漆、木器漆、氟碳喷涂、调和漆,最通用的涂料代码
 mat,PT,en,"Emulsion paint, wood paint, fluorocarbon coating, mixed paint",The most universal paint code
-mat,PT,ja,ラテックス塗装、木器塗装、フッ素樹脂塗装、調合塗料,最も汎用の塗料コード
+mat,PT,ja,ラテックス塗装、木器塗装、フッ素樹脂塗装、調合塗料,最も汎用される塗料コード
 mat,PT,ko,"라텍스 페인트, 목재 도료, 플루오로카본 코팅, 혼합 페인트",가장 범용적인 도료 코드
 mat,PT,es,"Pintura plástica, barniz para madera, recubrimiento de fluorocarbono, pintura preparada",El código de pintura más universal
 mat,SP,zh,马来漆、微水泥、硅藻泥、肌理漆、艺术涂料,SP 也常被用作 射灯 Spot Light，见冲突表
 mat,SP,en,"Malaysian paint, micro cement, diatomaceous earth, textured paint, artistic paint",SP is also used for spot light — see the conflict table
-mat,SP,ja,マレーペイント、マイクロセメント、珪藻土系塗料、テクスチャ塗装、アート塗装,SP はスポットライトとしても使われ、衝突表を参照
+mat,SP,ja,マレーペイント、マイクロセメント、珪藻土系塗料、テクスチャ塗装、アート塗装,SP はスポットライトとしても使われる。衝突表を参照
 mat,SP,ko,"말레이 페인트, 마이크로 시멘트, 규조토, 텍스처 페인트, 아트 페인트","SP는 스포트라이트로도 사용됨, 충돌표 참조"
 mat,SP,es,"Pintura malaya, microcemento, tierra de diatomeas, pintura texturizada, pintura artística",SP también se usa para el foco (Spot Light): véase la tabla de conflictos
 mat,PL,zh,亚克力板、PC 耐力板、灯片、塑料线条,旧体系 PL = 乳胶漆，冲突高发
 mat,PL,en,"Acrylic sheet, polycarbonate sheet, light diffusers, plastic profiles",Older systems use PL for emulsion paint — a frequent source of conflict
-mat,PL,ja,アクリル板、PC 板、ライト板、樹脂見切り,以前のシステムでは PL = ラテックス塗装、衝突が多い
+mat,PL,ja,アクリル板、PC 耐力板、ライト板、樹脂見切り,旧体系では PL = ラテックス塗装、衝突が多い
 mat,PL,ko,"아크릴판, PC 내력판, 조명판, 플라스틱 몰딩","구 체계에서 PL = 라텍스 페인트, 충돌 빈번"
 mat,PL,es,"Plancha de acrílico, policarbonato, difusores, perfiles plásticos",Los sistemas antiguos usan PL para pintura plástica: conflicto frecuente
 mat,AC,zh,亚克力透光板、灯箱面板、雕刻立体字,也有体系 AC = 矿棉板 Acoustic Ceiling
 mat,AC,en,"Translucent acrylic panels, light box panels, engraved 3D letters",Some systems use AC for acoustic ceiling
-mat,AC,ja,アクリル透過板、ライトボックスパネル、立体彫刻文字,仕様によっては AC = 吸音天井（Acoustic Ceiling）
+mat,AC,ja,アクリル透光板、ライトボックスパネル、立体彫刻文字,体系によっては AC = 吸音天井（Acoustic Ceiling）
 mat,AC,ko,"아크릴 투광판, 라이트박스 패널, 입체 각인 글자",일부 체계에서 AC = 흡음 천장(Aoustic Ceiling)
 mat,AC,es,"Panel de acrílico translúcido, panel de caja de luz, letras 3D grabadas",En algunos sistemas AC = techo acústico (Acoustic Ceiling)
 mat,PB,zh,纸面石膏板、防潮石膏板、水泥板、硅酸钙板,基层材料，也用于造型天花
 mat,PB,en,"Paper-faced plasterboard, moisture-resistant board, cement board, calcium silicate board","Base material, also used for shaped ceilings"
-mat,PB,ja,化粧石膏ボード、耐湿石膏ボード、セメントボード、珪酸カルシウムボード,下地材で、化粧天井の造形にも使う
+mat,PB,ja,化粧石膏ボード、耐湿石膏ボード、セメントボード、珪酸カルシウムボード,下地材。化粧天井の造型にも使用
 mat,PB,ko,"종이 석고보드, 내습 석고보드, 시멘트보드, 규산칼슘 보드","바탕재로 사용, 장식 천장에도 적용"
 mat,PB,es,"Placa de yeso con papel, placa resistente a la humedad, fibrocemento, calcio-silicato",Material base; también para techos con formas
 mat,LP,zh,防火板、抗倍特板、饰面三聚氰胺板,也写作 LM
@@ -116,32 +116,32 @@ mat,LP,ko,"라미네이트, 내배트 판, 장식 멜라민 보드",LM으로 표
 mat,LP,es,"Laminados, compactos HPL, melamina decorativa",También se escribe LM
 mat,SF,zh,金箔、银箔、树脂板、夯土板、透光石,也有体系 SF = 金银箔 Silver Foil
 mat,SF,en,"Gold leaf, silver leaf, resin panels, rammed earth panels, translucent stone",Some systems use SF for silver foil
-mat,SF,ja,ゴールドリーフ（Gold Leaf）、銀箔、樹脂パネル、版築パネル、透過石材,仕様によっては SF = 銀箔（Silver Foil）を指すこともある
+mat,SF,ja,金箔、銀箔、樹脂パネル、版築パネル、透光石,体系によっては SF = 金銀箔（Silver Foil）
 mat,SF,ko,"금박, 은박, 수지 패널, 람메드 어스 패널, 투광석",일부 체계에서 SF = 금은박(Silver Foil)
 mat,SF,es,"Pan de oro, pan de plata, paneles de resina, paneles de tierra apisonada, piedra traslúcida",Algunos sistemas usan SF para el pan de plata (Silver Foil)
 mat,WR,zh,SBS 卷材、自粘防水膜、防水涂料卷材,多见于地面/卫生间做法表
 mat,WR,en,"SBS membrane, self-adhesive waterproof film, coated waterproofing membrane",Common in floor and wet-area build-up tables
-mat,WR,ja,SBS 防水シート、自己粘着防水膜、防水塗膜,床・水まわりの仕様表に頻出
+mat,WR,ja,SBS 防水シート、自己粘着防水膜、防水塗膜,床・湿部做法表に頻出
 mat,WR,ko,"SBS 방수 시트, 자착식 방수막, 방수 코팅 시트",바닥·화장실 시공표에 자주 등장
 mat,WR,es,"Membrana SBS, lámina autoadhesiva, membrana impermeabilizante pintada",Habitual en cuadros de sols y zonas húmedas
 mat,VF,zh,PVC 卷材地板、石塑地板、同质透心地板,也写作 PC、LVT
 mat,VF,en,"Sheet PVC flooring, luxury vinyl tile, homogeneous vinyl flooring",Also written PC or LVT
-mat,VF,ja,塩ビシート、LVT タイル、均質塩ビタイル,PC や LVT と表記されることもある
+mat,VF,ja,塩ビシート、石塑タイル、同質透心タイル,PC や LVT と表記されることもある
 mat,VF,ko,"PVC 시트 바닥, LVT, 무질 투심 바닥","PC, LVT로 표기하기도 함"
 mat,VF,es,"PVC en bobina, baldosas LVT, vinilo homogéneo",También se escribe PC o LVT
 mat,RF,zh,健身房、医院、实验室专用橡胶地板,较少见，运动空间常用
 mat,RF,en,"Rubber flooring for gyms, hospitals and laboratories",Less common; typical of sports spaces
-mat,RF,ja,ジム、病院、研究所向けのゴム床,比較的稀で、運動空間に多く使われる
+mat,RF,ja,ジム、病院、研究所向けのゴム床,比較的少见、運動空間に多い
 mat,RF,ko,"체육관, 병원, 연구소용 고무 바닥","드물게 사용, 운동 공간에 흔함"
 mat,RF,es,"Suelo de caucho para gimnasios, hospitales y laboratorios",Menos habitual; típico de espacios deportivos
 mat,SC,zh,透光软膜、A 级防火膜、UV 打印膜,也写作 SMS、SZ；SC 也可能指屏风 Screen
 mat,SC,en,"Translucent membrane, A-grade fire-rated membrane, UV printed membrane",Also written SMS or SZ; SC may also mean screen
-mat,SC,ja,半透明フィルム、A 級防火膜、UV プリントフィルム,SMS、SZ とも表記され、SC は間仕切り（Screen）を指すこともある
+mat,SC,ja,透光フィルム、A 級防火膜、UV プリントフィルム,SMS、SZ とも表記。SC は間仕切り（Screen）を指すこともある
 mat,SC,ko,"투광 필름, A급 난연막, UV 인쇄 필름","SMS, SZ로 표기하기도 함. SC는 스크린을 뜻하기도 함"
 mat,SC,es,"Lámina translúcida, lámina ignífuga clase A, lámina impresa UV",También se escribe SMS o SZ; SC puede significar tabique (Screen)
 mat,AP,zh,木丝吸音板、聚酯纤维吸音板、穿孔吸音板,也有体系写作 AC
 mat,AP,en,"Wood wool panels, polyester fibre panels, perforated panels",Also written AC in some systems
-mat,AP,ja,木糸吸音板、ポリエステルファイバ吸音板、有孔吸音板,仕様によっては AC と表記
+mat,AP,ja,木絲吸音板、ポリエステルファイバ吸音板、有孔吸音板,体系によっては AC と表記
 mat,AP,ko,"목사울 흡음판, 폴리에스터 섬유 흡음판, 타공 흡음판",일부 체계에서 AC로 표기
 mat,AP,es,"Paneles de lana de madera, de fibra de poliéster, perforados",En algunos sistemas se escribe AC
 mat,PF,zh,玻璃膜、装饰膜、保护膜、车贴膜,临时/保护类也用它
@@ -151,22 +151,22 @@ mat,PF,ko,"유리 필름, 장식 필름, 보호 필름, 차량 필름",임시·�
 mat,PF,es,"Película de vidrio, decorativa, de protección, para rotulación de vehículos",También para films temporales y de protección
 obj,DL,zh,筒灯、射灯、灯带、吊灯、轨道灯等全套灯具,材料表里是“类别”；图例/型号里指筒灯
 obj,DL,en,"Downlights, spotlights, LED tape, pendants, track lights — the full lighting set",In the material schedule it is a category; in legends and model codes it means downlight
-obj,DL,ja,ダウンライト、スポットライト、LED テープ、ペンダント、トラックライト等の照明全般,マテリアル表では「分類」、凡例・型番ではダウンライトを指す
+obj,DL,ja,ダウンライト、スポットライト、LED テープ、ペンダント、トラックライト等の照明全般,材料表では「分類」、凡例・型番ではダウンライトを指す
 obj,DL,ko,"다운라이트, 스포트라이트, LED 테이프, 펜던트, 트랙라이트 등 전체 조명","재료표에서는 분류, 범례·모델명에서는 다운라이트를 의미"
 obj,DL,es,"Downlights, focos, tiras LED, colgantes, focos de carril: el set completo","En el cuadro de materiales es una categoría; en leyendas y modelos, un downlight"
 obj,FR,zh,活动家具、固定家具、柜体、台面,也写作 FUR
 obj,FR,en,"Loose furniture, fixed furniture, casework and counters",Also written FUR
-obj,FR,ja,可動家具、造付家具、収納、カウンター,FUR と表記されることもある
+obj,FR,ja,活動家具、固定家具、収納、カウンター,FUR と表記されることもある
 obj,FR,ko,"이동 가구, 고정 가구, 수납장, 상판",FUR로 표기하기도 함
 obj,FR,es,"Mobiliario móvil, fijo, armarios y encimeras",También se escribe FUR
 obj,HW,zh,门锁、合页、拉手、玻璃五金、结构五金,旧体系 HW = 洁具 + 五金
 obj,HW,en,"Locks, hinges, handles, glass hardware and structural hardware",Older systems use HW for sanitary ware plus hardware
-obj,HW,ja,建具金物、蝶番、引手、ガラス金物、構造金物,以前のシステムでは HW = 衛生器具 + 金物
+obj,HW,ja,建具金物、蝶番、引手、ガラス金物、構造金物,旧体系では HW = 衛生器具 + 金物
 obj,HW,ko,"문잠, 경첩, 손잡이, 유리 철물, 구조 철물",구 체계에서 HW = 위생기구 + 철물
 obj,HW,es,"Cerraduras, bisagras, tiradores, herrajes de vidrio y estructurales",Los sistemas antiguos usan HW para sanitarios y herrajes
 obj,SW,zh,坐便器、台盆、龙头、花洒、地漏,也有体系写作 SAN
 obj,SW,en,"WCs, basins, taps, showers and floor drains",Some systems write SAN
-obj,SW,ja,洋式トイレ、洗面器、蛇口、シャワー、床排水,SAN と表記されることもある
+obj,SW,ja,便器、洗面器、蛇口、シャワー、床排水,SAN と表記されることもある
 obj,SW,ko,"변기, 세면대, 수도꼭지, 샤워기, 바닥배수구",SAN으로 표기하기도 함
 obj,SW,es,"Inodoros, lavabos, grifos, duchas y sumideros",En algunos sistemas se escribe SAN
 obj,KIT,zh,操作台、烟罩、冷柜、洗碗机、厨具,也简写 K
@@ -176,7 +176,7 @@ obj,KIT,ko,"조리대, 후드, 냉장·냉동고, 식기세척기, 조리기구"
 obj,KIT,es,"Encimeras, campanas, cámaras frigoríficas, lavavajillas y utensilios",También se abrevia K
 obj,PLT,zh,盆栽、植物墙、仿真植物、花器,软装清单常用
 obj,PLT,en,"Potted plants, living walls, artificial plants and planters",Common in FF&E schedules
-obj,PLT,ja,鉢植え、壁面緑化、造花、プランター,FF&E リストで一般的
+obj,PLT,ja,鉢植え、壁掛け植物、造花、プランター,FF&E リストで一般的
 obj,PLT,ko,"화분, 식물벽, 인조화, 화기",FF&E 리스트에 자주 등장
 obj,PLT,es,"Plantas en maceta, paneles verdes, plantas artificiales y jardineras",Habitual en listas de FF&E
 obj,AR,zh,画作、装置、雕塑、摆件,AR 也常被用作 人造石 Artificial Stone
@@ -191,7 +191,7 @@ obj,BDG,ko,"침대용품, 이불, 쿠션, 침대 러너",호텔·샵플릿 FF&E 
 obj,BDG,es,"Sábanas, edredones, cojines y tapices de cama",En listas de FF&E de hoteles y modelos de vivienda
 obj,SSP,zh,开关面板、插座面板、智能控制面板,SS 亦指不锈钢，注意区分
 obj,SSP,en,"Switch plates, socket plates and smart control panels",SS may also mean stainless steel — distinguish carefully
-obj,SSP,ja,スイッチ盤、コンセント盤、スマート操作盤,SS はステンレスも意味するので見分けが必要
+obj,SSP,ja,スイッチ盤、コンセント盤、スマート操作盤,SS はステンレスも意味するので注意
 obj,SSP,ko,"스위치 패널, 콘센트 패널, 스마트 제어 패널",SS는 스테인리스도 의미하므로 주의
 obj,SSP,es,"Placas de interruptor, de enchufe y de control inteligente",SS también puede ser acero inoxidable: conviene distinguir
 obj,EA,zh,电视、投影、音响应、家电,与灯具 DL 分开列
@@ -199,16 +199,16 @@ obj,EA,en,"Televisions, projectors, audio and home appliances",Listed separately
 obj,EA,ja,テレビ、プロジェクター、音響機器、家電製品,照明器具（DL）とは別に記載
 obj,EA,ko,"TV, 프로젝터, 오디오, 가전제품",조명기구(DL)와 구분하여 표기
 obj,EA,es,"Televisores, proyectores, audio y electrodomésticos",Se listan aparte de la iluminación (DL)
-light,DL,zh,≤Φ50mm 小口径筒灯有的体系另设 DS,DL 在材料表可指灯具大类，港澳台日韩多以 LT 区分；小口径另设 DS 的体系需看图例
-light,DL,en,Recessed downlights of ≤Φ50 mm; some systems add DS for small apertures,"DL can mean the lighting category in material schedules; Hong Kong, Taiwan, Japan and Korea use LT, and some systems add DS for small apertures"
-light,DL,ja,Φ50mm 以下のダウンライト、DS を使う仕様,DL はマテリアル表では照明器具の分類だが、香港・台湾・日本・韓国では LT を使い、DS を使う仕様もある
-light,DL,ko,"Φ50mm 이하 소구경 다운라이트, 일부 체계에서 DS를 별도 표기","DL은 자재표에서 조명 기구 분류를 뜻하기도 하며, 홍콩·대만·일본·한국은 LT를 씁니다, 일부 체계는 소구경에 DS를 따로 표기"
-light,DL,es,Downlights empotrados de ≤Φ50 mm; algunos sistemas usan DS para los pequeños,"DL puede designar la categoría de iluminación en los cuadros de materiales; en Hong Kong, Taiwán, Japón y Corea se usa LT"
-light,CL,zh,明装圆形/方形吸顶灯,CL 在饰面表也指亮漆罩面（Clear Lacquer），在灯具图例才是吸顶灯，且易与吊灯 PL 混
-light,CL,en,Surface-mounted round or square ceiling fixtures,"CL also means clear lacquer in finish schedules, and is easily confused with pendant PL"
-light,CL,ja,露出取付の丸型・角型シーリング,CL はマテリアル表ではクリアラッカー（Clear Lacquer）を表すこともあり、ペンダント PL と混同しやすい
-light,CL,ko,매입형이 아닌 노출 원형·사각 천장등,CL은 마감표에서 클리어 래커(clear lacquer)를 뜻하기도 하고 펜던트 PL과 혼동되기 쉽습니다
-light,CL,es,"Luminarias de techo de superficie, redondas o cuadradas",CL también designa el barniz transparente en los cuadros de acabado y se confunde con el colgante PL
+light,DL,zh,≤Φ50mm 小口径筒灯有的体系另设 DS,
+light,DL,en,Recessed downlights of ≤Φ50 mm; some systems add DS for small apertures,
+light,DL,ja,Φ50mm 以下の小径ダウンライト。小口径には DS を別設する体系もある,
+light,DL,ko,"Φ50mm 이하 소구경 다운라이트, 일부 체계에서 DS를 별도 표기",
+light,DL,es,Downlights empotrados de ≤Φ50 mm; algunos sistemas usan DS para los pequeños,
+light,CL,zh,明装圆形/方形吸顶灯,
+light,CL,en,Surface-mounted round or square ceiling fixtures,
+light,CL,ja,露出取付の丸型・角型シーリング,
+light,CL,ko,매입형이 아닌 노출 원형·사각 천장등,
+light,CL,es,"Luminarias de techo de superficie, redondas o cuadradas",
 light,PL,zh,装饰吊灯、线性吊灯,PL 也常指 面板灯 Panel Light
 light,PL,en,Decorative pendants and linear pendants,PL may also mean panel light
 light,PL,ja,装飾用ペンダント、リニアペンダント,PL はパネルライトを表すこともある
@@ -216,14 +216,14 @@ light,PL,ko,"장식 펜던트, 리니어 펜던트",PL은 패널 라이트를 �
 light,PL,es,Colgantes decorativos y colgantes lineales,PL también puede significar panel light
 light,PN,zh,办公/商业常用 600×600 平板灯,建议用 PN，避免与吊灯冲突
 light,PN,en,600×600 flat panels common in offices and retail,Recommended code; avoids conflict with pendant
-light,PN,ja,事務所・商業施設で一般的な 600×600 フラットパネル,推奨コード。ペンダントとの混同を回避
+light,PN,ja,事務所・商業施設で一般的な 600×600 平板灯,推奨コード。ペンダントとの混同を回避
 light,PN,ko,사무실·상업시설에서 흔한 600×600 평판등,"권장 코드, 펜던트와의 혼동 방지"
 light,PN,es,Paneles planos de 600×600 mm comunes en oficinas y comercios,Código recomendado: evita la colisión con el colgante
-light,WL,zh,床头壁灯、户外壁灯,WL 在日本也写作壁纸（クロス），须看图层区分壁灯
-light,WL,en,Bedside wall lights and outdoor wall lights,"WL also means wallpaper in Japan, so check the drawing layer"
-light,WL,ja,ベッドサイド用、屋外用ウォールライト,WL はクロス（壁紙）を指す使われ方もあるため、図面のレイヤーを確認する
-light,WL,ko,"침대 옆 벽등, 옥외 월등",일본에서는 WL이 벽지(크로스)를 뜻하기도 하므로 도면 레이어를 확인
-light,WL,es,Apliques de cabecera y de exterior,"En Japón, WL también designa el papel pintado: revise la capa del plano"
+light,WL,zh,床头壁灯、户外壁灯,
+light,WL,en,Bedside wall lights and outdoor wall lights,
+light,WL,ja,ベッドサイド用、屋外用ウォールライト,
+light,WL,ko,"침대 옆 벽등, 옥외 월등",
+light,WL,es,Apliques de cabecera y de exterior,
 light,SL,zh,可调角度射灯、天花射灯,SL 也指灯带 Strip Light、特殊饰面
 light,SL,en,"Adjustable-angle spotlights, ceiling spots",SL may also mean strip light or special finish
 light,SL,ja,角度調整可能なスポット、天井スポット,SL はストリップライトや特殊仕上げも指す
@@ -231,44 +231,44 @@ light,SL,ko,"각도 조절 가능한 스포트, 천장 스포트",SL은 스트�
 light,SL,es,Focos de ángulo regulable y focos de techo,SL también puede ser tira de LED o acabado especial
 light,FL,zh,户外泛光、广告牌照明,与 火烧面 Flamed 的 FL 不同语境
 light,FL,en,Outdoor floodlights and advertising-board lighting,Different context from flamed finish (FL)
-light,FL,ja,屋外投光、広告看板照明,フラッドライトの FL とは文脈が異なる
+light,FL,ja,屋外投光、広告看板照明,火烧き仕上げの FL とは文脈が異なる
 light,FL,ko,"옥외 투광, 간판 조명",화재 마감(FL)과는 문맥이 다름
 light,FL,es,Focos de exterior e iluminación de rótulos,Contexto distinto del acabado flameado (FL)
 light,TL,zh,两线/三线/四线轨道射灯,与 瓷砖 TL 冲突，看图纸专业
 light,TL,en,"Two-, three- or four-circuit track spotlights",Conflicts with tile (TL) — check the drawing discipline
-light,TL,ja,2回路/3回路/4回路のトラク照明,タイルの TL と混同するため、図面の専門を確認する
+light,TL,ja,2回路/3回路/4回路のトラク照明,タイルの TL と混同。図面の専門を確認
 light,TL,ko,2선/3선/4선 트랙 조명,"타일(TL)과 충돌, 도면 전문 확인 필요"
 light,TL,es,"Focos de carril de dos, tres o cuatro circuitos",Choca con tile (TL): revisa la disciplina del plano
-light,LL,zh,线性灯、铝槽灯、无缝拼接线条灯,LL 与灯带（Strip Light）易混，旧体系里 L 是装饰照明的分部代号
-light,LL,en,"Linear luminaires, aluminium profile lights and seamless linear systems","LL is easily confused with strip light, and L in older systems means the lighting division"
-light,LL,ja,リニア照明、アルミチャネル灯、継ぎ目なしのライン照明,LL はテープライトと混同しやすく、以前のシステムでは L が照明系の分岐記号を表す
-light,LL,ko,"리니어 등, 알루미늄 채널등, 무이음 리니어 시스템","LL은 테이프 라이트와 혼동되기 쉽고, 예전 체계의 L은 조명 분부 기호입니다"
-light,LL,es,"Lineales, luminarias con perfil de aluminio y sistemas lineales continuos",LL se confunde con la tira de LED y en sistemas antiguos L es el código de la sección de iluminación
-light,UL,zh,层板灯、柜内感应灯,UL 是较新的代码，旧图纸多写作灯带或 KL，跨项目套用前需核对图例
-light,UL,en,Shelf lighting and sensor-activated cabinet lighting,UL is a newer code; older schedules list it as strip light or KL
-light,UL,ja,棚下照明、庫内人感照明,UL は比較的新しいコードで、古い図面にはテープライトや KL と書かれるため凡例を確認する
-light,UL,ko,"선반등, 수납장 내부 인체감지 조명",UL은 비교적 새로운 코드로 예전 도면에는 테이프 라이트나 KL로 표기
-light,UL,es,Iluminación de balda y de interior de armario con sensor,UL es un código más nuevo; los cuadros antiguos lo listan como tira de LED o KL
-light,ML,zh,磁吸轨道灯系统,ML 是较新的代码，旧图纸写作磁吸轨道灯，注意与轨道灯 TL 区分
-light,ML,en,Magnetic track lighting systems,"ML is a newer code; older drawings write magnetic track light, not to be mixed with track light TL"
-light,ML,ja,マグネット式トラック照明システム,ML は比較的新しいコードで、古い図面にはマグネットトラックライトと書かれ、トラックライト TL と混同しない
-light,ML,ko,마그네틱 트랙 조명 시스템,ML은 비교적 새로운 코드로 예전 도면에는 마그네틱 트랙 라이트로 표기되며 트랙 라이트 TL과 혼동하지 않습니다
-light,ML,es,Sistemas de iluminación de carril magnético,ML es un código más nuevo; los dibujos antiguos lo escriben como carril magnético y no debe confundirse con el carril TL
-light,WW,zh,线性洗墙、擦墙照明,WW 多用于建筑照明专项说明而非灯具类型图例，常写作洗墙灯（Wall Washer）
-light,WW,en,Linear wall-washing and grazing lighting,WW belongs to the architectural lighting spec rather than the fixture legend and is often written Wall Washer
-light,WW,ja,リニア洗壁、擦壁照明,WW は建築照明の仕様書で扱うもので、器具種別の図例ではなく Wall Washer と書かれる
-light,WW,ko,"선형 월워시, 스침 조명",WW는 조명 기구 범례보다 건축 조명 설계서에 주로 쓰이며 Wall Washer로 표기
-light,WW,es,Lavado de muro lineal y luz rasante,WW pertenece a la especificación de iluminación arquitectónica más que a la leyenda de luminarias y suele escribirse Wall Washer
-light,IL,zh,埋地灯、地脚灯,IL 指地埋灯，户外须另注防水等级（IP），并与水下灯 UW 区分
-light,IL,en,Recessed ground lights and footlights,IL covers ground-recessed lights; outdoors add the IP rating and keep it separate from underwater light UW
-light,IL,ja,埋込型地中灯、フットライト,IL は地中埋込の照明で、屋外では IP 等級を別記し、水中照明 UW と区別する
-light,IL,ko,"지중 매입등, 발밑 조명","IL은 지중 매입등이며, 옥외에는 IP 등급을 별도로 표기하고 수중등 UW와 구분"
-light,IL,es,Focos empotrados en pavimento y balizas de suelo,IL corresponde a luces empotradas en suelo; en exterior indique el grado IP y sepárelas de la luz sumergida UW
-light,UW,zh,泳池、水景照明,UW 为水下专用，泳池与水景须另注防水等级（IP）与安装方式，不可与地埋灯 IL 混
-light,UW,en,Pool and water feature lighting,"UW is for submerged use only; state the IP rating and mounting for pools and water features, and never mix it with in-ground light IL"
-light,UW,ja,プール、噴水照明,UW は水中専用で、プールや噴水には IP 等級と取付方法を明記し、地中照明 IL と混同しない
-light,UW,ko,"수영장, 수경 조명",UW는 수중 전용으로 수영장과 수경에는 방수 등급(IP)과 설치 방식을 별도 표기하고 지중 매입등 IL과 혼동하지 않습니다
-light,UW,es,Iluminación de piscinas y fuentes,"UW es solo para uso sumergido: indique el grado IP y el montaje en piscinas y fuentes, y no lo confunda con la luz empotrada en suelo IL"
+light,LL,zh,线性灯、铝槽灯、无缝拼接线条灯,
+light,LL,en,"Linear luminaires, aluminium profile lights and seamless linear systems",
+light,LL,ja,リニア照明、アルミチャネル灯、無縫連結のライン照明,
+light,LL,ko,"리니어 등, 알루미늄 채널등, 무이음 리니어 시스템",
+light,LL,es,"Lineales, luminarias con perfil de aluminio y sistemas lineales continuos",
+light,UL,zh,层板灯、柜内感应灯,
+light,UL,en,Shelf lighting and sensor-activated cabinet lighting,
+light,UL,ja,棚下照明、庫内人感照明,
+light,UL,ko,"선반등, 수납장 내부 인체감지 조명",
+light,UL,es,Iluminación de balda y de interior de armario con sensor,
+light,ML,zh,磁吸轨道灯系统,
+light,ML,en,Magnetic track lighting systems,
+light,ML,ja,マグネット式トラック照明システム,
+light,ML,ko,마그네틱 트랙 조명 시스템,
+light,ML,es,Sistemas de iluminación de carril magnético,
+light,WW,zh,线性洗墙、擦墙照明,
+light,WW,en,Linear wall-washing and grazing lighting,
+light,WW,ja,リニア洗壁、擦壁照明,
+light,WW,ko,"선형 월워시, 스침 조명",
+light,WW,es,Lavado de muro lineal y luz rasante,
+light,IL,zh,埋地灯、地脚灯,
+light,IL,en,Recessed ground lights and footlights,
+light,IL,ja,埋込型地中灯、フットライト,
+light,IL,ko,"지중 매입등, 발밑 조명",
+light,IL,es,Focos empotrados en pavimento y balizas de suelo,
+light,UW,zh,泳池、水景照明,
+light,UW,en,Pool and water feature lighting,
+light,UW,ja,プール、水景照明,
+light,UW,ko,"수영장, 수경 조명",
+light,UW,es,Iluminación de piscinas y fuentes,
 light,EL,zh,应急筒灯、双头应急灯,电气专业图例，非装饰材料代码
 light,EL,en,Emergency downlights and twin-head emergency units,"An electrical-discipline legend item, not a finish material code"
 light,EL,ja,非常用ダウンライト、二灯式非常用灯,電気設備側の凡例項目で、仕上材コードではない
@@ -279,121 +279,121 @@ light,EXIT,en,Exit and escape-direction signage,Electrical-discipline legend
 light,EXIT,ja,非常口、誘導灯,電気設備側の凡例
 light,EXIT,ko,"안전출구, 피난 유도 표시",전기 설계 위의 범례
 light,EXIT,es,Salidas de emergencia e indicación de evacuación,Leyenda de instalaciones eléctricas
-finish,B,zh,镜面/玻璃边部磨斜边,边缘处理而非表面饰面，常与 E、F 叠加写成 EB、FB
-finish,B,en,Chamfered or bevelled edges on mirrors and glass,Edge treatment rather than a surface finish; often stacked with E or F as EB and FB
-finish,B,ja,鏡・ガラスの端部を面取り,表面仕上げではなくエッジ処理で、E や F と重ねて EB、FB と書く
-finish,B,ko,거울·유리 가장자리를 모따기 처리,"표면 마감재가 아니라 모서리 가공이며 E, F와 조합해 EB, FB로 표기"
-finish,B,es,Cantos biselados en espejos y vidrios,Tratamiento de canto y no de superficie; a menudo se combina con E o F como EB y FB
-finish,E,zh,化学蚀刻、蒙砂,多用于玻璃，与石材磨砂 F 工艺不同却常被混写，需按图例确认
-finish,E,en,Chemical etching or acid frosting,"Usually glass; often confused with the abraded matt surface F used on stone, so check the legend"
-finish,E,ja,酸エッチング（Chemical Etching）、曇り面加工,主にガラスに用いるもので、石材の砂目仕上げ F とは工程が異なるため混同されやすい
-finish,E,ko,"화학 에칭, 산 부식 샌드",주로 유리에 쓰이며 석재 샌드블라스트 무광면 F와 자주 혼동됨
-finish,E,es,Grabado químico o frosting ácido,Se usa sobre todo en vidrio y se confunde a menudo con la superficie arenada mate F de la piedra
-finish,EB,zh,蚀刻面并车斜边,组合代码，斜边与蚀刻同时表达，常与仅磨砂的 F 混淆
-finish,EB,en,Etched face with bevelled edges,Combines bevelling and etching; easily confused with the plain frosted F and with the bevelled-only B
-finish,EB,ja,エッチング面に面取り,面取りとエッチングを組み合わせたコードで、フロストのみの F と混同されやすい
-finish,EB,ko,에칭 면에 모따기 가공,모따기와 에칭을 함께 쓰는 조합 코드로 단독 마트 F와 자주 혼동
-finish,EB,es,Cara grabada con cantos biselados,Combina biselado y grabado; se confunde a menudo con el F esmerilado sin bisel
-finish,F,zh,酸洗、蒙砂面,多为石材喷砂或磨蚀，与玻璃酸蚀 E 工艺不同，现场常互相写错
-finish,F,en,Acid-washed or sandblasted matte face,Usually an abraded matt on stone; it differs from the acid-etched glass finish E and the two are often swapped
-finish,F,ja,酸ウォッシュ、曇り面,主に石材の噴砂や摩耗によるもので、ガラスの酸エッチング E とは工程が異なり現場で混同されやすい
-finish,F,ko,"산 세척, 샌드블라스트 무광면",주로 석재에 쓰이며 유리의 에칭 E와 공법이 달라 서로 혼동됨
-finish,F,es,Superficie acidulada o arenada,"Es un mate abrasionado sobre piedra y se confunde con el E grabado del vidrio, que es otra técnica"
-finish,FB,zh,磨砂面并车斜边,组合代码，磨砂与斜边同时表达，与仅蚀刻加斜边的 EB 易混
-finish,FB,en,Frosted face with bevelled edges,A combined code; it carries both the matt face and the bevel and is easily mixed up with EB
-finish,FB,ja,フロスト面に面取り,フロスト面と面取りを組み合わせたコードで、エッチングに面取りを加えた EB と混同されやすい
-finish,FB,ko,프로스티드 면에 모따기 가공,마트와 모따기를 함께 쓰는 조합으로 에칭+모따기인 EB와 자주 혼동
-finish,FB,es,Cara esmerilada con cantos biselados,Código combinado de mate y bisel; se confunde a menudo con el EB grabado y biselado
+finish,B,zh,镜面/玻璃边部磨斜边,
+finish,B,en,Chamfered or bevelled edges on mirrors and glass,
+finish,B,ja,鏡・ガラスの端部を面取り,
+finish,B,ko,거울·유리 가장자리를 모따기 처리,
+finish,B,es,Cantos biselados en espejos y vidrios,
+finish,E,zh,化学蚀刻、蒙砂,
+finish,E,en,Chemical etching or acid frosting,
+finish,E,ja,化学エッチング、酸による曇り加工,
+finish,E,ko,"화학 에칭, 산 부식 샌드",
+finish,E,es,Grabado químico o frosting ácido,
+finish,EB,zh,蚀刻面并车斜边,
+finish,EB,en,Etched face with bevelled edges,
+finish,EB,ja,エッチング面に面取り,
+finish,EB,ko,에칭 면에 모따기 가공,
+finish,EB,es,Cara grabada con cantos biselados,
+finish,F,zh,酸洗、蒙砂面,
+finish,F,en,Acid-washed or sandblasted matte face,
+finish,F,ja,酸洗、曇り面,
+finish,F,ko,"산 세척, 샌드블라스트 무광면",
+finish,F,es,Superficie acidulada o arenada,
+finish,FB,zh,磨砂面并车斜边,
+finish,FB,en,Frosted face with bevelled edges,
+finish,FB,ja,フロスト面に面取り,
+finish,FB,ko,프로스티드 면에 모따기 가공,
+finish,FB,es,Cara esmerilada con cantos biselados,
 finish,H,zh,不锈钢/铝板长丝纹,也写 BS（Brushed）
 finish,H,en,Long directional grain on stainless steel or aluminium panels,Also written BS (Brushed)
 finish,H,ja,ステンレス・アルミ板の長いヘアライン,BS（Brushed）とも表記
 finish,H,ko,스테인리스·알루미늄 패널의 긴 헤어라인 결,BS(Brushed)로 표기하기도 함
 finish,H,es,Grano direccional largo en acero o aluminio,También se escribe BS (Brushed)
-finish,ND,zh,无方向性短丝纹,与 H（拉丝）相反，为乱纹无方向，图纸常与 H 混写
-finish,ND,en,Short grain with no direction,The opposite of H hairline: the grain has no direction so the two are often confused in legends
-finish,ND,ja,無方向の短い木目,ヘアライン H と逆に、向きの指定がないため図例で混同されやすい
-finish,ND,ko,방향성이 없는 짧은 결,헤어라인 H와 정반대로 방향성이 없어 자주 혼동됨
-finish,ND,es,Grano corto sin direccionalidad,Es lo contrario del H cepillado: el grano no tiene dirección y ambos se confunden en las leyendas
-finish,OX,zh,发黑、古铜、做旧氧化,仅用于金属仿铜、仿古氧化，不用于石材；旧体系常写作古铜或发黑
-finish,OX,en,"Blackened, bronzed and antique oxidation","For metal only — bronze, brass or copper patina; it is never used on stone"
-finish,OX,ja,黒化、古銅、古色（Antique）の酸化処理,金属のブロンズ調や古色表現に使うもので石材には使わないが、古い仕様では古銅や黒化と書くことがある
-finish,OX,ko,"검게 변색, 청동색, 앤티크 산화",금속(청동·황동·구리)에만 쓰는 마감이며 석재에는 쓰지 않음
-finish,OX,es,"Ennegrecido, bronceado y pátina envejecida","Solo para metal — pátina de bronce, latón o cobre; no se usa en piedra"
-finish,S,zh,半哑光缎面,光泽介于 MA 与 P 之间，与 G、30G/50G/70G 光泽等级不可混用
-finish,S,en,Semi-matte satin surface,Sheen sits between MA matt and P polish; it is not a gloss level like G 30G 50G or 70G
-finish,S,ja,半マットなサテン面,光沢はマット MA とポリッシュ P の間で、グロス G、30G/50G/70G の段階とは区別する
-finish,S,ko,반무광 새틴 표면,광택이 MA 무광과 P 폴리싱 사이이며 G·30G·50G·70G 광택 등급과는 다름
-finish,S,es,Superficie semimate satén,El brillo queda entre MA mate y P pulido; no es un nivel de brillo como G 30G 50G o 70G
-finish,P,zh,8K 镜面、抛光石材,与 G（光泽罩面）不同：P 是磨出的镜面，G 是涂层的亮光
-finish,P,en,8K mirror polish and polished stone,Not to be confused with G which is a gloss coating over the surface rather than a ground mirror polish
-finish,P,ja,8K 鏡面研磨、研磨石材,G は塗層の光沢、P は研磨による鏡面仕上げで、両者は意味が異なる
-finish,P,ko,"8K 거울면, 폴리싱 석재",광택 코팅인 G와 다르며 G는 도장층의 광택 P는 실제 연마 광택
-finish,P,es,Pulido espejo 8K y piedra pulida,No confundir con G que es un brillo de capa de acabado y no un pulido espejar
-finish,HA,zh,手工锤纹铜/不锈钢,属机械敲击加工，与 SB 喷砂不同：HA 是工具成型，SB 是磨料喷射
-finish,HA,en,Hand-hammered copper or stainless steel,"Mechanical tooling by hammer or chisel, unlike SB sandblasting which uses abrasive blasting"
-finish,HA,ja,手打ちの銅・ステンレス,工具で叩き出して成形する手法で、SB のサンドブラスト（研削材で吹きつける）とは原理が異なる
-finish,HA,ko,수공 해머링 구리·스테인리스,망치·조각질 같은 기계적 가공이며 샌드블라스트 SB와 다름(SB는 연마제 분사)
-finish,HA,es,Cobre o acero martillado a mano,"Es un mecanizado con martillo o cincel, distinto del arenado SB que proyecta abrasivo"
+finish,ND,zh,无方向性短丝纹,
+finish,ND,en,Short grain with no direction,
+finish,ND,ja,方向性のない短い纹理,
+finish,ND,ko,방향성이 없는 짧은 결,
+finish,ND,es,Grano corto sin direccionalidad,
+finish,OX,zh,发黑、古铜、做旧氧化,
+finish,OX,en,"Blackened, bronzed and antique oxidation",
+finish,OX,ja,黒化、古銅、做旧の酸化処理,
+finish,OX,ko,"검게 변색, 청동색, 앤티크 산화",
+finish,OX,es,"Ennegrecido, bronceado y pátina envejecida",
+finish,S,zh,半哑光缎面,
+finish,S,en,Semi-matte satin surface,
+finish,S,ja,半マットなサテン面,
+finish,S,ko,반무광 새틴 표면,
+finish,S,es,Superficie semimate satén,
+finish,P,zh,8K 镜面、抛光石材,
+finish,P,en,8K mirror polish and polished stone,
+finish,P,ja,8K 鏡面研磨、研磨石材,
+finish,P,ko,"8K 거울면, 폴리싱 석재",
+finish,P,es,Pulido espejo 8K y piedra pulida,
+finish,HA,zh,手工锤纹铜/不锈钢,
+finish,HA,en,Hand-hammered copper or stainless steel,
+finish,HA,ja,手打ちの真鍮・ステンレス,
+finish,HA,ko,수공 해머링 구리·스테인리스,
+finish,HA,es,Cobre o acero martillado a mano,
 finish,FL,zh,花岗岩火烧处理,与 泛光灯 FL 不同语境
 finish,FL,en,Thermal flaming of granite,Different context from flood light (FL)
-finish,FL,ja,花崗岩の火焼き仕上げ,フラッドライトの FL とは文脈が異なる
+finish,FL,ja,花崗岩の火烧き処理,フラッドライトの FL とは文脈が異なる
 finish,FL,ko,화강암 화염 처리,플러드 라이트(FL)과는 문맥이 다름
 finish,FL,es,Abanicado térmico del granito,Contexto distinto del foco flood (FL)
-finish,MA,zh,哑光、无光,欧美表面处理表常写 MT(Matte)，与材料表 MT＝Metal 同码，须看在哪张表
-finish,MA,en,"Matt, no-gloss surface","Western schedules often write MT (Matte), while MT means Metal in the material table"
-finish,MA,ja,無光、マット面,欧米の表面処理表では MT（Matte）と書くが、マテリアル表の MT は Metal なのでどちらの表か確認する
-finish,MA,ko,"무광, 매트 표면","서양 마감표에는 MT(Matte)로 표기하며, 재료표의 MT는 Metal을 뜻함"
-finish,MA,es,"Superficie mate, sin brillo","En las tablas occidentales se escribe MT (Matte), mientras que MT significa Metal en la tabla de materiales"
-finish,SB,zh,喷砂玻璃、喷砂金属,喷砂属磨料喷射，与 HA 锤纹(机械敲击)、ND 乱纹(无方向纹理)工艺不同
-finish,SB,en,Sandblasted glass and metal,"Abrasive blasting, not the mechanical tooling of hammered HA or the non-directional grain of ND"
-finish,SB,ja,サンドブラスト仕上げ：ガラス・金属の均一な無光仕上げ,研削材を吹きつける加工で、HA の叩き出しや ND の無方向木目とは原理が異なる
-finish,SB,ko,샌드블라스트 유리·금속,"마모성 연마 방식이며, 해머 마감 HA(공구 타격)나 무방향 결 ND와는 다른 공정"
-finish,SB,es,Vidrio y metal arenados,"Arenado por abrasivo, distinto del martillado HA (mecánico) y del grano no direccional ND"
+finish,MA,zh,哑光、无光,
+finish,MA,en,"Matt, no-gloss surface",
+finish,MA,ja,無光、マット面,
+finish,MA,ko,"무광, 매트 표면",
+finish,MA,es,"Superficie mate, sin brillo",
+finish,SB,zh,喷砂玻璃、喷砂金属,
+finish,SB,en,Sandblasted glass and metal,
+finish,SB,ja,サンドブラストガラス・金属,
+finish,SB,ko,샌드블라스트 유리·금속,
+finish,SB,es,Vidrio y metal arenados,
 finish,CL,zh,清漆亮光保护层,与 吊灯 CL 不同语境
 finish,CL,en,Clear lacquer protective coating,Different context from ceiling light (CL)
 finish,CL,ja,無色ラッカーの保護層,シーリングライトの CL とは文脈が異なる
 finish,CL,ko,투명 래커 보호층,천장등 CL과는 문맥이 다름
 finish,CL,es,Capa protectora de laca transparente,Contexto distinto de la luz de techo (CL)
-finish,OSCL,zh,木饰面着色后罩清漆,传统木饰面开放漆做法；PC 粉末喷涂与 FC 氟碳喷涂属金属型材体系
-finish,OSCL,en,Wood finish stained with oil then lacquered,"Traditional open-pore timber system; PC powder coating and FC fluorocarbon apply to metal profiles, not timber"
-finish,OSCL,ja,木質仕上げを油で染めてラッカーで被覆,従来の木仕上げのオープン塗装で、PC（electrostatic powder）と FC（fluorine coating）はアルミ形材向けのシステム
-finish,OSCL,ko,목재 마감을 오일로 색칠 후 래커 마감,"전통적인 목재 오픈포어 체계이며, PC 분체도장과 FC 불소 코팅은 금속 프로파일용"
-finish,OSCL,es,Madera teñida al aceite y lacada,"Sistema tradicional de poro abierto; el polvo PC y el fluorocarbono FC son para perfiles metálicos, no para madera"
-finish,FC,zh,铝板氟碳漆、户外耐候,港澳及中东图例中 FC＝假天花(False Ceiling)，须确认它出现在哪张表
-finish,FC,en,Fluorocarbon coating for aluminium panels and outdoor weatherability,"FC also means false ceiling in Hong Kong, Macau and Middle East legends, so check which schedule it appears in"
-finish,FC,ja,アルミ板のフッ素樹脂塗装、屋外耐候,香港・マカオ・中東の図例では FC は False Ceiling を意味するので、どの表に記載されているか確認する
-finish,FC,ko,"알루미늄 판 불소 도장, 옥외 내후성",홍콩·마카오·중동 범례에서는 FC가 천장(False Ceiling)을 뜻하므로 어느 표에 나타나는지 확인
-finish,FC,es,Pintura de fluorocarbono para paneles de aluminio y exteriores,"En las leyendas de Hong Kong, Macao y Oriente Medio FC significa también falso techo (False Ceiling); ver en qué cuadro aparece"
-finish,ZC,zh,热镀锌、电镀锌,属基材保护层而非装饰面，通常与面漆分列
-finish,ZC,en,Hot-dip galvanising and electroplated zinc,"A substrate protection rather than a decorative finish, usually listed apart from the paint system"
-finish,ZC,ja,熱浸亜鉛メッキ、電解亜鉛メッキ,装飾仕上げではなく下地材の保護で、一般に塗装システムと分けて記載する
-finish,ZC,ko,"핫디프 아연도금, 전기 아연도금","장식 마감이 아니라 기재 보호층이며, 도장 체계와는 따로 표기"
-finish,ZC,es,Galvanizado en caliente y zincado electrolítico,Es protección del sustrato y no acabado decorativo; suele listarse aparte del sistema de pintura
-finish,WX,zh,石材/木饰面上蜡,属叠加在其他饰面之上的养护工序，底饰面仍须单独标注
-finish,WX,en,Wax finish on stone or timber,"A maintenance step applied over another finish, so the base finish must still be specified"
-finish,WX,ja,石材・木質材へのワックス仕上げ,他の仕上げに重ねる保護工程で、下地の仕上げは別途記載が必要
-finish,WX,ko,석재·목재 왁스 마감,다른 마감 위에 덧치는 유지보수 공정이므로 바탕 마감은 따로 지정
-finish,WX,es,Cera sobre piedra o madera,Es un paso de mantenimiento sobre otro acabado; el acabado base debe indicarse aparte
-finish,G,zh,亮光面,与 30G、50G、70G 同属一套光泽等级，同一图例应统一标注习惯
-finish,G,en,High-gloss surface,"Part of the same gloss scale as 30G, 50G and 70G; keep one gloss notation across the project"
-finish,G,ja,高い光沢面,30G・50G・70G と同じ光沢スケールで、プロジェクトごとに表記を統一する
-finish,G,ko,광택면,30G·50G·70G와 같은 광택 등급 체계이므로 도면마다 표기 방식을 통일할 것
-finish,G,es,Superficie de alto brillo,"Pertenece a la misma escala de brillo que 30G, 50G y 70G; conviene unificar la notación en cada proyecto"
-finish,30G,zh,三分光,与 G、50G、70G 同属一套光泽等级，本图例统一用百分比写法
-finish,30G,en,30 per cent gloss — a three-point sheen,"Same gloss-scale family as G, 50G and 70G; this sheet writes gloss levels as percentages"
-finish,30G,ja,光沢度30%：光沢3段階表記のうち低光沢の段階,G・50G・70G と同じ光沢度スケールの一つ。本表ではパーセント表記に統一する
-finish,30G,ko,"광택 30%, 3분광","G·50G·70G와 같은 광택 등급 계열이며, 도면 전체에서 표기 방식 하나만 쓸 것"
-finish,30G,es,Treinta por ciento de brillo (3 puntos),"Misma familia de escala de brillo que G, 50G y 70G; conviene usar un solo criterio en toda la lámina"
-finish,50G,zh,五分光,与 G、30G、70G 同属一套光泽等级，本图例统一用百分比写法
-finish,50G,en,50 per cent gloss — a five-point sheen,"Same gloss-scale family as G, 30G and 70G; this sheet writes gloss levels as percentages"
-finish,50G,ja,光沢度50%：光沢3段階表記のうち中光沢の段階,G・30G・70G と同じ光沢度スケールの一つ。本表ではパーセント表記に統一する
-finish,50G,ko,"광택 50%, 5분광","G·30G·70G와 같은 광택 등급 계열이며, 도면 전체에서 표기 방식 하나만 쓸 것"
-finish,50G,es,Cincuenta por ciento de brillo (5 puntos),"Misma familia de escala de brillo que G, 30G y 70G; conviene usar un solo criterio en toda la lámina"
-finish,70G,zh,七分光,与 G、30G、50G 同属一套光泽等级，本图例统一用百分比写法
-finish,70G,en,70 per cent gloss — a seven-point sheen,"Same gloss-scale family as G, 30G and 50G; this sheet writes gloss levels as percentages"
-finish,70G,ja,光沢度70%：光沢3段階表記のうち高光沢の段階,G・30G・50G と同じ光沢度スケールの一つ。本表ではパーセント表記に統一する
-finish,70G,ko,"광택 70%, 7분광","G·30G·50G와 같은 광택 등급 계열이며, 도면 전체에서 표기 방식 하나만 쓸 것"
-finish,70G,es,Setenta por ciento de brillo (7 puntos),"Misma familia de escala de brillo que G, 30G y 50G; conviene usar un solo criterio en toda la lámina"
+finish,OSCL,zh,木饰面着色后罩清漆,
+finish,OSCL,en,Wood finish stained with oil then lacquered,
+finish,OSCL,ja,木質仕上げを油で着色しラッカーで被覆,
+finish,OSCL,ko,목재 마감을 오일로 색칠 후 래커 마감,
+finish,OSCL,es,Madera teñida al aceite y lacada,
+finish,FC,zh,铝板氟碳漆、户外耐候,
+finish,FC,en,Fluorocarbon coating for aluminium panels and outdoor weatherability,
+finish,FC,ja,アルミ板のフッ素塗装、屋外耐候,
+finish,FC,ko,"알루미늄 판 불소 도장, 옥외 내후성",
+finish,FC,es,Pintura de fluorocarbono para paneles de aluminio y exteriores,
+finish,ZC,zh,热镀锌、电镀锌,
+finish,ZC,en,Hot-dip galvanising and electroplated zinc,
+finish,ZC,ja,熱浸镀锌、電解亜鉛メッキ,
+finish,ZC,ko,"핫디프 아연도금, 전기 아연도금",
+finish,ZC,es,Galvanizado en caliente y zincado electrolítico,
+finish,WX,zh,石材/木饰面上蜡,
+finish,WX,en,Wax finish on stone or timber,
+finish,WX,ja,石材・木質材へのワックス仕上げ,
+finish,WX,ko,석재·목재 왁스 마감,
+finish,WX,es,Cera sobre piedra o madera,
+finish,G,zh,亮光面,
+finish,G,en,High-gloss surface,
+finish,G,ja,高い光沢面,
+finish,G,ko,광택면,
+finish,G,es,Superficie de alto brillo,
+finish,30G,zh,三分光,
+finish,30G,en,30 per cent gloss — a three-point sheen,
+finish,30G,ja,光沢 30%、3 分光,
+finish,30G,ko,"광택 30%, 3분광",
+finish,30G,es,Treinta por ciento de brillo (3 puntos),
+finish,50G,zh,五分光,
+finish,50G,en,50 per cent gloss — a five-point sheen,
+finish,50G,ja,光沢 50%、5 分光,
+finish,50G,ko,"광택 50%, 5분광",
+finish,50G,es,Cincuenta por ciento de brillo (5 puntos),
+finish,70G,zh,七分光,
+finish,70G,en,70 per cent gloss — a seven-point sheen,
+finish,70G,ja,光沢 70%、7 分光,
+finish,70G,ko,"광택 70%, 7분광",
+finish,70G,es,Setenta por ciento de brillo (7 puntos),
 finish,PC,zh,铝型材静电粉末喷涂,与 地胶板 PC 冲突
 finish,PC,en,Electrostatic powder coating of aluminium profiles,Conflicts with PVC flooring (PC)
 finish,PC,ja,アルミ形材の静電粉体塗装,塩ビ床材の PC と混同
@@ -559,14 +559,14 @@ obj,EA,fr,"Téléviseurs, projecteurs, audio, électroménager",Listé séparém
 obj,EA,it,"Televisori, proiettori, audio, elettrodomestici",Elencato separatamente dall'illuminazione DL.
 obj,EA,pt,"Televisores, projetores, áudio, eletrodomésticos",Listado a parte da iluminação DL.
 obj,EA,ru,"Телевизоры, проекторы, аудиотехника, бытовая техника",Указаны отдельно от освещения DL.
-light,DL,fr,"Encastrés ronds, ≤ Φ50 mm ; certains bureaux créent DS pour les petits diamètres","DL peut aussi désigner la catégorie d'éclairage dans les tableaux de matériaux ; à Hong Kong, Taïwan, au Japon et en Corée, on utilise LT, et certains systèmes ajoutent DS pour les petits diamètres."
-light,DL,it,"Incassati rotondi, ≤ Φ50 mm; alcuni studi prevedono DS per i piccoli diametri","DL può indicare anche la categoria di illuminazione nei quadri dei materiali; a Hong Kong, Taiwan, Giappone e Corea si usa LT, e alcuni sistemi aggiungono DS per i piccoli diametri."
-light,DL,pt,"Embutidos redondos, ≤ Φ50 mm; alguns escritórios criam DS para pequenos diâmetros","DL também pode designar a categoria de iluminação nos quadros de materiais; em Hong Kong, Taiwan, Japão e Coreia usa-se LT, e alguns sistemas acrescentam DS aos pequenos diâmetros."
-light,DL,ru,"Встраиваемые круглые, ≤ Φ50 мм; в некоторых бюро для малых диаметров вводят DS","DL может означать и категорию освещения в ведомостях материалов; в Гонконге, на Тайване, в Японии и Корее используют LT, а в некоторых системах для малых диаметров вводят DS."
-light,CL,fr,Plafonniers ronds ou carrés en applique,CL désigne aussi le vernis clair dans les tableaux de finition et se confond avec la suspension PL.
-light,CL,it,Plafoniere tonde o quadrate a superficie,CL indica anche la vernice trasparente nei quadri di finitura e si confonde con la sospensione PL.
-light,CL,pt,"Luminárias de teto redondas ou quadradas, de sobrepor",CL também designa o verniz transparente nos quadros de acabamento e confunde-se com o pendente PL.
-light,CL,ru,"Потолочные светильники круглые или квадратные, накладные",CL также означает прозрачный лак в ведомостях отделки и путается с подвесным светильником PL.
+light,DL,fr,"Encastrés ronds, ≤ Φ50 mm ; certains bureaux créent DS pour les petits diamètres",
+light,DL,it,"Incassati rotondi, ≤ Φ50 mm; alcuni studi prevedono DS per i piccoli diametri",
+light,DL,pt,"Embutidos redondos, ≤ Φ50 mm; alguns escritórios criam DS para pequenos diâmetros",
+light,DL,ru,"Встраиваемые круглые, ≤ Φ50 мм; в некоторых бюро для малых диаметров вводят DS",
+light,CL,fr,Plafonniers ronds ou carrés en applique,
+light,CL,it,Plafoniere tonde o quadrate a superficie,
+light,CL,pt,"Luminárias de teto redondas ou quadradas, de sobrepor",
+light,CL,ru,"Потолочные светильники круглые или квадратные, накладные",
 light,PL,fr,Luminaires suspendus décoratifs et linéaires,PL peut aussi désigner un panneau lumineux (Panel Light).
 light,PL,it,Sospensioni decorative e lineari,PL può indicare anche il pannello luminoso (Panel Light).
 light,PL,pt,Luminárias pendentes decorativas e lineares,PL também pode designar o painel de luz (Panel Light).
@@ -575,10 +575,10 @@ light,PN,fr,Panneaux 600×600 pour bureaux et commerces,Code conseillé pour év
 light,PN,it,Pannelli 600×600 per uffici e commerci,Codice consigliato per non confonderlo con la sospensione.
 light,PN,pt,Painéis 600×600 para escritórios e comércios,Código recomendado para evitar confusão com o pendente.
 light,PN,ru,Панели 600×600 для офисов и магазинов,"Рекомендуемый код, чтобы не путать с подвесным светильником."
-light,WL,fr,Applies de chevet et appliques extérieures,"Au Japon, WL désigne aussi le papier peint : vérifiez le calque du plan."
-light,WL,it,Lampade da parete per testiera e da esterno,In Giappone WL indica anche la carta da parati: controllare il livello del disegno.
-light,WL,pt,Arandelas de cabeceira e arandelas externas,"No Japão, WL também designa papel de parede: verifique a camada do desenho."
-light,WL,ru,Настенные светильники у изголовья и уличные,В Японии WL также означает обои: проверьте слой чертежа.
+light,WL,fr,Applies de chevet et appliques extérieures,
+light,WL,it,Lampade da parete per testiera e da esterno,
+light,WL,pt,Arandelas de cabeceira e arandelas externas,
+light,WL,ru,Настенные светильники у изголовья и уличные,
 light,SL,fr,Spots à orientation réglable et spots en plafond,SL désigne aussi le ruban LED et les finitions spéciales.
 light,SL,it,Spot orientabili e spot a soffitto,SL indica anche la strip LED e le finiture speciali.
 light,SL,pt,Spots orientáveis e spots de teto,SL também designa fita de LED e acabamentos especiais.
@@ -591,30 +591,30 @@ light,TL,fr,"Projecteurs sur rail à 1, 2 ou 3 circuits, avec accessoires de sus
 light,TL,it,"Binari a 1, 2 o 3 circuiti con accessori di sospensione",In conflitto con la ceramica (TL): decide la legenda.
 light,TL,pt,"Trilhos de 1, 2 ou 3 circuitos com acessórios de suspensão",Em conflito com o azulejo (TL): a legenda decide.
 light,TL,ru,"Треки на 1, 2 или 3 цепи с подвесными аксессуарами",Конфликт с плиткой (TL) — решает легенда.
-light,LL,fr,"Luminaires linéaires, profilés aluminium et lignes continues","LL se confond avec le ruban LED et, dans les anciens systèmes, L désigne la division éclairage."
-light,LL,it,"Luci lineari, profili in alluminio e linee continue",LL si confonde con il nastro LED e nei sistemi antichi L è il codice della divisione illuminazione.
-light,LL,pt,"Luminárias lineares, perfis de alumínio e linhas contínuas",LL confunde-se com a fita de LED e em sistemas antigos L é o código da divisão de iluminação.
-light,LL,ru,"Линейные светильники, алюминиевые профили и линейные системы","LL путают с LED-лентой, а в старых системах L обозначает раздел освещения."
-light,UL,fr,Éclairage d'étagère et éclairage de meuble avec détection,UL est un code plus récent ; les anciens tableaux l'indiquent comme ruban LED ou KL.
-light,UL,it,Luci per ripiani e luce interno con sensore,UL è un codice più recente; i vecchi quadri lo indicano come nastro LED o KL.
-light,UL,pt,Iluminação de prateleiras e interna com sensor,UL é um código mais recente; os quadros antigos indicam fita de LED ou KL.
-light,UL,ru,Подсветка полок и внутренняя подсветка с датчиком,UL — более новый код; в старых ведомостях его пишут как LED-ленту или KL.
-light,ML,fr,Systèmes de rails magnétiques,"ML est un code plus récent ; les anciens dessins écrivent rail magnétique, à ne pas confondre avec le rail TL."
-light,ML,it,Sistemi di binari magnetici,"ML è un codice più recente; i vecchi disegni scrivono binario magnetico, da non confondere con il binario TL."
-light,ML,pt,Sistemas de trilho magnético,"ML é um código mais recente; os desenhos antigos escrevem trilho magnético, a não confundir com o trilho TL."
-light,ML,ru,Системы магнитных треков,"ML — более новый код; на старых чертежах его пишут магнитный трек, не путать с треком TL."
-light,WW,fr,Luminaires linéaires de lavage et d'accentuation de mur,WW relève du cahier d'éclairage architectural plutôt que de la légende de luminaires et s'écrit souvent Wall Washer.
-light,WW,it,Wall washer lineare e luce di valorizzazione del muro,WW appartiene alla specifica di illuminazione architettonica più che alla legenda delle apparecchiature e si scrive spesso Wall Washer.
-light,WW,pt,Luminárias lineares de lavagem e recorte de parede,WW pertence à especificação de iluminação arquitetônica mais que à legenda de luminárias e costuma ser escrito Wall Washer.
-light,WW,ru,Линейные wash-светильники и подсветка стен,"WW относится к спецификации архитектурного освещения, а не к легенде светильников, и часто пишется Wall Washer."
-light,IL,fr,Encastrables au sol et luminaires de pied,"IL désigne les luminaires encastrés au sol ; en extérieur, indiquez l'indice IP et distinguez-les de l'éclairage immergé UW."
-light,IL,it,Incassati a terra e luci di piede,IL indica gli apparecchi incassati a terra; all'esterno indicare il grado IP e distinguerli dall'illuminazione subacquea UW.
-light,IL,pt,Luminárias embutidas no solo e balizas de solo,IL corresponde a luminárias embutidas no solo; no exterior indique o grau IP e separe-as da luz submersa UW.
-light,IL,ru,Встраиваемые в грунт и напольные светильники,"IL — светильники, встраиваемые в грунт; на улице указывают степень защиты IP и не смешивают с подводным светом UW."
-light,UW,fr,Éclairage de piscine et de bassin,"UW est réservé à l'usage immergé : indiquez l'indice IP et la fixation pour les piscines et bassins, et ne le confondez pas avec l'encastrable au sol IL."
-light,UW,it,Illuminazione di piscine e laghetti,"UW è solo per uso immerso: indicare il grado IP e il montaggio per piscine e vasche, e non confonderlo con l'incassato a terra IL."
-light,UW,pt,Iluminação de piscinas e espelhos d'água,"UW é só para uso submerso: indique o grau IP e a montagem em piscinas e espelhos d'água, e não confunda com a luminária embutida no solo IL."
-light,UW,ru,Подсветка бассейнов и водных объектов,UW предназначен только для погружного применения: укажите степень защиты IP и способ монтажа для бассейнов и водных объектов и не смешивайте с грунтовыми светильниками IL.
+light,LL,fr,"Luminaires linéaires, profilés aluminium et lignes continues",
+light,LL,it,"Luci lineari, profili in alluminio e linee continue",
+light,LL,pt,"Luminárias lineares, perfis de alumínio e linhas contínuas",
+light,LL,ru,"Линейные светильники, алюминиевые профили и линейные системы",
+light,UL,fr,Éclairage d'étagère et éclairage de meuble avec détection,
+light,UL,it,Luci per ripiani e luce interno con sensore,
+light,UL,pt,Iluminação de prateleiras e interna com sensor,
+light,UL,ru,Подсветка полок и внутренняя подсветка с датчиком,
+light,ML,fr,Systèmes de rails magnétiques,
+light,ML,it,Sistemi di binari magnetici,
+light,ML,pt,Sistemas de trilho magnético,
+light,ML,ru,Системы магнитных треков,
+light,WW,fr,Luminaires linéaires de lavage et d'accentuation de mur,
+light,WW,it,Wall washer lineare e luce di valorizzazione del muro,
+light,WW,pt,Luminárias lineares de lavagem e recorte de parede,
+light,WW,ru,Линейные wash-светильники и подсветка стен,
+light,IL,fr,Encastrables au sol et luminaires de pied,
+light,IL,it,Incassati a terra e luci di piede,
+light,IL,pt,Luminárias embutidas no solo e balizas de solo,
+light,IL,ru,Встраиваемые в грунт и напольные светильники,
+light,UW,fr,Éclairage de piscine et de bassin,
+light,UW,it,Illuminazione di piscine e laghetti,
+light,UW,pt,Iluminação de piscinas e espelhos d'água,
+light,UW,ru,Подсветка бассейнов и водных объектов,
 light,EL,fr,Downlights de sécurité et blocs autonomes,"Légende du lot électricité, pas un code de finition."
 light,EL,it,Downlight di emergenza e unità gemellate,"Leggenda del lotto elettrico, non un codice di finitura."
 light,EL,pt,Downlights de emergência e luminárias duplas,"Legenda do lote elétrico, não é código de acabamento."
@@ -623,216 +623,99 @@ light,EXIT,fr,Sorties de secours et signalisation d'évacuation,Légende du lot 
 light,EXIT,it,Uscite di sicurezza e segnaletica di fuga,Leggenda del lotto elettrico.
 light,EXIT,pt,Saídas de emergência e sinalização de evacuação,Legenda do lote elétrico.
 light,EXIT,ru,Эвакуационные выходы и знаки эвакуации,Легенда электрического раздела.
-finish,B,fr,Chants biseautés ou polis en biseau sur miroirs et vitrages,Traitement de chant et non de surface ; souvent cumulé avec E ou F sous EB et FB.
-finish,B,it,Smusso o lucidatura a becco su specchi e vetri,Trattamento di bordo e non di superficie; spesso abbinato a E o F come EB e FB.
-finish,B,pt,Cantos biselados ou polidos em espelhos e vidros,Tratamento de bordo e não de superfície; frequentemente combinado com E ou F como EB e FB.
-finish,B,ru,Скошенные или подшлифованные кромки зеркал и стекла,"Обработка кромки, а не поверхности; часто совмещается с E или F как EB и FB."
-finish,E,fr,Gravure chimique ou attaque acide,Utilisé surtout sur le verre et souvent confondu avec la surface mate sablée F de la pierre.
-finish,E,it,Incisione chimica o attacco acido,Usato soprattutto sul vetro e spesso confuso con la superficie opaca sabbiata F della pietra.
-finish,E,pt,Gravação química ou jateamento ácido,Usado sobretudo em vidro e confundido com a superfície fosca jateada F da pedra.
-finish,E,ru,Химическое травление или кислотное матирование,Применяется в основном на стекле и часто путается с матовой пескоструйной поверхностью F на камне.
-finish,EB,fr,Face gravée avec chant biseauté,Associe biseau et gravure ; souvent confondu avec le simple dépoli F et avec le seul biseau B.
-finish,EB,it,Faccia satinata con bordo smussato,Combina smusso e incisione; spesso confuso con il semplice satinato F e con il solo smusso B.
-finish,EB,pt,Face gravada com canto biselado,Combina bisel e gravação; costuma ser confundido com o simples jateado F e com o só bisel B.
-finish,EB,ru,Травлёная поверхность со скосом кромки,Совмещает фаску и травление; часто путают с простым матированием F и с одной фаской B.
-finish,F,fr,Surface dépolie par attaque acide ou sablage,"Mate abrasé surtout sur la pierre ; à ne pas confondre avec la gravure du verre E, autre procédé."
-finish,F,it,Superficie satinata per attacco acido o sabbiatura,"Opaco abrasivo soprattutto sulla pietra; da non confondere con l'incisione del vetro E, altro processo."
-finish,F,pt,Superfície jateada por ataque ácido ou jateamento,"Fosco abrasionado sobretudo em pedra; não confundir com a gravação ácida do vidro E, outro processo."
-finish,F,ru,Матовая поверхность кислотной обработки или пескоструйной обработки,"Матовый абразивный, в основном на камне; не путать с травлением стекла E — это другой процесс."
-finish,FB,fr,Face dépolie avec chant biseauté,"Code combiné, mate plus biseau ; se confond souvent avec l'EB gravé et biseauté."
-finish,FB,it,Faccia satinata con bordo smussato,"Codice combinato, opaco più smusso; spesso confuso con l'EB inciso e smussato."
-finish,FB,pt,Face jateada com canto biselado,"Código combinado, fosco mais bisel; confundido com frequência com o EB gravado e biselado."
-finish,FB,ru,Матовая поверхность со скосом кромки,Комбинированный код — матовая поверхность и фаска; часто путают с EB (травление и фаска).
+finish,B,fr,Chants biseautés ou polis en biseau sur miroirs et vitrages,
+finish,B,it,Smusso o lucidatura a becco su specchi e vetri,
+finish,B,pt,Cantos biselados ou polidos em espelhos e vidros,
+finish,B,ru,Скошенные или подшлифованные кромки зеркал и стекла,
+finish,E,fr,Gravure chimique ou attaque acide,
+finish,E,it,Incisione chimica o attacco acido,
+finish,E,pt,Gravação química ou jateamento ácido,
+finish,E,ru,Химическое травление или кислотное матирование,
+finish,EB,fr,Face gravée avec chant biseauté,
+finish,EB,it,Faccia satinata con bordo smussato,
+finish,EB,pt,Face gravada com canto biselado,
+finish,EB,ru,Травлёная поверхность со скосом кромки,
+finish,F,fr,Surface dépolie par attaque acide ou sablage,
+finish,F,it,Superficie satinata per attacco acido o sabbiatura,
+finish,F,pt,Superfície jateada por ataque ácido ou jateamento,
+finish,F,ru,Матовая поверхность кислотной обработки или пескоструйной обработки,
+finish,FB,fr,Face dépolie avec chant biseauté,
+finish,FB,it,Faccia satinata con bordo smussato,
+finish,FB,pt,Face jateada com canto biselado,
+finish,FB,ru,Матовая поверхность со скосом кромки,
 finish,H,fr,Brossage long sur acier inoxydable et aluminium,Écrit aussi BS (Brushed).
 finish,H,it,Spazzolatura lunga su inox e alluminio,Indicato anche come BS (Brushed).
 finish,H,pt,Escovado longo em inox e alumínio,Também escrito BS (Brushed).
 finish,H,ru,Продольная шлифовка нержавейки и алюминия,Также пишут BS (Brushed).
-finish,ND,fr,Grain court sans orientation,C'est l'inverse du H brossé : le grain n'a pas de direction et les deux se confondent souvent.
-finish,ND,it,Grana corta senza direzione,È l'inverso della H spazzolata: la grana non ha direzione e i due codici si confondono spesso.
-finish,ND,pt,Grão curto sem direção,É o contrário do H escovado: o grão não tem direção e os dois são confundidos com frequência.
-finish,ND,ru,Короткий рисунок без направления,"Обратное H (шлифовке): рисунок не направленный, поэтому их часто путают в легендах."
-finish,OX,fr,"Noircissage, patine bronze et vieillissement","Réservé au métal — patine de bronze, laiton ou cuivre ; jamais sur la pierre."
-finish,OX,it,"Nero, patina bronzata e invecchiamento","Solo per metallo — patina di bronzo, ottone o rame; non si usa sulla pietra."
-finish,OX,pt,"Escurecimento, pátina de bronze e envelhecimento","Apenas para metal — pátina de bronze, latão ou cobre; nunca em pedra."
-finish,OX,ru,"Почернение, бронзовая патина и патина старения","Только для металла — патина бронзы, латуни или меди; на камне не применяется."
-finish,S,fr,Finition satinée semi-mate,"L'éclat se situe entre le mat MA et le poli P ; ce n'est pas un niveau de brillance comme G, 30G, 50G ou 70G."
-finish,S,it,Finitura satinata semimatta,"La lucidità è tra l'opaco MA e il lucido P; non è un livello di brillantezza come G, 30G, 50G o 70G."
-finish,S,pt,Acabamento acetinado semibrilho,O brilho fica entre o fosco MA e o polido P; não é um nível de brilho como G 30G 50G ou 70G.
-finish,S,ru,Полуматовый сатиновый финиш,"Блеск находится между матовым MA и полировкой P; это не уровень глянца, как G 30G 50G или 70G."
-finish,P,fr,Poli miroir 8K et pierre polie,"À ne pas confondre avec G, qui est un brillant de couche de finition et non un poli miroir."
-finish,P,it,Lucidatura specchio 8K e pietra lucidata,Da non confondere con G che è la lucidità di una mano di finitura e non un polimento a specchio.
-finish,P,pt,Polimento espelhado 8K e pedra polida,Não confundir com G que é o brilho de uma camada de acabamento e não um polimento espelhado.
-finish,P,ru,Полировка до зеркального блеска 8K и полированный камень,"Не путать с G: G — блеск покровного слоя, а P — зеркальная шлифовка самого материала."
-finish,HA,fr,Cuivre et inox martelés à la main,"Traitement mécanique au marteau ou au ciseau, à ne pas confondre avec le sablage SB (projection d'abrasif)."
-finish,HA,it,Rame e inox martellati a mano,"Lavorazione meccanica a martello o scalpello, diversa dalla sabbiatura SB che proietta abrasivo."
-finish,HA,pt,Cobre e inox martelados à mão,"É um mecanismo de martelo ou cinzel, diferente do jateado SB que projeta abrasivo."
-finish,HA,ru,"Медь и нержавейка, обработанные вручную молотком","Механическая обработка молотком или зубилом, в отличие от пескоструйной SB с подачей абразива."
+finish,ND,fr,Grain court sans orientation,
+finish,ND,it,Grana corta senza direzione,
+finish,ND,pt,Grão curto sem direção,
+finish,ND,ru,Короткий рисунок без направления,
+finish,OX,fr,"Noircissage, patine bronze et vieillissement",
+finish,OX,it,"Nero, patina bronzata e invecchiamento",
+finish,OX,pt,"Escurecimento, pátina de bronze e envelhecimento",
+finish,OX,ru,"Почернение, бронзовая патина и патина старения",
+finish,S,fr,Finition satinée semi-mate,
+finish,S,it,Finitura satinata semimatta,
+finish,S,pt,Acabamento acetinado semibrilho,
+finish,S,ru,Полуматовый сатиновый финиш,
+finish,P,fr,Poli miroir 8K et pierre polie,
+finish,P,it,Lucidatura specchio 8K e pietra lucidata,
+finish,P,pt,Polimento espelhado 8K e pedra polida,
+finish,P,ru,Полировка до зеркального блеска 8K и полированный камень,
+finish,HA,fr,Cuivre et inox martelés à la main,
+finish,HA,it,Rame e inox martellati a mano,
+finish,HA,pt,Cobre e inox martelados à mão,
+finish,HA,ru,"Медь и нержавейка, обработанные вручную молотком",
 finish,FL,fr,Traitement thermique du granit ( flammé),À ne pas confondre avec le projecteur (FL).
 finish,FL,it,Trattamento termico del granito (fiammato),Da non confondere con il floodlight (FL).
 finish,FL,pt,Tratamento térmico do granito (flamado),Não confundir com o floodlight (FL).
 finish,FL,ru,Термообработка гранита (огненная),Не путать с прожектором (FL).
-finish,MA,fr,"Finition mate, sans brillance","Dans les tableaux occidentaux on écrit MT (Matte), alors que MT désigne le métal dans la table des matériaux."
-finish,MA,it,"Finitura opaca, senza luminosità","Nei quadri occidentali si scrive MT (Matte), mentre MT indica il metallo nella tabella dei materiali."
-finish,MA,pt,"Acabamento fosco, sem brilho","Nos quadros ocidentais escreve-se MT (Matte), enquanto MT significa Metal na tabela de materiais."
-finish,MA,ru,Матовый финиш без блеска,"В западных ведомостях пишут MT (Matte), а в таблице материалов MT означает Metal."
-finish,SB,fr,Verre et métal sablés,"Sablage par abrasif, à ne pas confondre avec le martelé HA (mécanique) ni avec le grain non directionnel ND."
-finish,SB,it,Vetro e metallo sabbiati,"Sabbiatura con abrasivo, diversa dal martellato HA (meccanico) e dal grano non direzionale ND."
-finish,SB,pt,Vidro e metal jateados,"Jateamento por abrasivo, diferente do martelado HA (mecânico) e do grão não direcional ND."
-finish,SB,ru,Пескоструйное стекло и металл,"Абразивная обработка, не путать с чеканкой HA (механической) и с безнаправленным зерном ND."
+finish,MA,fr,"Finition mate, sans brillance",
+finish,MA,it,"Finitura opaca, senza luminosità",
+finish,MA,pt,"Acabamento fosco, sem brilho",
+finish,MA,ru,Матовый финиш без блеска,
+finish,SB,fr,Verre et métal sablés,
+finish,SB,it,Vetro e metallo sabbiati,
+finish,SB,pt,Vidro e metal jateados,
+finish,SB,ru,Пескоструйное стекло и металл,
 finish,CL,fr,Couche de vernis transparent protectrice,À ne pas confondre avec le plafonnier (CL).
 finish,CL,it,Strato protettivo di vernice trasparente,Da non confondere con il plafoniera (CL).
 finish,CL,pt,Camada protetora de verniz transparente,Não confundir com a luminária de teto (CL).
 finish,CL,ru,Защитный слой прозрачного лака,Не путать с потолочным светильником (CL).
-finish,OSCL,fr,Bois teinté à l'huile puis vernis,"Système traditionnel à pores ouverts pour le bois ; la poudre PC et le fluorocarbone FC visent les profilés métalliques, pas le bois."
-finish,OSCL,it,Legno tinta a olio e poi verniciato,"Sistema tradizionale a poro aperto per il legno; PC e FC riguardano i profili metallici, non il legno."
-finish,OSCL,pt,Madeira tingida a óleo e vernizada,"Sistema tradicional de poro aberto; o pó PC e o fluorocarbono FC aplicam-se a perfis metálicos, não à madeira."
-finish,OSCL,ru,Древесина тонируется маслом и покрывается лаком,"Традиционная открыто-пористая система для дерева; PC и FC относятся к металлическим профилям, а не к дереву."
-finish,FC,fr,Peinture fluorocarbone sur aluminium et extérieur,"Dans les légendes de Hong Kong, Macao et du Moyen-Orient, FC désigne aussi le faux plafond (False Ceiling) ; vérifier le tableau concerné."
-finish,FC,it,Vernice fluorocarbonica su alluminio ed esterni,"Nelle legende di Hong Kong, Macao e Medio Oriente FC indica anche il controsoffitto (False Ceiling); controllare in quale tabella compare."
-finish,FC,pt,Tinta fluorocarbono em alumínio e exteriores,"Em legendas de Hong Kong, Macau e Oriente Médio FC significa também falso teto (False Ceiling); ver em qual quadro aparece."
-finish,FC,ru,Фторуглеродная краска по алюминию и для фасадов,"В легендах Гонконга, Макао и Ближнего Востока FC означает также подвесной потолок (False Ceiling) — проверить, в какой таблице он указан."
-finish,ZC,fr,Galvanisation à chaud et zingage électrolytique,Protection du substrat et non finition décorative ; généralement cotée à part du système de peinture.
-finish,ZC,it,Zincatura a caldo e zincatura elettrolitica,È protezione del substrato e non finitura decorativa; di solito elencata separatamente dal sistema di verniciatura.
-finish,ZC,pt,Galvanização a quente e zincagem eletrolítica,"É proteção do substrato, não acabamento decorativo; normalmente vem separado do sistema de pintura."
-finish,ZC,ru,Горячее цинкование и электролитическое цинкование,"Защита основы, а не декоративная отделка; обычно указывается отдельно от системы окраски."
-finish,WX,fr,Cire sur pierre et bois,Étape d'entretien appliquée par-dessus une autre finition ; la finition de base doit être indiquée séparément.
-finish,WX,it,Cera su pietra e legno,È un passo di manutenzione sopra un'altra finitura; la finitura di base va indicata separatamente.
-finish,WX,pt,Cera sobre pedra e madeira,É um passo de manutenção sobre outro acabamento; o acabamento base deve ser indicado à parte.
-finish,WX,ru,Воск на камне и дереве,Это этап ухода поверх другой отделки; базовое покрытие всё равно указывается отдельно.
-finish,G,fr,Finition brillante,"Appartient à la même échelle de brillance que 30G, 50G et 70G ; uniformiser la notation de brillance par projet."
-finish,G,it,Finitura lucida,"Appartiene alla stessa scala di brillantezza di 30G, 50G e 70G; conviene uniformare la notazione in ogni progetto."
-finish,G,pt,Acabamento brilhante,"Faz parte da mesma escala de brilho que 30G, 50G e 70G; convém unificar a notação de brilho em cada projeto."
-finish,G,ru,Глянцевая поверхность,"Относится к той же шкале блеска, что 30G, 50G и 70G; лучше придерживаться одного обозначения в проекте."
-finish,30G,fr,30 pour cent de brillance — trois points,"Même famille d'échelle de brillance que G, 50G et 70G ; garder une seule convention sur la même planche."
-finish,30G,it,30 per cento di brillantezza — tre punti,"Stessa famiglia di scala di brillantezza di G, 50G e 70G; meglio usare un solo criterio in ogni tavola."
-finish,30G,pt,Trinta por cento de brilho — três pontos,"Mesma família da escala de brilho que G, 50G e 70G; convém adotar um único critério em cada prancha."
-finish,30G,ru,Глянцевитость 30% — три пункта,"Та же шкала блеска, что G, 50G и 70G; на одном листе лучше придерживаться одного обозначения."
-finish,50G,fr,50 pour cent de brillance — cinq points,"Même famille d'échelle de brillance que G, 30G et 70G ; garder une seule convention sur la même planche."
-finish,50G,it,50 per cento di brillantezza — cinque punti,"Stessa famiglia di scala di brillantezza di G, 30G e 70G; meglio usare un solo criterio in ogni tavola."
-finish,50G,pt,Cinquenta por cento de brilho — cinco pontos,"Mesma família da escala de brilho que G, 30G e 70G; convém adotar um único critério em cada prancha."
-finish,50G,ru,Глянцевитость 50% — пять пунктов,"Та же шкала блеска, что G, 30G и 70G; на одном листе лучше придерживаться одного обозначения."
-finish,70G,fr,70 pour cent de brillance — sept points,"Même famille d'échelle de brillance que G, 30G et 50G ; garder une seule convention sur la même planche."
-finish,70G,it,70 per cento di brillantezza — sette punti,"Stessa famiglia di scala di brillantezza di G, 30G e 50G; meglio usare un solo criterio in ogni tavola."
-finish,70G,pt,Setenta por cento de brilho — sete pontos,"Mesma família da escala de brilho que G, 30G e 50G; convém adotar um único critério em cada prancha."
-finish,70G,ru,Глянцевитость 70% — семь пунктов,"Та же шкала блеска, что G, 30G и 50G; на одном листе лучше придерживаться одного обозначения."
+finish,OSCL,fr,Bois teinté à l'huile puis vernis,
+finish,OSCL,it,Legno tinta a olio e poi verniciato,
+finish,OSCL,pt,Madeira tingida a óleo e vernizada,
+finish,OSCL,ru,Древесина тонируется маслом и покрывается лаком,
+finish,FC,fr,Peinture fluorocarbone sur aluminium et extérieur,
+finish,FC,it,Vernice fluorocarbonica su alluminio ed esterni,
+finish,FC,pt,Tinta fluorocarbono em alumínio e exteriores,
+finish,FC,ru,Фторуглеродная краска по алюминию и для фасадов,
+finish,ZC,fr,Galvanisation à chaud et zingage électrolytique,
+finish,ZC,it,Zincatura a caldo e zincatura elettrolitica,
+finish,ZC,pt,Galvanização a quente e zincagem eletrolítica,
+finish,ZC,ru,Горячее цинкование и электролитическое цинкование,
+finish,WX,fr,Cire sur pierre et bois,
+finish,WX,it,Cera su pietra e legno,
+finish,WX,pt,Cera sobre pedra e madeira,
+finish,WX,ru,Воск на камне и дереве,
+finish,G,fr,Finition brillante,
+finish,G,it,Finitura lucida,
+finish,G,pt,Acabamento brilhante,
+finish,G,ru,Глянцевая поверхность,
+finish,30G,fr,30 pour cent de brillance — trois points,
+finish,30G,it,30 per cento di brillantezza — tre punti,
+finish,30G,pt,Trinta por cento de brilho — três pontos,
+finish,30G,ru,Глянцевитость 30% — три пункта,
+finish,50G,fr,50 pour cent de brillance — cinq points,
+finish,50G,it,50 per cento di brillantezza — cinque punti,
+finish,50G,pt,Cinquenta por cento de brilho — cinco pontos,
+finish,50G,ru,Глянцевитость 50% — пять пунктов,
+finish,70G,fr,70 pour cent de brillance — sept points,
+finish,70G,it,70 per cento di brillantezza — sette punti,
+finish,70G,pt,Setenta por cento de brilho — sete pontos,
+finish,70G,ru,Глянцевитость 70% — семь пунктов,
 finish,PC,fr,Application électrostatique de poudre sur profilés aluminium,En conflit avec le sol vinyl (PC) : la légende tranche.
 finish,PC,it,Verniciatura elettrostatica a polvere su profili in alluminio,In conflitto con il pavimento in vinile (PC): decide la legenda.
 finish,PC,pt,Aplicação eletrostática de pó em perfis de alumínio,Em conflito com o piso vinílico (PC): a legenda decide.
 finish,PC,ru,Электростатическая порошковая окраска алюминиевых профилей,Конфликт с виниловым полом (PC) — решает легенда.
-mat,SL,zh,硬碾玉（实心亚克力）台面、树脂板、树脂线条、树脂艺术造型,SL 在材料表＝硬碾玉/树脂饰面，在电气图例＝灯带/射灯（Strip Light / Spot Light）——必须看所在表。属特殊饰面类，非玻璃制品。
-mat,SL,en,"Solid acrylic (solid surface) countertops, resin wall and ceiling panels, resin mouldings, resin art forms","SL in the material schedule = solid acrylic / resin finish, in the electrical legend = strip light / spot light (Strip Light / Spot Light) — check which schedule the code appears in; it is a special finish family, not a glass product"
-mat,SL,ja,ソリッドアクリル（実心アクリル）のカウンター、樹脂壁パネル、樹脂見切り、樹脂アートの造形,SL はマテリアル表ではソリッドアクリル（樹脂）仕上げ、電気凡例ではストリップライト／スポットライト（Strip Light / Spot Light）を表し、どちらの表にあるか必ず確認が必要で、特殊仕上げの系統であってガラス製品ではない
-mat,SL,ko,"솔리드 아크릴(실체 아크릴) 상판, 수지 벽 패널, 수지 몰딩, 수지 아트 조형물","SL은(는) 자재표에서는 솔리드 아크릴(수지) 마감, 전기 범례에서는 스트립 라이트/스포트 라이트(Strip Light / Spot Light)를 뜻함 — 어느 표에 있는지 반드시 확인. 특수 마감 계열이며 유리 제품이 아님"
-mat,SL,es,"Encimeras de acrílico macizo, paneles de pared y techo de resina, molduras de resina, formas artísticas de resina","SL en el cuadro de materiales = acabado de acrílico macizo / resina, en la leyenda eléctrica = tira de luz / foco (Strip Light / Spot Light) — hay que comprobar en qué cuadro aparece el código; es una familia de acabados especiales, no un producto de vidrio"
-mat,SL,fr,"Plans de travail en acrylique massif, panneaux muraux et plafonds en résine, moulures en résine, volumes artistiques en résine","SL dans le tableau des matériaux = finition acrylique massif / résine, dans la légende électrique = ruban lumineux / spot (Strip Light / Spot Light) — vérifier dans quel tableau le code apparaît ; c'est une famille de finitions spéciales, ce n'est pas un produit verrier."
-mat,SL,it,"Piani in acrilico massiccio, pannelli murali e soffittali in resina, cornici in resina, forme artistiche in resina","SL nella tabella dei materiali = finitura in acrilico massiccio / resina, nella legenda elettrica = strip / spot (Strip Light / Spot Light) — controllare in quale tabella compare il codice; è una famiglia di finiture speciali, non un prodotto in vetro."
-mat,SL,pt,"Bancadas de acrílico maciço, painéis de parede e teto em resina, molduras de resina, formas artísticas de resina","SL no quadro de materiais = acabamento em acrílico maciço / resina, na legenda elétrica = fita de luz / spot (Strip Light / Spot Light) — é preciso verificar em que quadro o código aparece; é uma família de acabamentos especiais, não um produto de vidro."
-mat,SL,ru,"Столешницы из массивного акрила, стеновые и потолочные панели из смолы, молдинги из смолы, художественные объёмы из смолы","SL в таблице материалов = отделка массивным акрилом / смолой, в условных обозначениях электрики = линейный светильник / прожектор (Strip Light / Spot Light) — обязательно смотреть, в какой таблице указан код; это семейство специальных отделок, а не стекло."
-mat,RA,zh,藤编饰面、藤编家具、藤编吊顶、藤编屏风,RA 为藤编/藤制品，与其他材料代码（FR 家具等）区分；港澳与东南亚项目常见，酒店与度假村精装中尤常见。
-mat,RA,en,"Rattan wall panels, rattan furniture, rattan ceilings, rattan screens","RA stands for rattan / wicker products and must be distinguished from other material codes (FR furniture, etc.); common in Hong Kong, Macau and Southeast Asian projects, especially in hotel and resort fit-out"
-mat,RA,ja,籐の壁パネル、籐の家具、籐の天井、籐の屏風,RA は籐・籐製品を示し、FR（家具）などの他のマテリアルコードと区別する点で、香港・マカオおよび東南アジアのプロジェクトでは一般的で、ホテルやリゾート先の仕上げにも多く使われる
-mat,RA,ko,"라탄 벽 패널, 라탄 가구, 라탄 천장, 라탄 스크린",RA는 라탄/위빙 제품을 뜻하며 FR(가구) 등 다른 재료 코드와 구분해야 함; 홍콩·마카오 및 동남아 프로젝트에서 흔하며 호텔·리조트 마감에도 널리 쓰인다
-mat,RA,es,"Paneles de mimbre, mobiliario de mimbre, techos de mimbre, biombos de mimbre","RA designa productos de mimbre/rattan y debe distinguirse de otros códigos de material (FR mobiliario, etc.); es habitual en proyectos de Hong Kong, Macao y el Sudeste Asiático, sobre todo en interiores de hoteles y resorts"
-mat,RA,fr,"Panneaux en rotin, mobilier en rotin, plafonds en rotin, paravents en rotin","RA désigne les produits en rotin et doit être distingué d'autres codes de matériaux (FR mobilier, etc.) ; fréquent à Hong Kong, Macao et en Asie du Sud-Est, notamment dans les projets d'hôtels et de complexes de villégiature."
-mat,RA,it,"Pannelli in vimini, arredi in vimini, soffitti in vimini, paraventi in vimini","RA indica i prodotti in vimini e va distinto dagli altri codici di materiale (FR mobiliario, ecc.); comune nei progetti a Hong Kong, Macao e nel sud-est asiatico, in particolare negli interni di hotel e resort."
-mat,RA,pt,"Painéis em rattan/vime, mobiliário em rattan, tetos em rattan, biombos em rattan","RA designa produtos em rattan/vime e deve ser distinguido de outros códigos de material (FR mobiliário, etc.); comum em projetos de Hong Kong, Macau e do Sudeste Asiático, sobretudo em interiores de hotéis e resorts."
-mat,RA,ru,"Панели из ротанга, мебель из ротанга, потолки из ротанга, ширмы из ротанга","RA обозначает изделия из ротанга и отличается от других кодов материалов (FR мебель и т. п.); часто встречается в проектах Гонконга, Макао и Юго-Восточной Азии, особенно в отелях и курортных комплексах."
-mat,BR,zh,烧结砖、页岩砖、清水砖、釉面砖、饰面砖、混凝土砌块,属砌体材料而非饰面；与饰面表的斜边 B 同首字母，须按所在表区分。
-mat,BR,en,"Fired clay brick, shale brick, fair-faced brick, glazed brick, facing brick, concrete block","A masonry material rather than a finish; the code collides with the bevelled-edge entry in the finish schedule, so check which schedule it sits on."
-mat,BR,ja,焼成レンガ、頁岩レンガ、清水煉瓦、釉薬煉瓦、化粧煉瓦、コンクリートブロック,仕上げではなく構造材として扱う。仕上げ表の面取り（B）と先頭文字が同じなので、どの表のコードか確認する。
-mat,BR,ko,"소성 벽돌, 셰일 벽돌, 미장 벽돌, 유리 벽돌, 외장 벽돌, 콘크리트 블록","마감재가 아니라 조적 구조재이며, 마감표의 모따기(B)와 첫 글자가 같으므로 어느 표의 코드인지 확인한다."
-mat,BR,es,"Ladrillo cocido, ladrillo de esquisto, ladrillo visto, ladrillo esmaltado, ladrillo de fachada, bloque de hormigón","Es un material de mampostería y no un acabado; comparte iniciales con el biselado de la tabla de acabados, así que hay que ver en qué tabla aparece."
-mat,BR,fr,"Brique cuite, brique de schiste, brique de parement, brique émaillée, brique de façade, bloc béton","Matériau de maçonnerie et non finition ; le code coïncide avec le biseau du tableau des finitions, il faut donc regarder la table concernée."
-mat,BR,it,"Mattoni cotti, mattoni di argilla, mattoni a vista, mattoni smaltati, mattoni facciata, blocchi di calcestruzzo","È un materiale murario e non una finitura; la sigla coincide con lo smusso della tabella delle finiture, quindi va guardata la tabella in cui compare."
-mat,BR,pt,"Tijolo cozido, tijolo de xisto, tijolo aparente, tijolo esmaltado, tijolo de fachada, bloco de betão","É um material de alvenaria e não um acabamento; a sigla coincide com o biselado do quadro de acabamentos, pelo que se deve ver em que quadro aparece."
-mat,BR,ru,"Керамический кирпич, сланцевый кирпич, лицевой кирпич, глазурованный кирпич, облицовочный кирпич, блоки","Это кладочный материал, а не отделка; обозначение совпадает с фаской в ведомости отделок, поэтому смотрите, в какой ведомости стоит код."
-mat,SS,zh,不锈钢板、方管、圆管、异型管、不锈钢饰面、楼梯扶手,与镀锌钢 GI、软钢 MS 分列；图例里 SS 有时也指不锈钢管件。
-mat,SS,en,"Stainless steel sheet, square and round tube, profiled tube, stainless steel finishes, stair and handrail",Keep it apart from galvanised steel (GI) and mild steel (MS); in legends SS can also cover stainless fittings.
-mat,SS,ja,ステンレス板、角パイプ、円管、特殊管、ステンレス仕上げ、手すり,亜鉛鋼（GI）、軟鋼（MS）とは分けて記載する。凡例では SS がステンレス金具を指すこともある。
-mat,SS,ko,"스테인리스 판, 각형·원형 강관, specialty tube, 스테인리스 마감, 난간",아연도강(GI) 및 연강(MS)과 구분해 표기한다. 범례에서 SS는 스테인리스 철물을 뜻하기도 한다.
-mat,SS,es,"Chapa de acero inoxidable, tubo cuadrado y redondo, tubo perfilado, acabados inoxidables, barandilla",Debe listarse aparte del acero galvanizado (GI) y del acero al carbono (MS); en la leyenda SS puede designar también accesorios inoxidables.
-mat,SS,fr,"Tôle inox, tube carré et rond, tube profilé, finitions inoxydables, main courante",À distinguer de l'acier galvanisé (GI) et de l'acier doux (MS) ; dans la légende SS peut aussi désigner les accessoires inox.
-mat,SS,it,"Lamiera inox, tubo quadro e tondo, tubo profilato, finiture inox, corrimano",Va tenuto distinto dall'acciaio zincato (GI) e dall'acciaio dolce (MS); nelle legende SS può indicare anche i complementi in inox.
-mat,SS,pt,"Chapa de aço inoxidável, tubo quadrado e redondo, tubo perfilado, acabamentos inox, corrimão",Deve ser listado à parte do aço galvanizado (GI) e do aço-carbono (MS); na legenda SS pode designar também os acessórios em inox.
-mat,SS,ru,"Лист из нержавеющей стали, квадратная и круглая труба, профильная труба, нержавеющие отделки, поручни",Отделяют от оцинкованной стали (GI) и мягкой стали (MS); в легенде SS может означать и нержавеющие фурнитурные изделия.
-mat,EM,zh,环氧自流平、环氧砂浆、环氧彩砂、环氧防静电地坪,多见于车位、机房、酒店后场；与 PVC 地胶、丙烯酸地坪分列。
-mat,EM,en,"Self-levelling epoxy, epoxy mortar, coloured flake epoxy, antistatic epoxy flooring","Common in car parks, plant rooms and back-of-house areas; list it apart from PVC sheet vinyl and acrylic flooring."
-mat,EM,ja,セルフレベリングエポキシ、エポキモルタル、フレーク塗床、静電防止エポキシ床,駐車場や機械室、バックヤードに多い。塩ビ床材、アクリル床材とは別に記載する。
-mat,EM,ko,"자정형 에폭시, 에폭시 모르타르, 플레이크 에폭시, 정전기 방지 에폭시 바닥","주차장·기계실·백야드에 흔하며, PVC 바닥재와 아크릴 바닥재와 구분해 표기한다."
-mat,EM,es,"Epoxy autonivelante, mortero epoxi, epoxi de flakes, epoxi antiestático","Habitual en aparcamientos, salas de máquinas y zonas de servicio; debe listarse aparte del vinilo en bobina y del pavimento acrílico."
-mat,EM,fr,"Époxy autolissant, mortier époxy, époxy à flakes, époxy antistatique","Courant dans les parkings, les locaux techniques et les zones de service ; à distinguer du sol PVC et du sol acrylique."
-mat,EM,it,"Epoxy autolivellante, malta epossidica, epoxy con scaglie, epoxy antistatico","Comune in parcheggi, locali tecnici e zone di servizio; da elencare separatamente dal PVC e dal pavimento in acrylico."
-mat,EM,pt,"Epóxi autonivelante, argamassa epóxi, epóxi com flakes, epóxi antiestático","Comum em estacionamentos, casas de máquinas e áreas de serviço; deve ser listado à parte do vinílico em rolo e do piso acrílico."
-mat,EM,ru,"Полимерный наливной эпоксид, эпоксидный раствор, эпоксид с кварцевой крошкой, антистатический эпоксид","Обычно встречается на парковках, в технических помещениях и в подсобных зонах; указывают отдельно от линолеума ПВХ и акриловых покрытий."
-mat,CS,zh,硅酸钙板、纤维水泥板、硅钙板吊顶基材,常用于防火与湿区基层；与石膏板 PB、矿棉板 MW 分列，遇火反应等级按 GB 8624 标注。
-mat,CS,en,"Calcium silicate board, fibre cement board, calcium silicate ceiling substrate",Used for fire-rated and wet-area substrates; list it apart from plasterboard (PB) and mineral wool board (MW) and declare the reaction-to-fire class to GB 8624.
-mat,CS,ja,珪酸鈣板、繊維セメント板、珪酸鈣板の野縁下地,防火・湿式の下地として使う。石膏ボード（PB）、鉱棉板（MW）と分け、耐火等級を GB 8624 で表示する。
-mat,CS,ko,"규산칼슘 보드, 섬유 시멘트 보드, 천장 틀용 규산칼슘 보드","내화·습식 하부재로 쓰며, 석고보드(PB)·미네랄울 보드(MW)와 구분하고 연소성능 등급은 GB 8624로 표기한다."
-mat,CS,es,"Placa de silicato de calcio, placa de fibrocemento, substrate de techo de silicato de calcio",Se usa como soporte ignífugo y en zonas húmedas; debe listarse aparte de la placa de yeso (PB) y de la placa de lana mineral (MW) y declararse su clase de reacción al fuego según GB 8624.
-mat,CS,fr,"Plaque de silicate de calcium, plaque de fibrociment, support de plafond en silicate de calcium","Utilisée en support feu et en locaux humides ; à distinguer de la plaque de plâtre (PB) et de la plaque de laine minérale (MW), avec classe de réaction au feu selon GB 8624."
-mat,CS,it,"Lastra di silicato di calcio, lastra in fibrocemento, supporto di soffitto in silicato di calcio",Impiegata come supporto ignifugo e in ambienti umidi; va elencata separatamente dal cartongesso (PB) e dal pannello di lana minerale (MW) e va dichiarata la classe di reazione al fuoco secondo GB 8624.
-mat,CS,pt,"Placa de silicato de cálcio, placa de fibrocimento, suporte de teto em silicato de cálcio","Usada como suporte ignífugo e em zonas húmidas; deve ser listada à parte da placa de gesso (PB) e da placa de lã mineral (MW), com classe de reação ao fogo segundo GB 8624."
-mat,CS,ru,"Силикатно-кальциевая плита, фиброцементная плита, подложка подвесного потолка из силикатного материала","Применяют как огнестойкую и влагостойкую основу; указывают отдельно от гипсокартона (PB) и минераловатной плиты (MW), класс реакции на огонь — по GB 8624."
-mat,MW,zh,矿棉吸音板、矿棉天花板、矿棉墙体填充板,常用于吊顶与隔墙吸声；与吸音板 AP 同域，按吸声等级与面层区分。
-mat,MW,en,"Mineral wool acoustic board, mineral wool ceiling tile, mineral wool infill panel",Common in ceilings and partitions for acoustic performance; it sits in the same family as acoustic panel (AP) and is told apart by the absorption rating and facing.
-mat,MW,ja,鉱棉吸音板、鉱棉天井板、鉱棉壁充填板,吸音天井と間仕切りに用いる。吸音板（AP）と同じ領域にあり、吸音率と表層で区別する。
-mat,MW,ko,"미네랄울 흡음판, 미네랄울 천장 타일, 미네랄울 충전재 판","흡음 천장과 칸막이에 쓰며, 흡음판(AP)과 같은 영역이므로 흡음률과 표면재로 구분한다."
-mat,MW,es,"Placa acústica de lana mineral, baldosa de techo de lana mineral, panel de relleno de lana mineral",Se usa en techos y tabiques por su comportamiento acústico; comparte familia con el panel acústico (AP) y se distingue por el índice de absorción y el revestimiento.
-mat,MW,fr,"Plaque acoustique en laine minérale, dalle de plafond en laine minérale, panneau de remplissage en laine minérale","Courante en plafonds et cloisons pour les performances acoustiques ; même famille que le panneau acoustique (AP), à distinguer par l'absorption et la finition."
-mat,MW,it,"Pannello acustico in lana minerale, pannello per controsoffitto in lana minerale, pannello di tamponamento in lana minerale",Usato per soffitti e tramezzi per le prestazioni acustiche; è della stessa famiglia del pannello acustico (AP) e si distingue per l'assorbimento e la finitura.
-mat,MW,pt,"Placa acústica de lã mineral, placa de teto em lã mineral, painel de enchimento em lã mineral",Usada em tetos e tabiques pelo desempenho acústico; pertence à mesma família do painel acústico (AP) e distingue-se pelo índice de absorção e pelo revestimento.
-mat,MW,ru,"Минераловатная акустическая плита, минераловатная потолочная плита, минераловатная заполняющая плита","Применяют в потолках и перегородках ради акустических свойств; относится к той же группе, что и акустическая панель (AP), и отличается величиной поглощения и облицовкой."
-mat,PLY,zh,覆膜板、多层板、阻燃胶合板、装饰胶合板,多用于木作基层与造型；与细木工板、密度板分列。
-mat,PLY,en,"Faced plywood, multi-layer plywood, fire-rated plywood, decorative plywood",Mostly used as a substrate and for formed joinery; list it apart from blockboard and fibreboard.
-mat,PLY,ja,単板積層板、積層合板、耐火合板、装飾合板,木工の下地や造型に用いる。ブロックボードや繊維板とは分けて記載する。
-mat,PLY,ko,"합판, 다층 합판, 내화 합판, 장식 합판","목공 바탕과 조형에 쓰며, 블록보드와 섬유판은 구분해 표기한다."
-mat,PLY,es,"Contrachapado chapado, contrachapado multicapa, contrachapado ignífugo, contrachapado decorativo",Se usa como soporte de carpintería y en formas; debe listarse aparte del tablero de listones y del tablero de fibra.
-mat,PLY,fr,"Contreplaqué plaqué, contreplaqué multicouche, contreplaqué ignifuge, contreplaqué décoratif",Utilisé comme support de menuiserie et en habillage ; à distinguer du panneau lamellé et du panneau de fibres.
-mat,PLY,it,"Compensato placcato, compensato multistrato, compensato ignifugo, compensato decorativo",Usato come supporto per la carpenteria e per le forme; va elencato separatamente dal pannello listellato e dal pannello di fibra.
-mat,PLY,pt,"Compensado revestido, compensado multicamada, compensado ignífugo, compensado decorativo",Usado como suporte de marcenaria e em formas; deve ser listado à parte do painel de ripas e do painel de fibra.
-mat,PLY,ru,"Облицованная фанера, многослойная фанера, огнестойкая фанера, декоративная фанера",Применяют как основу для столярных работ и для форм; указывают отдельно от столярного щита и от древесноволокнистой плиты.
-obj,DR,zh,实木门、复合门、钢木门、玻璃门、门套与门垛,属门表条目；与五金 HW、隔断分列，防火门须标注耐火时限。
-obj,DR,en,"Solid timber door, composite door, steel-core timber door, glass door, frame and lining","Sits in the door schedule; list it apart from hardware (HW) and partitions, and state the fire resistance rating for fire doors."
-obj,DR,ja,木製建具、複層建具、鋼木製建具、ガラス建具、枠・見切り,建具表の項目。金物（HW）、間仕切りとは分けて記載し、防火扉は耐火時間を明記する。
-obj,DR,ko,"목재문, 복합문, 강목문, 유리문, 문틀 및 문선","도어 스케줄에 해당하며, 철물(HW)·칸막이와 구분하고 방화문은 내화시간을 명시한다."
-obj,DR,es,"Puerta de madera maciza, puerta compuesta, puerta de acero y madera, puerta de cristal, marco y jambas","Va en el cuadro de puertas; debe listarse aparte de los herrajes (HW) y de los tabiques, y las puertas cortafuegos llevan indicada su resistencia al fuego."
-obj,DR,fr,"Porte en bois massif, porte composite, porte acier-bois, porte vitrée, huisserie et chambranle","Relève du tableau des portes ; à distinguer de la quincaillerie (HW) et des cloisons, et les portes coupe-feu portent leur classement feu."
-obj,DR,it,"Porta in legno massello, porta composita, porta acciaio-legno, porta in vetro, telaio e controtelaio","Rientra nel quadro delle porte; va elencata separatamente dalla ferramenta (HW) e dai tramezzi, e le porte tagliafuoco riportano la classe di resistenza al fuoco."
-obj,DR,pt,"Porta de madeira maciça, porta composta, porta de aço e madeira, porta de vidro, caixilho e guarnição","Integra o quadro de portas; deve ser listado à parte das ferragens (HW) e das divisórias, e as portas corta-fogo indicam a classe de resistência ao fogo."
-obj,DR,ru,"Деревянная дверь, комбинированная дверь, стально-деревянная дверь, стеклянная дверь, коробка и наличник","Относится к ведомости дверей; указывают отдельно от фурнитуры (HW) и перегородок, а у противопожарных дверей указывают предел огнестойкости."
-light,RC,zh,方形日光灯盘、条形日光灯盘、嵌入式 LED 平板灯,办公室常用；与面板灯 PN、吸顶灯 CL 分列。
-light,RC,en,"Square light troffer, strip light troffer, recessed LED troffer",Common in offices; list it apart from panel light (PN) and ceiling light (CL).
-light,RC,ja,方形埋込直管灯器具、連続形埋込器具、埋込 LED パネル灯,オフィスに多い。パネルライト（PN）、シーリングライト（CL）とは分けて記載する。
-light,RC,ko,"사각 매입등기구, 일자형 매입등기구, 매입 LED 패널등","사무실에서 흔하며, 패널등(PN)·천장등(CL)과 구분해 표기한다."
-light,RC,es,"Troffer cuadrado, troffer de tira, panel LED empotrado",Habitual en oficinas; debe listarse aparte del panel light (PN) y de la luz de techo (CL).
-light,RC,fr,"Plafonnier carré, plafonnier linéaire, panneau LED encastré",Courant dans les bureaux ; à distinguer du panneau LED (PN) et du plafonnier (CL).
-light,RC,it,"Plafoniera quadrata, plafoniera lineare, pannello LED incassato",Comune negli uffici; da elencare separatamente dal pannello LED (PN) e dalla plafoniera (CL).
-light,RC,pt,"Troffer quadrado, troffer linear, painel LED encastrado",Comum em escritórios; deve ser listado à parte do painel LED (PN) e da luminária de teto (CL).
-light,RC,ru,"Квадратный встраиваемый светильник, линейный встраиваемый светильник, встраиваемый светодиодный панельный светильник",Обычен в офисах; указывают отдельно от панельного светильника (PN) и потолочного светильника (CL).
-light,GR,zh,单头格栅射灯、双头格栅射灯、防眩格栅射灯,与射灯 SL 同族，按有无格栅与防眩片区分。
-light,GR,en,"Single-head grid spot, double-head grid spot, anti-glare grid spot",Sits in the same family as spot light (SL) and is told apart by the louvre and anti-glare blades.
-light,GR,ja,1灯グリッドスポット、2灯グリッドスポット、遮光グリッドスポット,スポットライト（SL）と同じ系統で、ルーバーと遮光ブレードの有無で区別する。
-light,GR,ko,"1등 그리드 스포트, 2등 그리드 스포트, 차광 그리드 스포트","스포트라이트(SL)와 같은 계열이며, 루버와 차광 블레이드의 유무로 구분한다."
-light,GR,es,"Foco de rejilla de una cabeza, de dos cabezas y con lamas antideslumbramiento",Comparte familia con el foco direccional (SL) y se distingue por la rejilla y las lamas antideslumbramiento.
-light,GR,fr,"Spot à grille une tête, deux têtes, à lames anti-éblouissement",Appartient à la famille du spot (SL) ; se distingue par la grille et les lames anti-éblouissement.
-light,GR,it,"Faretto a griglia a una testa, a due teste, con lamelle antialbaggio",Appartiene alla famiglia dello spot (SL) e si distingue per la griglia e le lamelle antialbaggio.
-light,GR,pt,"Spot com grelha de uma cabeça, de duas cabeças, com lâminas antioderramamento",Pertence à mesma família do spot (SL) e distingue-se pela grelha e pelas lâminas antioderramamento.
-light,GR,ru,"Одноточечный прожектор с решёткой, двухточечный, с антибликовыми пластинами","Относится к той же группе, что и спот (SL), и отличается наличием решётки и антибликовых пластин."
-finish,AN,zh,铝型材阳极氧化、氧化铝饰面、阳极氧化铝板,多用于铝型材与铝板；与电泳 EC、氟碳 FC 分列。
-finish,AN,en,"Anodized aluminium profiles, anodized aluminium sheet, anodic finishes",Common on aluminium profiles and panels; list it apart from e-coating (EC) and fluorine coat (FC).
-finish,AN,ja,アルマイト処理したアルミ形材、アルミ板の陽極酸化,アルミ形材やアルミ板に多い。電着（EC）、フッ素樹脂塗装（FC）とは分けて記載する。
-finish,AN,ko,"양극산화 알루미늄 프로파일, 양극산화 알루미늄 판","알루미늄 프로파일과 판재에 흔하며, 전도도장(EC)·불소 코팅(FC)과 구분해 표기한다."
-finish,AN,es,"Perfiles de aluminio anodizado, chapa de aluminio anodizada, acabados anódicos",Habitual en perfiles y chapas de aluminio; debe listarse aparte del electrocoat (EC) y del recubrimiento de fluorocarbono (FC).
-finish,AN,fr,"Profilés en aluminium anodisé, tôle d'aluminium anodisée, finitions anodiques",Courant sur les profils et les tôles d'aluminium ; à distinguer de l'électrodéposition (EC) et du revêtement au fluorocarbone (FC).
-finish,AN,it,"Profili in alluminio anodizzato, lamiera in alluminio anodizzata, finiture anodiche",Comune su profili e lamiere di alluminio; da elencare separatamente dall'elettrocoat (EC) e dalla vernice a fluorocarbone (FC).
-finish,AN,pt,"Perfis de alumínio anodizado, chapa de alumínio anodizada, acabamentos anódicos",Comum em perfis e chapas de alumínio; deve ser listado à parte do electrocoat (EC) e do revestimento de fluorocarbono (FC).
-finish,AN,ru,"Анодированные алюминиевые профили, анодированный алюминиевый лист, анодированные покрытия",Обычно применяют на алюминиевых профилях и листах; указывают отдельно от электроокраски (EC) и покрытия фторуглеродом (FC).
-finish,EC,zh,电泳漆面、电泳涂装铝型材、电泳板,与粉末喷涂 PC、氟碳 FC 分列；多用于铝型材底涂。
-finish,EC,en,"Electrodeposited coating, e-coated aluminium profile, electrocoated sheet",List it apart from powder coating (PC) and fluorine coat (FC); it is mostly used as the base coat on aluminium profiles.
-finish,EC,ja,電着塗装、電着処理アルミ形材、電着鋼板,粉体塗装（PC）、フッ素樹脂塗装（FC）とは分けて記載する。アルミ形材の下地塗装として多い。
-finish,EC,ko,"전도도장, 전도도장 알루미늄 프로파일, 전도 도장 강판","분체도장(PC)·불소 코팅(FC)과 구분해 표기하며, 알루미늄 프로파일의 하도(base coat)로 많이 쓰인다."
-finish,EC,es,"Recubrimiento por electrodeposición, perfil de aluminio electrocoatado, chapa electrocoatada",Debe listarse aparte del recubrimiento en polvo (PC) y del fluorocarbono (FC); se usa sobre todo como capa base en perfiles de aluminio.
-finish,EC,fr,"Revêtement par électrodéposition, profilé en aluminium électrodéposé, tôle électrodéposée",À distinguer du poudrage (PC) et du revêtement au fluorocarbone (FC) ; s'emploie surtout comme couche de base sur les profilés aluminium.
-finish,EC,it,"Rivestimento per electrodeposizione, profilo in alluminio elettrocoated, lamiera elettrocoated",Da elencare separatamente dalla verniciatura a polvere (PC) e dalla vernice a fluorocarbone (FC); si usa soprattutto come primer sui profili in alluminio.
-finish,EC,pt,"Revestimento por electrodeposição, perfil de alumínio eletrocoated, chapa eletrocoberta",Deve ser listado à parte do revestimento em pó (PC) e do fluorocarbono (FC); usa-se sobretudo como camada base em perfis de alumínio.
-finish,EC,ru,"Электрофоретическое покрытие, электроокрашенный алюминиевый профиль, электроокрашенный лист",Указывают отдельно от порошковой окраски (PC) и покрытия фторуглеродом (FC); чаще всего применяют как грунт на алюминиевых профилях.

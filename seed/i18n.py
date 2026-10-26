@@ -208,11 +208,11 @@ I18N = {
         "es": "Código abierto bajo licencia MIT (uso, modificación y redistribución libres) · Copyright © 2026 Karandox Lopez",
     },
     "foot_date": {
-        "zh": "生成日期 2026-10-23 · 单文件离线可用，可直接 Ctrl+P 打印为 A4",
-        "en": "Built 2026-10-23 · single self-contained file, works offline, prints to A4 with Ctrl+P",
-        "ja": "作成日 2026-10-23 · 単一ファイルでオフライン動作、Ctrl+P で A4 印刷可",
-        "ko": "생성일 2026-10-23 · 단일 파일 오프라인 사용 가능, Ctrl+P 로 A4 인쇄",
-        "es": "Generado el 2026-10-23 · archivo único que funciona sin conexión; se imprime en A4 con Ctrl+P",
+        "zh": "更新日期 {date} · 单文件离线可用，可直接 Ctrl+P 打印为 A4",
+        "en": "Last updated {date} · single self-contained file, works offline, prints to A4 with Ctrl+P",
+        "ja": "更新日 {date} · 単一ファイルでオフライン動作、Ctrl+P で A4 印刷可",
+        "ko": "업데이트 일자 {date} · 단일 파일 오프라인 사용 가능, Ctrl+P 로 A4 인쇄",
+        "es": "Última actualización {date} · archivo único que funciona sin conexión; se imprime en A4 con Ctrl+P",
     },
     "foot_lang": {
         "zh": "翻译为中日英韩西五语，术语按行业习惯译出，专业名词保留英文原词以便回查图纸。",
