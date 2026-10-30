@@ -145,7 +145,9 @@ def hant_map():
         if r.get("region_id") in hant_ids:
             texts.add(r.get("name", ""))
             texts.add(r.get("note", ""))
-    texts = {t for t in texts if t.strip()}
+    # 排序后入表：set 的迭代顺序随 PYTHONHASHSEED 变化，会让每次构建产物
+    # 仅因 JSON 键序不同而产生差异，给 CI 制造无意义的 rebuild 提交。
+    texts = sorted(t for t in texts if t.strip())
 
     out = {}
     for r in read_csv_rows("regions.csv"):
