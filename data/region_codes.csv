@@ -105,6 +105,7 @@ kr,obj,DL,LT,조명기구,Light Fixture,LT＝조명기구 분류、DL＝다운�
 kr,obj,EA,EL,전기 기기,,
 kr,obj,KIT,KT,주방 설비,,
 kr,obj,SSP,SW,스위치·콘센트 패널,,
+kr,obj,SW,SAN,위생기구,Sanitary Ware,韩国电气惯例中 SW＝스위치／콘센트（开关插座），故洁具改用 SAN 以免与 obj/SSP 同码；部分给排水图仍写 SF，套用前先读该项目的 Material Legend。
 west,,AC,ACR,Acrylic (PMMA),Acrylic,
 west,,AP,ACT,Acoustic Ceiling Tile,Acoustic Ceiling Tile,MasterFormat 2026：09 51 00 Acoustical Ceilings
 west,,CA,CAR,Carpet,,MasterFormat 2026：09 60 00 Flooring
@@ -176,6 +177,51 @@ latam,obj,KIT,EQU,Equipos de cocina,,
 latam,obj,PLT,VEG,Vegetación,,
 latam,obj,SSP,INT,Interruptor y enchufe,,
 latam,obj,SW,SAN,Aparatos sanitarios,,
+latam,finish,B,BIS,Bisel / Canto,Beveled Edge,西语 bisel＝斜边；部分顾问公司写 CAN（canto＝棱边）。
+latam,finish,E,GRA,Grabado / Ácido,Etched Finish,西语 grabado＝蚀刻／酸蚀面。
+latam,finish,EB,BGR,Bisel + Grabado,Bevel + Etched,
+latam,finish,F,ESM,Esmerilado / Frosted,Frosted Finish,西语 esmerilado＝磨砂面；英文 Frosted 亦通行。
+latam,finish,FB,BES,Bisel + Esmerilado,Bevel + Frosted,
+latam,finish,H,RAY,Rayado / Cejillado,Brushed / Hairline,西语 rayado＝拉丝；石材与金属业均用此写法。
+latam,finish,ND,TEX,Texturado / Grano aleatorio,Random Textured,
+latam,finish,OX,OXI,Oxidado,Oxidized,
+latam,finish,S,SAT,Satinado,Satin Finish,
+latam,finish,P,PUL,Pulido,Polished,西语 pulido＝抛光；石材镜面与金属抛光同码，按基材判断。
+latam,finish,HA,MAR,Martillado / Picado,Hammered Finish,
+latam,finish,FL,APA,Apagado (Flameado),Flamed Finish,西语 apagado＝火烧面；flameado 为同义写法。
+latam,finish,MA,APO,Apomazado / Mate,Honed / Matte Finish,西语 apomazado＝亚光／哑光面，是石材行业通用写法。
+latam,finish,SB,ARE,Arenado / Granallado,Sandblasted Finish,西语 arenado＝喷砂面。
+latam,finish,CL,LAC,Barniz transparente,Clear Lacquer,
+latam,finish,OSCL,BAI,Barniz de aceite / Tinte,Oil-Stain Clear Lacquer,
+latam,finish,FC,PVDF,Recubrimiento PVDF,Fluorocarbon Coating,幕墙铝型材的氟碳涂层在西语区直接写 PVDF。
+latam,finish,ZC,GAL,Galvanizado,Galvanized Finish,
+latam,finish,WX,ENC,Encerado / Cera,Waxed Finish,
+latam,finish,G,BRI,Brillo,Gloss Finish,
+latam,finish,30G,30B,30% Brillo,30% Gloss Finish,光泽度也按百分比写，代码尾字母改用 B（brillo）以区别 G。
+latam,finish,50G,50B,50% Brillo,50% Gloss Finish,
+latam,finish,70G,70B,70% Brillo,70% Gloss Finish,
+latam,finish,PC,PCO,Powder Coating / Recubrimiento en polvo,Powder Coating,
+latam,finish,AN,ANO,Anodizado,Anodized Finish,
+latam,finish,EC,ELO,Recubrimiento electroforético (E-coat),Electrophoretic Coating,西语 electroforético 与英文 E-coat 两种写法都通行。
+latam,light,DL,DL,Luminaria empotrada (Downlight),Recessed Downlight,拉美图纸的灯具表常直接写 DL 表示 empotrada。
+latam,light,CL,PLF,Plafón,Surface Ceiling Light,西语 plafón＝吸顶／明装灯具。
+latam,light,PL,SUS,Luminaria de suspensión,Pendant Light,
+latam,light,PN,PNL,Panel plano,Panel Light,
+latam,light,WL,APL,Aplique de pared,Wall Light,西语 aplique＝壁灯；勿与 mat/AP（吸音板）混淆。
+latam,light,SL,SP,Foco / Spot,Spot Light,SP 与其他地区的写法保持一致。
+latam,light,FL,PRY,Proyector,Flood Light,西语 proyector＝泛光／投射灯。
+latam,light,TL,TRK,Proyector sobre carril,Track Light,西语 proyectores sobre carril；缩写也写 TRK。
+latam,light,LL,LIN,Luminaria lineal,Linear Light,
+latam,light,UL,UST,Luminaria bajo mueble,Under-cabinet Light,
+latam,light,ML,MAG,Luminaria magnética,Magnetic Track Light,
+latam,light,WW,MUR,Luminaria de lavado de muro,Wall-washer,西语 lavado de muro＝洗墙。
+latam,light,IL,SUE,Luminaria de suelo,Ground / In-ground Light,
+latam,light,UW,SUM,Luminaria sumergida,Underwater Light,
+latam,light,EL,EMG,Luminaria de emergencia,Emergency Light,
+latam,light,EXIT,SEN,Señalética de salida,Exit Sign,西语 salida＝出口；疏散指示牌常写 SEN。
+latam,light,RC,PAN,Panel / luminaria tipo troffer,Recessed Troffer / Grid Light,
+latam,light,GR,REJ,Luminaria con rejilla,Grille Light,为与石材表常见的 GR（granito）区分，本项目在拉美把格栅灯统一写作 REJ。
+latam,mat,SK,ROD,Rodapié / Zócalo,Skirting / Baseboard,西语 rodapié＝踢脚线；部分顾问公司写 ZOC（zócalo）。
 mena,,AC,ACR,Acrylic,,
 mena,,AP,ACU,Acoustic Panel,,
 mena,,CA,CAR,Carpet,,
@@ -246,6 +292,7 @@ fr,finish,H,BRS,Brossage,,
 fr,finish,CL,VRN,Vernis brillant,,
 fr,finish,PC,POU,Poudrage,,
 fr,finish,FL,FLM,Flammé,,
+fr,mat,SK,PLN,,Plinthe / Baseboard,法语 plinthe＝踢脚线；缩写作 PLN。
 it,mat,ST,PIE,Pietra naturale,,
 it,mat,CT,CER,Ceramica,,
 it,mat,TL,CER,Piastrelle (idem CT),,
@@ -288,6 +335,7 @@ it,finish,H,SPA,Spazzolato,,
 it,finish,CL,VRN,Vernice lucida,,
 it,finish,PC,POL,Verniciatura a polvere,,
 it,finish,FL,FLM,Fiammato,,
+it,mat,SK,ZOC,,Zoccolo / Baseboard,意大利语 zoccolo＝踢脚线；缩写作 ZOC。
 pt,mat,ST,PED,Pedra natural,,
 pt,mat,CT,CER,Azulejo / cerâmica,,
 pt,mat,TL,CER,Azulejo (idem CT),,
@@ -330,6 +378,7 @@ pt,light,EL,EMER,Luminária de emergência,,
 pt,finish,H,ESCO,Escovado,,
 pt,finish,CL,VER,Verniz brilhante,,
 pt,finish,PC,POL,Pintura em pó,,
+pt,mat,SK,ROD,,Rodapé / Baseboard,葡萄牙语 rodapé＝踢脚线；缩写作 ROD。
 ru,mat,ST,KAM,Природный камень,,
 ru,mat,CT,KER,Керамическая плитка,,
 ru,mat,TL,KER,"Плитка (то же, что CT)",,

@@ -97,41 +97,54 @@ def hant_map():
 
     在构建期用 zhconv 计算，既保证在线版与离线版结果完全一致，
     也让页面只保留一份纯 CSV（简体）作为数据源。
+
+    只收「中文」内容入表：日文／韩文／西文等列若一并入表，
+    页面运行时会把日文汉字（床→牀、花崗巖…）误转成繁体。
+    地区级表（region_codes / region_extras）只收繁体地区自身的行，
+    避免把别国的当地语言文案带进对照表。
     """
     from zh_hant import to_hant
+    hant_ids = {r["id"] for r in read_csv_rows("regions.csv")
+                 if (r.get("script") or "") == "hant"}
     texts = set()
     for r in read_csv_rows("entries.csv"):
-        for lg in LANGS:
-            texts.add(r.get("name_" + lg, ""))
+        texts.add(r.get("name_zh", ""))
     for r in read_csv_rows("entry_text.csv"):
-        texts.add(r.get("desc", ""))
-        texts.add(r.get("note", ""))
+        if r.get("lang") == "zh":
+            texts.add(r.get("desc", ""))
+            texts.add(r.get("note", ""))
     for r in read_csv_rows("region_text.csv"):
-        for k in ("label", "intro", "warn", "basis", "foot_src"):
-            texts.add(r.get(k, ""))
-        texts.add(r.get("sources", ""))
+        if r.get("lang") == "zh":
+            for k in ("label", "intro", "warn", "basis", "foot_src"):
+                texts.add(r.get(k, ""))
+            for s in (r.get("sources", "") or "").split(" ; "):
+                texts.add(s.strip())
     for r in read_csv_rows("i18n.csv"):
-        for lg in LANGS:
-            texts.add(r.get(lg, ""))
+        texts.add(r.get("zh", ""))
     for r in read_csv_rows("conflict_text.csv"):
-        for lg in LANGS:
-            texts.add(r.get(lg, ""))
+        if r.get("lang") == "zh":
+            texts.add(r.get("zh", ""))
     for r in read_csv_rows("rule_text.csv"):
-        texts.add(r.get("title", ""))
-        texts.add(r.get("detail", ""))
-        texts.add(r.get("example", ""))
+        if r.get("lang") == "zh":
+            texts.add(r.get("title", ""))
+            texts.add(r.get("detail", ""))
+            texts.add(r.get("example", ""))
     for r in read_csv_rows("region_extras.csv"):
-        texts.add(r.get("name", ""))
-        texts.add(r.get("desc", ""))
-        texts.add(r.get("note", ""))
+        if r.get("region_id") in hant_ids:
+            texts.add(r.get("name", ""))
+            texts.add(r.get("desc", ""))
+            texts.add(r.get("note", ""))
     for r in read_csv_rows("conflicts.csv"):
-        for lg in LANGS:
-            texts.add(r.get("a_" + lg, ""))
-            texts.add(r.get("b_" + lg, ""))
+        texts.add(r.get("a_zh", ""))
+        texts.add(r.get("b_zh", ""))
     for r in read_csv_rows("region_conflicts.csv"):
-        texts.add(r.get("a_text", ""))
-        texts.add(r.get("b_text", ""))
-        texts.add(r.get("howto", ""))
+        texts.add(r.get("a_zh", ""))
+        texts.add(r.get("b_zh", ""))
+        texts.add(r.get("howto_zh", ""))
+    for r in read_csv_rows("region_codes.csv"):
+        if r.get("region_id") in hant_ids:
+            texts.add(r.get("name", ""))
+            texts.add(r.get("note", ""))
     texts = {t for t in texts if t.strip()}
 
     out = {}

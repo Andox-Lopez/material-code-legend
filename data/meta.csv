@@ -1,5 +1,5 @@
 ﻿key,value,note
-updated_at,2026-10-26,内容最后一次更新日期；每次更新数据时改为当天（YYYY-MM-DD）
+updated_at,2026-10-30,内容最后一次更新日期；每次更新数据时改为当天（YYYY-MM-DD）
 source_note,深圳《居住建筑室内装饰装修工程建筑信息模型设计交付标准》表 4.2.4 等公开标准与地区实务惯例,内容出处概述
 release_tag,261026-v1.2,当前发布版本标签（Release）；构建时由 RELEASE_TAG 注入
 gitee_owner,karandox-lopez,Gitee 账号或组织名（用于发布与更新兜底）

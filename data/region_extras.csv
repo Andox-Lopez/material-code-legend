@@ -11,6 +11,9 @@ west,CMU,Concrete Masonry Unit,混凝土砌块,混凝土砌块、加气混凝土
 west,LVP,Luxury Vinyl Plank,豪华石塑地板,锁扣 LVP、WPC、SPC 刚性地板,北美精装最常见的弹性地材，常与 VCT 并列
 latam,LADR,Brick,砖,烧结砖、清水砖、砖饰面,西语区砌体常用 LADR；与表面处理的斜边区分
 latam,HORM,Concrete,混凝土,现浇混凝土、预制板、找平层,属结构材料，但材料表必列
+latam,CIELR,False Ceiling / Suspended Ceiling,吊顶,石膏板吊顶、矿棉板吊顶、铝扣板吊顶、格栅吊顶,拉美把吊顶称为 cielo raso 或 falso techo；与本项目 SC 软膜天花、base 饰面组均不同类。
+latam,ESQ,Corner Guard,护角,金属护角、橡胶护角、防撞条（医院、学校、商业公装常见）,拉美公装图例常写 esquinero；本项目按地区特有条目收录。
+latam,CONP,Polished Concrete,磨光混凝土,现浇磨光混凝土（concreto pulido）、研磨抛光地坪,拉美公共区常用现浇磨光混凝土做地面；与 base EM 环氧地坪、WF 木地板材质不同。
 mena,GI,Galvanized Iron Sheet,镀锌钢板,热镀锌钢板、冷弯镀锌龙骨,海湾与东南亚隔墙、吊顶的默认钢材；与 GI 管材区分
 mena,MS,Mild Steel,软钢,碳钢板、方管、黑皮钢板,海湾常用；石材表中 MS 亦可能指大理石/石材，须核对
 fr,PLACO,Plaque de plâtre sur ossature,Plaque de plâtre sur ossature,"Plaques de plâtre fixées sur ossature métallique (72-48),[type standard 600 ou 1200 mm]",Désignation courante chez les plaquistes français ; peut figurer sous le code PB ou PLQ.
