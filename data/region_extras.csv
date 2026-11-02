@@ -33,3 +33,6 @@ in,POP,Plaster of Paris,熟石膏假天花,熟石膏吊顶、灯槽、石膏线�
 in,WPC,Wood-Plastic Composite,木塑复合板,木塑地板、墙板、吊顶面板,印度阳台与户外常用；防火等级须按项目规范报审。
 in,MDF,Medium Density Fibreboard,中密度纤维板,中密度纤维板、防潮中纤板、贴面中纤板,橱柜与家具基材；与胶合板 PLY 分列。
 in,GRG,Glass-fibre Reinforced Gypsum,玻璃纤维增强石膏,GRG 造型板、罗马柱、檐口、异形吊顶构件,酒店与商场常用；遇火反应等级须按项目规范报审。
+jp,TAT,Tatami,畳,畳（タタミ）、藺草畳、和室床材,日本和室固有床材；一张标准畳约 910×1820 mm，平面与材料表常以「畳数／J 畳」标注
+jp,SHO,Shoji (paper screen),障子,障子（ショウジ）、木框糊和纸的透光推拉构件,日本和室木框贴和纸的透光推拉窗／门；与襖（不透明）区分
+jp,FUS,Fusuma (sliding door),襖,襖（フスマ）、木框贴布／纸的双面推拉门,日本和室不透明的推拉门；与障子（透光纸障子）区分
