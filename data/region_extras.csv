@@ -36,3 +36,6 @@ in,GRG,Glass-fibre Reinforced Gypsum,玻璃纤维增强石膏,GRG 造型板、�
 jp,TAT,Tatami,畳,畳（タタミ）、藺草畳、和室床材,日本和室固有床材；一张标准畳约 910×1820 mm，平面与材料表常以「畳数／J 畳」标注
 jp,SHO,Shoji (paper screen),障子,障子（ショウジ）、木框糊和纸的透光推拉构件,日本和室木框贴和纸的透光推拉窗／门；与襖（不透明）区分
 jp,FUS,Fusuma (sliding door),襖,襖（フスマ）、木框贴布／纸的双面推拉门,日本和室不透明的推拉门；与障子（透光纸障子）区分
+west,GWB,Gypsum Wall Board,石膏墙板,纸面石膏板、耐水石膏板、耐火石膏板、双层石膏板隔墙,北美 Finish Schedule 与 Wall Type Legend 的标准写法，GYP BD 同义；本地区 PB 常写 GYB，引用时核对 MasterFormat 09 29 00 Gypsum Board
+west,EIFS,Exterior Insulating Finishing System,外墙外保温饰面系统,保温板、玻纤网布、聚合物砂浆与饰面涂层组成的外墙复合系统,属外墙系统而非室内饰面，按 MasterFormat 07 24 00 归类；勿与室内涂料 PT 或保温材料混为一谈
+west,FRP,Fiberglass Reinforced Panel,玻璃纤维增强板,FRP 墙板、玻纤增强塑料板、潮湿房间防潮内衬板,多见于厨房与潮湿房间的 Finish Schedule；结构专业 FRP 常指 Fiber Reinforced Polymer，跨专业图纸须核对全称
